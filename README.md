@@ -1,1 +1,1 @@
-# Eslint
+# Pulsanova - Eslint Configs.
