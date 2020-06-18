@@ -2,8 +2,8 @@
     "name": "@pulsanova/eslint-config-base",
     "version": "0.1.0",
     "main": "index.js",
-    "keywords": ["eslint", "eslintconfig"],
     "license": "MIT",
+    "keywords": ["eslint", "eslintconfig"],
     "scripts": {
         "find-new-rules": "eslint-find-rules --unused ./index.js --no-error"
     },

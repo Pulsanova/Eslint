@@ -247,7 +247,7 @@ module.exports = {
         'strict': ['error', 'safe'],
 
         //
-        // - Disabled rules
+        // - Règles désactivées.
         //
 
         // @see https://github.com/benmosher/eslint-plugin-import/issues/645
