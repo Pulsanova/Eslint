@@ -46,6 +46,7 @@ module.exports = {
     extends: [
         '@pulsanova/eslint-config-browser',
         'eslint-config-airbnb/rules/react',
+        'eslint-config-airbnb/rules/react-a11y',
     ].map(require.resolve),
     rules: {
         // - Les méthodes de classe (hors méthodes React) doivent utiliser `this` ou être
@@ -196,6 +197,15 @@ module.exports = {
 
         // @see https://eslint.org/docs/rules/no-underscore-dangle
         'no-underscore-dangle': ['off'],
+
+        // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/click-events-have-key-events.md
+        'jsx-a11y/click-events-have-key-events': ['off'],
+
+        // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-associated-control.md
+        'jsx-a11y/label-has-associated-control': ['off'],
+
+        // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md
+        'jsx-a11y/mouse-events-have-key-events': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/default-props-match-prop-types.md
         'react/default-props-match-prop-types': ['off'],
