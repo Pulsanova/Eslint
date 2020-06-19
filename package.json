@@ -3,7 +3,7 @@
     "scripts": {
         "lint": "eslint .",
         "bump-all": "lerna version --no-git-tag-version --no-push",
-        "publish-all": "lerna publish from-git"
+        "publish-all": "lerna publish from-package"
     },
     "devDependencies": {
         "@pulsanova/eslint-config-base": "file:./packages/base",
