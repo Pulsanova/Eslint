@@ -3,7 +3,10 @@
     "version": "0.0.0",
     "main": "index.js",
     "license": "MIT",
-    "keywords": ["eslint", "eslintconfig"],
+    "keywords": [
+        "eslint",
+        "eslintconfig"
+    ],
     "scripts": {
         "find-new-rules": "eslint-find-rules --unused ./index.js --no-error"
     },
