@@ -1,0 +1,20 @@
+{
+    "version": "0.1.0",
+    "npmClient": "yarn",
+    "packages": [
+        "packages/*"
+    ],
+    "command": {
+        "version": {
+            "exact": true
+        },
+        "publish": {
+            "registry": "https://npm.pkg.github.com"
+        },
+        "bootstrap": {
+            "npmClientArgs": [
+                "--no-lockfile"
+            ]
+        }
+    }
+}
