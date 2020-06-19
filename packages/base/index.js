@@ -180,10 +180,10 @@ module.exports = {
         //   Limite à 6 les éléments sur une seule ligne avant de demander du multi-ligne.
         // @see https://eslint.org/docs/rules/object-curly-newline
         'object-curly-newline': ['error', {
-            ObjectExpression  : { minProperties: 6, multiline: true, consistent: true },
+            ObjectExpression: { minProperties: 6, multiline: true, consistent: true },
             ObjectPattern: { minProperties: 6, multiline: true, consistent: true },
             ImportDeclaration: { minProperties: 6, multiline: true, consistent: true },
-            ExportDeclaration: { minProperties: 6, multiline: true, consistent: true }
+            ExportDeclaration: { minProperties: 6, multiline: true, consistent: true },
         }],
 
         // - Les opérateurs autour desquels il y a un retour à la ligne doivent être situés à la fin de
@@ -196,10 +196,10 @@ module.exports = {
         // @see https://eslint.org/docs/rules/operator-linebreak
         'operator-linebreak': ['error', 'after', {
             overrides: {
-                '=' : 'none',
-                '?' : 'before',
-                ':' : 'before'
-            }
+                '=': 'none',
+                '?': 'before',
+                ':': 'before',
+            },
         }],
 
         // - Préfère les fonctions flêchées en tant que callback sauf pour les fonctions nommées.
