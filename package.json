@@ -1,7 +1,9 @@
 {
     "private": true,
     "scripts": {
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "bump-all": "lerna version --no-git-tag-version --no-push",
+        "publish-all": "lerna publish from-git"
     },
     "devDependencies": {
         "@pulsanova/eslint-config-base": "file:./packages/base",
