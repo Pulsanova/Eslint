@@ -5,14 +5,11 @@
 ## Pré-requis
 
 Avant de pouvoir "consommer" les configurations ESLint Pulsanova, vous devez paramètrer NPM / Yarn pour 
-qu'ils utilisent Github Packages pour les paquets `@pulsanova/*`:
+qu'ils utilisent Github Packages pour les paquets `@pulsanova/*` (plus de détails à ce sujet [ici][github-packages-npm-doc):
 
 ```bash
 ❯ npm login --registry=https://npm.pkg.github.com --scope=@pulsanova
 ```
-
-On vous demandera un `Username` et un `Password`, ceux-ci correspondent respectivement à votre identifiant Github ainsi qu'un "personal access token" Github généré à cet effet.  
-Veuillez vous réferer à [la documentation sur la configuration de NPM pour utilisation de Github Packages][github-packages-npm-doc] pour plus de détails.
 
 ## Configurations disponibles
 
