@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-react",
-    "version": "0.1.0",
+    "version": "0.0.0",
     "main": "index.js",
     "license": "MIT",
     "keywords": ["eslint", "eslintconfig"],
@@ -8,7 +8,7 @@
         "find-new-rules": "eslint-find-rules --unused ./index.js --no-error"
     },
     "dependencies": {
-        "@pulsanova/eslint-config-browser": "0.1.0",
+        "@pulsanova/eslint-config-browser": "0.0.0",
         "eslint-config-airbnb": "~18.1.0",
         "eslint-plugin-class-methods-use-this-regex": "~0.1.2",
         "eslint-plugin-import": "~2.21.2",
