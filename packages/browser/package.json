@@ -16,5 +16,8 @@
     },
     "peerDependencies": {
         "eslint": "^7.2.0"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
     }
 }
