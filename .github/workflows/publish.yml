@@ -1,7 +1,7 @@
 name : Publication
-on   :
-    release:
-        types: [created]
+on:
+    push:
+        tags: ['*']
 jobs:
     build:
         runs-on : ubuntu-latest
