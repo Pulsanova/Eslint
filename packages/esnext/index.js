@@ -81,7 +81,7 @@ module.exports = {
         // (Prise en charge Babel, voir parent)
         // @see https://eslint.org/docs/rules/quotes
         'quotes': ['off'],
-        'babel/quotes': ['error', 'single', { avoidEscape: true }],
+        'babel/quotes': ['error', 'single', { allowTemplateLiterals: true }],
 
         // - Le mode strict ne doit jamais être déclaré, babel s'en charge.
         // @see https://eslint.org/docs/rules/strict

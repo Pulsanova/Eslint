@@ -1,3 +1,6 @@
+## 0.1.6 (unreleased)
+- [Configuration ESNext] Corrige la règle `babel/quotes` qui était mal configurée.
+
 ## 0.1.5 (2020-06-19)
 - [Configuration React] Met à jour les dépendances.
 
