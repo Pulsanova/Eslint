@@ -1,4 +1,6 @@
 ## 0.3.0 (unreleased)
+- Met à jour ESLint en version 7.4.0.
+- Met à jour la configuration typescript avec des nouveaux overwrites de la configuration ESLint de base.
 - Nouvelles règles:  
   - Interdit le retour dans la création de promesses (retour qui est de toute façon ignoré).
   - Interdit les boucles avec un corps qui n'autorisent qu'une itération.

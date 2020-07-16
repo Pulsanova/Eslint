@@ -281,6 +281,11 @@ module.exports = {
         }],
 
         // (Prise en charge TypeScript, voir parent)
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-loss-of-precision.md
+        'no-loss-of-precision': ['off'],
+        '@typescript-eslint/no-loss-of-precision': ['error'],
+
+        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-expressions.md
         'no-unused-expressions': ['off'],
         'babel/no-unused-expressions': ['off'],
