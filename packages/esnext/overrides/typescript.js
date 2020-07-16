@@ -32,7 +32,7 @@ module.exports = {
             'ts-expect-error': false,
             'ts-ignore': false,
             'ts-nocheck': true,
-            'ts-check': false,
+            'ts-check': true,
         }],
 
         // - Interdit l'utilisation de commentaires TSLint (vu que ESLint est utilisé).
@@ -422,7 +422,7 @@ module.exports = {
         '@typescript-eslint/unified-signatures': ['error'],
 
         //
-        // - Règles qui sont en dehors de la responsabilité du type-checking?
+        // - Règles qui sont en dehors de la responsabilité du type-checking.
         //   (devrait être prises en charges par d'autres configs / règles / plugins)
         //
 

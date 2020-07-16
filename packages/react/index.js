@@ -71,6 +71,14 @@ module.exports = {
             ],
         }],
 
+        // - Vérifie que les balises <a> sont valides.
+        // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/0745af376cdc8686d85a361ce36952b1fb1ccf6e/docs/rules/anchor-is-valid.md
+        'jsx-a11y/anchor-is-valid': ['error', {
+            components: [],
+            specialLink: ['to'],
+            aspects: ['noHref', 'invalidHref', 'preferButton'],
+        }],
+
         // - Vérifie que les hooks avec dependances sont bien valides (`useEffect(..., [>> ICI <<])`)
         // @see https://github.com/facebook/react/issues/14920#issue-413077280
         'react-hooks/exhaustive-deps': ['warn'],
