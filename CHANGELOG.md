@@ -1,4 +1,5 @@
-## 0.3.0 (unreleased)
+## 0.3.0 (2020-07-17)
+- Met à jour les dépendances.
 - Met à jour ESLint en version 7.4.0.
 - Met à jour la configuration typescript avec des nouveaux overwrites de la configuration ESLint de base.
 - Nouvelles règles:  
