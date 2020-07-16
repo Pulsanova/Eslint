@@ -1,3 +1,6 @@
+## 0.3.1 (2020-07-17)
+- Met à jour le `yarn.lock` racine.
+
 ## 0.3.0 (2020-07-17)
 - Met à jour les dépendances.
 - Met à jour ESLint en version 7.4.0.
