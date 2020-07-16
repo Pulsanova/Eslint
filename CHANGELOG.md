@@ -1,4 +1,4 @@
-## 0.2.0 (unreleased)
+## 0.2.0 (2020-07-16)
 - Corrige la règle `jsx-a11y/anchor-is-valid` en enlevant le contrainte `[href|to]` sur les components `<Link />`.  
   (En effet, ces components, dans certains cas, n'ont pas nécessairement besoin de cet attribut (e.g. Next.js))
 - Corrige la règle `quotes` dans la configuration Typescript qui était mal configurée.
