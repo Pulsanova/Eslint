@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-browser",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "main": "index.js",
     "license": "MIT",
     "repository": {
@@ -16,14 +16,14 @@
         "find-new-rules": "eslint-find-rules --unused ./index.js --no-error"
     },
     "dependencies": {
-        "@pulsanova/eslint-config-esnext": "0.2.0"
+        "@pulsanova/eslint-config-esnext": "0.3.0"
     },
     "devDependencies": {
-        "eslint": "^7.2.0",
-        "eslint-find-rules": "^3.5.0"
+        "eslint": "^7.4.0",
+        "eslint-find-rules": "^3.6.0"
     },
     "peerDependencies": {
-        "eslint": "^7.2.0"
+        "eslint": "^7.4.0"
     },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/"

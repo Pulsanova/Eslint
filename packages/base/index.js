@@ -169,9 +169,17 @@ module.exports = {
         // @see https://eslint.org/docs/rules/no-loss-of-precision
         'no-loss-of-precision': ['error'],
 
+        // - Interdit le retour dans la création de promesses (retour qui est de toute façon ignoré).
+        // @see https://eslint.org/docs/rules/no-promise-executor-return
+        'no-promise-executor-return': ['error'],
+
         // - Interdit les retours de donnée depuis les mutateurs (setters).
         // @see https://eslint.org/docs/rules/no-setter-return
         'no-setter-return': ['error'],
+
+        // - Interdit les boucles avec un corps qui n'autorisent qu'une itération.
+        // @see https://eslint.org/docs/rules/no-unreachable-loop
+        'no-unreachable-loop': ['error', { ignore: [] }],
 
         // @see https://eslint.org/docs/rules/no-useless-backreference
         'no-useless-backreference': ['error'],
@@ -249,6 +257,9 @@ module.exports = {
         //
         // - Règles désactivées.
         //
+
+        // @see https://eslint.org/docs/rules/id-denylist
+        'id-denylist': ['off'],
 
         // @see https://github.com/benmosher/eslint-plugin-import/issues/645
         'import/order': ['off'],
