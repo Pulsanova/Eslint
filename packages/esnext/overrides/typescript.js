@@ -32,7 +32,7 @@ module.exports = {
             'ts-expect-error': false,
             'ts-ignore': false,
             'ts-nocheck': true,
-            'ts-check': false,
+            'ts-check': true,
         }],
 
         // - Interdit l'utilisation de commentaires TSLint (vu que ESLint est utilisé).
@@ -340,7 +340,7 @@ module.exports = {
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/quotes.md
         'quotes': ['off'],
         'babel/quotes': ['off'],
-        '@typescript-eslint/quotes': ['error', 'single', { avoidEscape: true }],
+        '@typescript-eslint/quotes': ['error', 'single', { allowTemplateLiterals: true }],
 
         // - Intedit l'addition de deux variables qui ne sont pas du même type (par exemple l'un une chaîne et l'autre un nombre).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/restrict-plus-operands.md
@@ -422,7 +422,7 @@ module.exports = {
         '@typescript-eslint/unified-signatures': ['error'],
 
         //
-        // - Règles qui sont en dehors de la responsabilité du type-checking?
+        // - Règles qui sont en dehors de la responsabilité du type-checking.
         //   (devrait être prises en charges par d'autres configs / règles / plugins)
         //
 
