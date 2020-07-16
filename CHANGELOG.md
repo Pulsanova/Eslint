@@ -1,6 +1,7 @@
 ## 0.2.0 (unreleased)
 - Corrige la règle `jsx-a11y/anchor-is-valid` en enlevant le contrainte `[href|to]` sur les components `<Link />`.  
   (En effet, ces components, dans certains cas, n'ont pas nécessairement besoin de cet attribut (e.g. Next.js))
+- Corrige la règle `quotes` dans la configuration Typescript qui était mal configurée.
 
 ## 0.1.6 (2020-06-20)
 - [Configuration ESNext] Corrige la règle `babel/quotes` qui était mal configurée.

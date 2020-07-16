@@ -340,7 +340,7 @@ module.exports = {
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/quotes.md
         'quotes': ['off'],
         'babel/quotes': ['off'],
-        '@typescript-eslint/quotes': ['error', 'single', { avoidEscape: true }],
+        '@typescript-eslint/quotes': ['error', 'single', { allowTemplateLiterals: true }],
 
         // - Intedit l'addition de deux variables qui ne sont pas du même type (par exemple l'un une chaîne et l'autre un nombre).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/restrict-plus-operands.md
