@@ -571,6 +571,9 @@ module.exports = {
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-return.md
         '@typescript-eslint/no-unsafe-return': ['off'],
 
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-literal-enum-member.md
+        '@typescript/prefer-literal-enum-member': ['off'],
+
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-readonly.md
         '@typescript-eslint/prefer-readonly': ['off'],
 
