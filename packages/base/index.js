@@ -81,6 +81,8 @@ module.exports = {
                 '**/vue.config.js',
                 '**/rollup.config.js',
                 '**/webpack.config.js',
+                '**/postcss.config.js',
+                '**/next.config.js',
             ],
             optionalDependencies: false,
         }],

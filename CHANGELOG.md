@@ -1,3 +1,11 @@
+## 1.0.0 (2020-08-11)
+- Première version "stable".
+- Met à jour les dépendances.
+- Ajoute les fichiers `postcss.config.js` et `next.config.js` aux 
+  fichiers ignorés par la règle `import/no-extraneous-dependencies`.
+- Nouvelles règles:  
+  - Vérifie que toutes les valeurs des enum sont bien explicitement déclarées.
+
 ## 0.3.1 (2020-07-17)
 - Met à jour le `yarn.lock` racine.
 
