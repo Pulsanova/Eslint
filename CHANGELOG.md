@@ -1,4 +1,5 @@
 ## 0.4.0 (unreleased)
+- Met à jour les dépendances.
 - Ajoute les fichiers `postcss.config.js` et `next.config.js` aux 
   fichiers ignorés par la règle `import/no-extraneous-dependencies`.
 - Nouvelles règles:  
