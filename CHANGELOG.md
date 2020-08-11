@@ -1,4 +1,4 @@
-## 1.0.0 (unreleased)
+## 1.0.0 (2020-08-11)
 - Première version "stable".
 - Met à jour les dépendances.
 - Ajoute les fichiers `postcss.config.js` et `next.config.js` aux 
