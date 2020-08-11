@@ -1,6 +1,8 @@
 ## 0.4.0 (unreleased)
 - Ajoute les fichiers `postcss.config.js` et `next.config.js` aux 
   fichiers ignorés par la règle `import/no-extraneous-dependencies`.
+- Nouvelles règles:  
+  - Vérifie que toutes les valeurs des enum sont bien explicitement déclarées.
 
 ## 0.3.1 (2020-07-17)
 - Met à jour le `yarn.lock` racine.

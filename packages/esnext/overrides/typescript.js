@@ -220,7 +220,12 @@ module.exports = {
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-function.md
         'no-empty-function': ['off'],
         '@typescript-eslint/no-empty-function': ['error', {
-            allow: ['arrowFunctions', 'functions', 'methods'],
+            allow: [
+                'arrowFunctions',
+                'decoratedFunctions',
+                'functions',
+                'methods',
+            ],
         }],
 
         // - Interdit les assertions non-null (e.g. `foo!.bar`) qui ne sont pas utiles.
@@ -326,6 +331,10 @@ module.exports = {
         //   (e.g. `let foo: 2 = 2;` => `let foo = 2 as const;`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-as-const.md
         '@typescript-eslint/prefer-as-const': ['error'],
+
+        // - Vérifie que toutes les valeurs des enum sont bien explicitement déclarées.
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-enum-initializers.md
+        '@typescript-eslint/prefer-enum-initializers': ['error'],
 
         // - Interdit l'utilisation d'interfaces avec call signature pour définir le type d'une fonction simple.
         //   (e.g. `interface MyFunc { (): string }` => `type MyFunc = () => string;`)
@@ -572,7 +581,7 @@ module.exports = {
         '@typescript-eslint/no-unsafe-return': ['off'],
 
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-literal-enum-member.md
-        '@typescript/prefer-literal-enum-member': ['off'],
+        '@typescript-eslint/prefer-literal-enum-member': ['off'],
 
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-readonly.md
         '@typescript-eslint/prefer-readonly': ['off'],
