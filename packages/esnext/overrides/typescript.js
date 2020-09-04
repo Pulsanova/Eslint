@@ -27,10 +27,11 @@ module.exports = {
 
         // - Interdit l'utilisation des directives `// @ts-nocheck` et `// @ts-check` qui n'ont pas
         //   de raison d'être utilisée car seuls les fichiers `.tsx?` doivent être typés (et non les fichiers `.js`).
+        //   Pour ce qui est de `// @ts-expect-error` et `// @ts-ignore`, un commentaire est exigé.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-ts-comment.md
         '@typescript-eslint/ban-ts-comment': ['error', {
-            'ts-expect-error': false,
-            'ts-ignore': false,
+            'ts-expect-error': 'allow-with-description',
+            'ts-ignore': 'allow-with-description',
             'ts-nocheck': true,
             'ts-check': true,
         }],
@@ -64,6 +65,13 @@ module.exports = {
         '@typescript-eslint/consistent-type-assertions': ['error', {
             assertionStyle: 'as',
             objectLiteralTypeAssertions: 'allow',
+        }],
+
+        // - Les imports de type doivent toujouus être effectués via `import type ...`.
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-imports.md
+        '@typescript-eslint/consistent-type-imports': ['error', {
+            prefer: 'type-imports',
+            disallowTypeAnnotations: true,
         }],
 
         // (Prise en charge TypeScript, voir parent)
@@ -311,6 +319,21 @@ module.exports = {
         }],
 
         // (Prise en charge TypeScript, voir parent)
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-redeclare.md
+        'no-redeclare': 'off',
+        '@typescript-eslint/no-redeclare': ['error', {
+            ignoreDeclarationMerge: true,
+        }],
+
+        // (Prise en charge TypeScript, voir parent)
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-shadow.md
+        'no-shadow': 'off',
+        '@typescript-eslint/no-shadow': ['error', {
+            ignoreTypeValueShadow: false,
+            ignoreFunctionTypeParameterNameValueShadow: false,
+        }],
+
+        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
         // NOTE: https://github.com/typescript-eslint/typescript-eslint/issues/1856
         'no-use-before-define': ['off'],
@@ -457,6 +480,9 @@ module.exports = {
 
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-for-in-array.md
         '@typescript-eslint/no-for-in-array': ['off'],
+
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-implicit-any-catch.md
+        '@typescript-eslint/no-implicit-any-catch': ['off'],
 
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-implied-eval.md
         '@typescript-eslint/no-implied-eval': ['off'],

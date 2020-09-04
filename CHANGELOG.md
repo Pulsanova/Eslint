@@ -1,5 +1,9 @@
 ## 1.1.0 (unreleased)
 - Met à jour les dépendances (et donc ajoute le support de Typescript 4.x).
+- Met à jour la règle `@typescript-eslint/ban-ts-comment`: Un commentaire explicatif 
+  est maintenant exigé lors de l'utilisation de `// @ts-expect-error` et `// @ts-ignore`.
+- Nouvelles règles:
+  - Les imports de type doivent toujouus être effectués via `import type ...`;
 
 ## 1.0.0 (2020-08-11)
 - Première version "stable".
