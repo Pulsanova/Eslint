@@ -1,3 +1,6 @@
+## 1.1.0 (unreleased)
+- Met à jour les dépendances (et donc ajoute le support de Typescript 4.x).
+
 ## 1.0.0 (2020-08-11)
 - Première version "stable".
 - Met à jour les dépendances.

@@ -19,11 +19,11 @@
         "@pulsanova/eslint-config-esnext": "1.0.0"
     },
     "devDependencies": {
-        "eslint": "^7.6.0",
+        "eslint": "^7.8.1",
         "eslint-find-rules": "^3.6.0"
     },
     "peerDependencies": {
-        "eslint": "^7.6.0"
+        "eslint": "^7.8.1"
     },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/"
