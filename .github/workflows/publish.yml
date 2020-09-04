@@ -13,7 +13,7 @@ jobs:
                 echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> .npmrc
               env:
                 NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            - run: yarn install
+            - run: yarn install --pure-lockfile
             - run: yarn lint --max-warnings 0 --color
     publish:
         needs   : build
@@ -29,5 +29,5 @@ jobs:
                 echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> .npmrc
               env:
                 NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            - run: yarn install
+            - run: yarn install --pure-lockfile
             - run: yarn publish-all --yes
