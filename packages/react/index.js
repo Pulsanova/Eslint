@@ -98,7 +98,10 @@ module.exports = {
         //   Cette extension (`.jsx`) n'est plus recommandée (voir lien ci-dessous), il n'y a pas de raison de continuer à l'utiliser.
         // @see https://github.com/facebookincubator/create-react-app/issues/87#issuecomment-234627904
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
-        'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }],
+        'react/jsx-filename-extension': ['error', {
+            allow: 'always',
+            extensions: ['.js', '.tsx'],
+        }],
 
         // - Force la syntaxe longue pour les fragments React qui est plus claire que la courte.
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-fragments.md
@@ -116,6 +119,7 @@ module.exports = {
         'react/jsx-handler-names': ['error', {
             eventHandlerPrefix: 'handle',
             eventHandlerPropPrefix: 'on',
+            checkInlineFunction: false,
         }],
 
         // - Le JSX doit être indenté avec 4 espaces.
@@ -237,4 +241,9 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md
         'react/state-in-constructor': ['off'],
     },
+
+    // - Overrides
+    overrides: [
+        { files: ['**/*.ts?(x)'], ...require('./overrides/typescript') },
+    ],
 };

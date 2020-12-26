@@ -83,6 +83,7 @@ module.exports = {
                 '**/webpack.config.js',
                 '**/postcss.config.js',
                 '**/next.config.js',
+                '**/.eslintrc.js',
             ],
             optionalDependencies: false,
         }],
@@ -171,6 +172,10 @@ module.exports = {
         // @see https://eslint.org/docs/rules/no-loss-of-precision
         'no-loss-of-precision': ['error'],
 
+        // - Interdit les séquences d'échappement \8 et \9 dans les chaînes.
+        // @see https://eslint.org/docs/rules/no-nonoctal-decimal-escape
+        'no-nonoctal-decimal-escape': ['error'],
+
         // - Interdit le retour dans la création de promesses (retour qui est de toute façon ignoré).
         // @see https://eslint.org/docs/rules/no-promise-executor-return
         'no-promise-executor-return': ['error'],
@@ -182,6 +187,13 @@ module.exports = {
         // - Interdit les boucles avec un corps qui n'autorisent qu'une itération.
         // @see https://eslint.org/docs/rules/no-unreachable-loop
         'no-unreachable-loop': ['error', { ignore: [] }],
+
+        // - Empêche l'utilisation du chaînage optionnel dans les contextes
+        //   ou `undefined` n'est pas permis.
+        // @see https://eslint.org/docs/rules/no-unsafe-optional-chaining
+        'no-unsafe-optional-chaining': ['error', {
+            disallowArithmeticOperators: true,
+        }],
 
         // @see https://eslint.org/docs/rules/no-useless-backreference
         'no-useless-backreference': ['error'],
