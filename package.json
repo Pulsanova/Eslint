@@ -7,7 +7,7 @@
     },
     "devDependencies": {
         "@pulsanova/eslint-config-base": "file:./packages/base",
-        "eslint": "^7.6.0",
+        "eslint": "^7.16.0",
         "lerna": "^3.22.1"
     }
 }

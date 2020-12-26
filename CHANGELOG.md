@@ -1,3 +1,16 @@
+## 1.1.0 (2020-12-26)
+- Met à jour les dépendances (et donc ajoute le support de Typescript 4.x).
+- Met à jour la version d'ecmascript supportée (=> 2021).
+- Met à jour la règle `@typescript-eslint/ban-ts-comment`: Un commentaire explicatif 
+  est maintenant exigé lors de l'utilisation de `// @ts-expect-error` et `// @ts-ignore`.
+- Nouvelles règles:
+  - Les imports de type doivent toujouus être effectués via `import type ...`.
+  - Interdit les séquences d'échappement \8 et \9 dans les chaînes.
+  - Empêche l'utilisation du chaînage optionnel dans les contextes ou `undefined` n'est pas permis.
+  - Les définitions d'objets avec membres non connus doivent être effectuées via `Record<..., ...>` (et non `{ [key: ...]: ... }`).
+  - Empêche l'utilisation d'expressions de type `void` dans des contextes déroutants.
+  - Empêche l'utilisation de `as` là ou `!` serait plus approprié.
+
 ## 1.0.0 (2020-08-11)
 - Première version "stable".
 - Met à jour les dépendances.
