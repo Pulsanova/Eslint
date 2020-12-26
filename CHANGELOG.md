@@ -1,4 +1,4 @@
-## 1.1.0 (unreleased)
+## 1.1.0 (2020-12-26)
 - Met à jour les dépendances (et donc ajoute le support de Typescript 4.x).
 - Met à jour la version d'ecmascript supportée (=> 2021).
 - Met à jour la règle `@typescript-eslint/ban-ts-comment`: Un commentaire explicatif 
