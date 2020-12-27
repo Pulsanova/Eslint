@@ -615,6 +615,9 @@ module.exports = {
         // @see https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
         'import/order': ['off'],
 
+        // @see https://eslint.org/docs/rules/no-undef
+        'no-undef': ['off'],
+
         // @see https://eslint.org/docs/rules/valid-jsdoc
         'valid-jsdoc': ['off'],
 
