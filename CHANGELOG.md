@@ -1,3 +1,7 @@
+## 1.1.1 (2020-12-27)
+- Désactive la rêgle `no-undef` dans les fichiers TypeScript.  
+  (comme conseillé [ici](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors))
+
 ## 1.1.0 (2020-12-26)
 - Met à jour les dépendances (et donc ajoute le support de Typescript 4.x).
 - Met à jour la version d'ecmascript supportée (=> 2021).
