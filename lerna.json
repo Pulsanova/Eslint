@@ -9,9 +9,6 @@
         "version": {
             "exact": true
         },
-        "publish": {
-            "registry": "https://npm.pkg.github.com"
-        },
         "bootstrap": {
             "npmClientArgs": [
                 "--no-lockfile"
