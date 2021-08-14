@@ -8,11 +8,6 @@ jobs:
         steps   :
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
-            - run: |
-                echo "@pulsanova:registry=https://npm.pkg.github.com/" > .npmrc
-                echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> .npmrc
-              env:
-                NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - run: yarn install --pure-lockfile
             - run: yarn lint --max-warnings 0 --color
     publish:
@@ -21,13 +16,5 @@ jobs:
         steps   :
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
-              with:
-                registry-url : https://npm.pkg.github.com/
-                scope        : '@pulsanova'
-            - run: |
-                echo "@pulsanova:registry=https://npm.pkg.github.com/" > .npmrc
-                echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" >> .npmrc
-              env:
-                NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - run: yarn install --pure-lockfile
             - run: yarn publish-all --yes

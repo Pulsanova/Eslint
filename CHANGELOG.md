@@ -1,3 +1,14 @@
+## 1.2.0 (2021-08-14)
+- Met à jour les paquets.
+- Ne limite plus le nombre d'éléments max. par ligne pour la règle `object-curly-newline`.
+- Ajoute la configuration pour Vue.
+- Nouvelles règles:  
+  - Empêche l'utilisation de `import ... from` avec les exports CommonJS (`module.exports = ...`, etc.).
+  - Empêche l'import de paquets (présence d'un `package.json`) via des imports relatifs.
+  - Préfère l'utilisation du mot-clé `this` en type de retour (qui a une signification particulière) plutôt que le nom de classe.
+  - Empêche l'utilisation de valeur non stables en tant que contexte React.
+  - Empêche l'utilisation de composants impbriqués instables.
+
 ## 1.1.1 (2020-12-27)
 - Désactive la rêgle `no-undef` dans les fichiers TypeScript.  
   (comme conseillé [ici](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors))
