@@ -1,6 +1,7 @@
-## 1.2.0 (unreleased)
+## 1.2.0 (2021-08-14)
 - Met à jour les paquets.
 - Ne limite plus le nombre d'éléments max. par ligne pour la règle `object-curly-newline`.
+- Ajoute la configuration pour Vue.
 - Nouvelles règles:  
   - Empêche l'utilisation de `import ... from` avec les exports CommonJS (`module.exports = ...`, etc.).
   - Empêche l'import de paquets (présence d'un `package.json`) via des imports relatifs.
