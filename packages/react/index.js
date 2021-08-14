@@ -131,7 +131,7 @@ module.exports = {
         'react/jsx-indent-props': ['error', 4],
 
         // - Interdit l'utilisation de `javascript:` dans les props. connu pour contenir des URLs.
-        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-script-url.md
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-script-url.md
         'react/jsx-no-script-url': ['error', [
             { name: 'Link', props: ['to'] },
             { name: 'Button', props: ['to'] },
