@@ -4,6 +4,7 @@
 - Nouvelles règles:  
   - Empêche l'utilisation de `import ... from` avec les exports CommonJS (`module.exports = ...`, etc.).
   - Empêche l'import de paquets (présence d'un `package.json`) via des imports relatifs.
+  - Préfère l'utilisation du mot-clé `this` en type de retour (qui a une signification particulière) plutôt que le nom de classe.
 
 ## 1.1.1 (2020-12-27)
 - Désactive la rêgle `no-undef` dans les fichiers TypeScript.  

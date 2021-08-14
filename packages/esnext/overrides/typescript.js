@@ -397,6 +397,12 @@ module.exports = {
         'no-useless-constructor': ['off'],
         '@typescript-eslint/no-useless-constructor': ['error'],
 
+        // (Prise en charge Babel, voir parent)
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/object-curly-spacing.md
+        'object-curly-spacing': ['off'],
+        'babel/object-curly-spacing': ['off'],
+        '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+
         // - Vérifie que `as const` est utilisé à la place des types littéraux quand c'est possible.
         //   (e.g. `let foo: 2 = 2;` => `let foo = 2 as const;`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-as-const.md
@@ -419,6 +425,11 @@ module.exports = {
         //   (e.g. `[].reduce(() => {}, {} as MyObject)` => [].reduce<MyObject>(() => {}, {})`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-reduce-type-parameter.md
         '@typescript-eslint/prefer-reduce-type-parameter': ['error'],
+
+        // - Préfère l'utilisation du mot-clé `this` en type de retour (qui a une signification particulière) plutôt que le nom de classe.
+        // @see https://www.typescriptlang.org/docs/handbook/2/classes.html#this-types
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-return-this-type.md
+        '@typescript-eslint/prefer-return-this-type': ['error'],
 
         // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/quotes.md
@@ -649,6 +660,9 @@ module.exports = {
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md
         '@typescript-eslint/no-unnecessary-condition': ['off'],
 
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-argument.md
+        '@typescript-eslint/no-unsafe-argument': ['off'],
+
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-assignment.md
         '@typescript-eslint/no-unsafe-assignment': ['off'],
 
@@ -672,5 +686,8 @@ module.exports = {
 
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-readonly-parameter-types.md
         '@typescript-eslint/prefer-readonly-parameter-types': ['off'],
+
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/sort-type-union-intersection-members.md
+        '@typescript-eslint/sort-type-union-intersection-members': ['off'],
     },
 };
