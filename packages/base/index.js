@@ -88,6 +88,16 @@ module.exports = {
             optionalDependencies: false,
         }],
 
+        // - Empêche l'utilisation de `import ... from` avec les exports CommonJS (`module.exports = ...`, etc.)
+        // https://github.com/benmosher/eslint-plugin-import/blob/1012eb951767279ce3b540a4ec4f29236104bb5b/docs/rules/no-import-module-exports.md
+        'import/no-import-module-exports': ['error', {
+            exceptions: [],
+        }],
+
+        // - Empêche l'import de paquets (présence d'un `package.json`) via des imports relatifs.
+        // https://github.com/benmosher/eslint-plugin-import/blob/1012eb951767279ce3b540a4ec4f29236104bb5b/docs/rules/no-relative-packages.md
+        'import/no-relative-packages': ['error'],
+
         // - L'indentation doit être de 4 espaces (pas de tabs).
         // @see https://eslint.org/docs/rules/indent
         'indent': ['error', 4, {
