@@ -121,6 +121,40 @@ module.exports = {
             ignore: [],
         }],
 
+        // - S'assure de la non utilisation des tirets pour les props de components.
+        // @see https://eslint.vuejs.org/rules/attribute-hyphenation.html
+        'vue/attribute-hyphenation': ['error', 'never', {
+            ignore: [],
+        }],
+
+        // - Ordre des éléments dans les fichiers vue: <template>, <style> puis <script>.
+        // @see https://eslint.vuejs.org/rules/component-tags-order.html
+        'vue/component-tags-order': ['error', {
+            order: ['template', 'style', 'script']
+        }],
+
+        // - Utilise les auto-fermeture pour tous les types de tags.
+        //   (même si en HTML natif on ne le fait pas pour les `<div>` par exemple)
+        // @see https://eslint.vuejs.org/rules/html-self-closing.html
+        'vue/html-self-closing': ['error', {
+            svg: 'always',
+            math: 'always',
+            html: {
+                component: 'always',
+                normal: 'always',
+                void: 'always',
+            },
+        }],
+
+        // - Contrôle le nombre de props par ligne:
+        //   - Pas de limite pour les components single-line.
+        //   - Une seule prop. par ligne sur les components multi-ligne.
+        // @see https://eslint.vuejs.org/rules/max-attributes-per-line.html
+        'vue/max-attributes-per-line': ['error', {
+            singleline: { max: Infinity, allowFirstLine: true },
+            multiline: { max: 1, allowFirstLine: false },
+        }],
+
         //
         // - Disabled rules.
         //
@@ -146,7 +180,7 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-foreign-prop-types.md
         'react/forbid-foreign-prop-types': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/bc976b837abeab1dffd90ac6168b746a83fc83cc/docs/rules/jsx-fragments.md
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-fragments.md
         'react/jsx-fragments': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-newline.md
@@ -173,7 +207,7 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
         'react/jsx-uses-react': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/no-access-state-in-setstate.md
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-access-state-in-setstate.md
         'react/no-access-state-in-setstate': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
@@ -203,7 +237,7 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md
         'react/no-is-mounted': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/9e13ae2c51e44872b45cc15bf1ac3a72105bdd0e/docs/rules/no-redundant-should-component-update.md
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-redundant-should-component-update.md
         'react/no-redundant-should-component-update': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-render-return-value.md
@@ -212,11 +246,14 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-string-refs.md
         'react/no-string-refs': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/no-this-in-sfc.md
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-this-in-sfc.md
         'react/no-this-in-sfc': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/73abadb697034b5ccb514d79fb4689836fe61f91/docs/rules/no-typos.md
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-typos.md
         'react/no-typos': ['off'],
+
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md
+        'react/no-unknown-property': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md
         'react/no-unused-prop-types': ['off'],
@@ -236,7 +273,7 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
         'react/react-in-jsx-scope': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/require-default-props.md
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-default-props.md
         'react/require-default-props': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
@@ -245,8 +282,14 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/style-prop-object.md
         'react/style-prop-object': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/843d71a432baf0f01f598d7cf1eea75ad6896e4b/docs/rules/sort-comp.md
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
         'react/sort-comp': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/attributes-order.html
+        'vue/attributes-order': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/singleline-html-element-content-newline.html
+        'vue/singleline-html-element-content-newline': ['off'],
     },
 
     // - Overrides

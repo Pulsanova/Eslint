@@ -1,3 +1,6 @@
+## 1.2.1 (2021-08-14)
+- Corrige les règles Vue.
+
 ## 1.2.0 (2021-08-14)
 - Met à jour les paquets.
 - Ne limite plus le nombre d'éléments max. par ligne pour la règle `object-curly-newline`.
