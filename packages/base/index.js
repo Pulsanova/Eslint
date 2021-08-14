@@ -209,13 +209,12 @@ module.exports = {
         'no-useless-backreference': ['error'],
 
         // - Les objets littéraux doivent avoir des retours à la ligne cohérents.
-        //   Limite à 6 les éléments sur une seule ligne avant de demander du multi-ligne.
         // @see https://eslint.org/docs/rules/object-curly-newline
         'object-curly-newline': ['error', {
-            ObjectExpression: { minProperties: 6, multiline: true, consistent: true },
-            ObjectPattern: { minProperties: 6, multiline: true, consistent: true },
-            ImportDeclaration: { minProperties: 6, multiline: true, consistent: true },
-            ExportDeclaration: { minProperties: 6, multiline: true, consistent: true },
+            ObjectExpression: { multiline: true, consistent: true },
+            ObjectPattern: { multiline: true, consistent: true },
+            ImportDeclaration: { multiline: true, consistent: true },
+            ExportDeclaration: { multiline: true, consistent: true },
         }],
 
         // - Les opérateurs autour desquels il y a un retour à la ligne doivent être situés à la fin de

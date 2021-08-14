@@ -1,5 +1,6 @@
 ## 1.2.0 (unreleased)
 - Met à jour les paquets.
+- Ne limite plus le nombre d'éléments max. par ligne pour la règle `object-curly-newline`.
 - Nouvelles règles:  
   - Empêche l'utilisation de `import ... from` avec les exports CommonJS (`module.exports = ...`, etc.).
   - Empêche l'import de paquets (présence d'un `package.json`) via des imports relatifs.
