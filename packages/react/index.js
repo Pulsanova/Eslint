@@ -161,11 +161,19 @@ module.exports = {
             ignore: [],
         }],
 
+        // - Empêche l'utilisation de valeur non stables en tant que contexte React.
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-constructed-context-values.md
+        'react/jsx-no-constructed-context-values': ['error'],
+
         // - Pas de mutation directe du state.
         //   Interdit les mutations du state hors du constructeur (ou il peut être __assigné__ de manière synchrone),
         //   il faut considérer le state comme étant immutable.
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
         'react/no-direct-mutation-state': ['error'],
+
+        // - Empêche l'utilisation de composants impbriqués instables.
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
+        'react/no-unstable-nested-components': ['error', { allowAsProps: true }],
 
         // - Requiert la définition des `defaultProps` pour chaque prop. qui n'est pas requise.
         //   (Note: Cette règle est désactivée pour les components sous forme de fonction car pour
@@ -224,6 +232,9 @@ module.exports = {
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
         'react/destructuring-assignment': ['off'],
+
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-newline.md
+        'react/jsx-newline': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-one-expression-per-line.md
         'react/jsx-one-expression-per-line': ['off'],
