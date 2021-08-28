@@ -1,4 +1,4 @@
-## 1.3.0 (unreleased)
+## 1.3.0 (2021-08-28)
 - Ajoute la prise en charge du chargement des fichiers `.vue` sans spécifier l'extension.
 
 ## 1.2.1 (2021-08-14)
