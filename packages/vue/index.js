@@ -18,6 +18,7 @@ module.exports = {
     // - Configuration
     settings: {
         'import/extensions': [
+            '.vue',
             '.mjs',
             '.js',
             '.jsx',
@@ -59,6 +60,18 @@ module.exports = {
         'eslint-config-airbnb/rules/react',
     ].map(require.resolve),
     rules: {
+        // - L'extension ne doit pas être spécifiée dans les imports de fichiers contenant du JavaScript.
+        //   (Le support des fichiers `.vue` est ajouté dans cet overwrite)
+        // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
+        'import/extensions': ['error', 'ignorePackages', {
+            vue: 'never',
+            js: 'never',
+            jsx: 'never',
+            mjs: 'never',
+            ts: 'never',
+            tsx: 'never',
+        }],
+
         // - Le HTML de vue doit être indenté avec 4 espaces.
         // @see https://eslint.vuejs.org/rules/html-indent.html
         'vue/html-indent': ['error', 4],
