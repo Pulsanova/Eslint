@@ -130,7 +130,7 @@ module.exports = {
         // - Ordre des éléments dans les fichiers vue: <template>, <style> puis <script>.
         // @see https://eslint.vuejs.org/rules/component-tags-order.html
         'vue/component-tags-order': ['error', {
-            order: ['template', 'style', 'script']
+            order: ['template', 'style', 'script'],
         }],
 
         // - Utilise les auto-fermeture pour tous les types de tags.
@@ -161,9 +161,6 @@ module.exports = {
 
         // @see https://eslint.org/docs/rules/no-underscore-dangle
         'no-underscore-dangle': ['off'],
-
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
-        'react/no-direct-mutation-state': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
         'react/no-unstable-nested-components': ['off'],
