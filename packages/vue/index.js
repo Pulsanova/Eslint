@@ -18,6 +18,7 @@ module.exports = {
     // - Configuration
     settings: {
         'import/extensions': [
+            '.vue',
             '.mjs',
             '.js',
             '.jsx',
@@ -59,6 +60,18 @@ module.exports = {
         'eslint-config-airbnb/rules/react',
     ].map(require.resolve),
     rules: {
+        // - L'extension ne doit pas être spécifiée dans les imports de fichiers contenant du JavaScript.
+        //   (Le support des fichiers `.vue` est ajouté dans cet overwrite)
+        // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
+        'import/extensions': ['error', 'ignorePackages', {
+            vue: 'never',
+            js: 'never',
+            jsx: 'never',
+            mjs: 'never',
+            ts: 'never',
+            tsx: 'never',
+        }],
+
         // - Le HTML de vue doit être indenté avec 4 espaces.
         // @see https://eslint.vuejs.org/rules/html-indent.html
         'vue/html-indent': ['error', 4],
@@ -130,7 +143,7 @@ module.exports = {
         // - Ordre des éléments dans les fichiers vue: <template>, <style> puis <script>.
         // @see https://eslint.vuejs.org/rules/component-tags-order.html
         'vue/component-tags-order': ['error', {
-            order: ['template', 'style', 'script']
+            order: ['template', 'style', 'script'],
         }],
 
         // - Utilise les auto-fermeture pour tous les types de tags.
@@ -161,9 +174,6 @@ module.exports = {
 
         // @see https://eslint.org/docs/rules/no-underscore-dangle
         'no-underscore-dangle': ['off'],
-
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
-        'react/no-direct-mutation-state': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
         'react/no-unstable-nested-components': ['off'],

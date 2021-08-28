@@ -8,7 +8,6 @@ module.exports = {
         extraFileExtensions: ['.vue'],
     },
 
-
     // - Règles
     rules: {
         // - Pas d'utilisation de l'extension `.ts` mais uniquement `.tsx` pour les fichiers contenant du JSX.
