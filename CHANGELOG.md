@@ -1,4 +1,4 @@
-## 1.3.1 (unreleased)
+## 1.3.1 (2021-09-04)
 - Met à jour la prise en charge de TypeScript.
 
 ## 1.3.0 (2021-08-28)

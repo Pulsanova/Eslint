@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-esnext",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "main": "index.js",
     "license": "MIT",
     "repository": {
@@ -17,7 +17,7 @@
         "find-new-rules-ts": "eslint-find-rules --unused ./overrides/typescript.js --no-error"
     },
     "dependencies": {
-        "@pulsanova/eslint-config-base": "1.3.0",
+        "@pulsanova/eslint-config-base": "1.3.1",
         "@typescript-eslint/eslint-plugin": "~4.30.0",
         "@typescript-eslint/parser": "~4.30.0",
         "babel-eslint": "~10.1.0",
