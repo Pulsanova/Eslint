@@ -1,3 +1,6 @@
+## 1.3.2 (UNRELEASED)
+- Corrige le parsing de TypeScript dans la configuration Vue.
+
 ## 1.3.1 (2021-09-04)
 - Met à jour la prise en charge de TypeScript.
 

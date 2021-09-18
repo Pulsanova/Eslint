@@ -48,6 +48,9 @@ module.exports = {
             // nous permettant d'utiliser les règles relatives au JSX.
             version: '999.999.999',
         },
+        'import/parsers': {
+            '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
+        },
     },
 
     // - Plugins
