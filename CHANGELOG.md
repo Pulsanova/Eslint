@@ -1,5 +1,8 @@
 ## 2.0.0 (UNRELEASED)
 - [Breaking] Utilise `exports` dans les `package.json`.
+- Met à jour les dépendances (et notamment ESLint en version 8.x).
+- Nouvelles règles:
+  - Pas de propriétés privées non utilisées dans les classes.
 
 ## 1.3.2 (2021-09-18)
 - Corrige le parsing de TypeScript dans la configuration Vue.
