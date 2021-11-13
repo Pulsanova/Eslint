@@ -1,3 +1,6 @@
+## 2.0.0 (UNRELEASED)
+- [Breaking] Utilise `exports` dans les `package.json`.
+
 ## 1.3.2 (2021-09-18)
 - Corrige le parsing de TypeScript dans la configuration Vue.
 
