@@ -4,6 +4,7 @@
   Vous devez donc spécifier `parserOptions: { babelOptions: { configFile: "babel.config.js" } }`
   en remplacement la valeur de `configFile` par le chemin vers votre configiration Babel dans votre 
   configuration ESLint pour l'utiliser (sinon le parsing ne sera pas adapté à votre configuration Babel).
+- Ajoute un patch ESLint corrigeant la prise en charge des plugins chargés dans les configs. partagées.
 - Utilise maintenant la dernière version d'ECMAScript pour le parsing de base.
 - Ajoute la prise en charge de l'extension `.cjs`.
 - Améliore la prise en charge de l'extension `.mjs`.
