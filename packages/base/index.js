@@ -76,6 +76,10 @@ module.exports = {
             optionalDependencies: false,
         }],
 
+        // - Les extensions doivent toujours être spécifidées, hormis pour les fichiers `.js` et les paquets.
+        // @see https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
+        'import/extensions': ['error', 'ignorePackages', { js: 'never' }],
+
         // - L'indentation doit être de 4 espaces (pas de tabs).
         // @see https://eslint.org/docs/rules/indent
         'indent': ['error', 4, {
@@ -234,6 +238,12 @@ module.exports = {
             files: ['**/*.mjs'],
             parserOptions: {
                 sourceType: 'module',
+            },
+            rules: {
+                // - Les extensions doivent toujours être spécifiées, hormis pour les paquets.
+                // @see https://nodejs.org/api/esm.html#mandatory-file-extensions
+                // @see https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
+                'import/extensions': ['error', 'ignorePackages'],
             },
         },
     ],
