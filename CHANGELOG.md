@@ -1,5 +1,6 @@
 ## 2.0.0 (UNRELEASED)
 - [Breaking] Utilise `exports` dans les `package.json`.
+- [Breaking] Supprime la configuration Webpack dans la configuration Vue, ce n'était pas sa responsabilité. 
 - [Breaking] La configuration `esnext` utilise maintenant le dernier parser Babel.  
   Vous devez donc spécifier `parserOptions: { babelOptions: { configFile: "babel.config.js" } }`
   en remplacement la valeur de `configFile` par le chemin vers votre configiration Babel dans votre 

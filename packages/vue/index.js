@@ -4,10 +4,6 @@
 // @see https://github.com/eslint/eslint/issues/3458
 require('@rushstack/eslint-patch/modern-module-resolution');
 
-const webpackConfigPath = require.resolve(
-    '@vue/cli-service/webpack.config.js',
-);
-
 module.exports = {
     // - Parseur
     parser: require.resolve('vue-eslint-parser'),
@@ -43,7 +39,6 @@ module.exports = {
                     '.json',
                 ],
             },
-            webpack: { config: webpackConfigPath },
         },
         'react': {
             pragma: 'h',
