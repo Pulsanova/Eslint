@@ -12,6 +12,9 @@
 - Ajoute une configuration pour Node.
 - Nouvelles règles:
   - Pas de propriétés privées non utilisées dans les classes.
+  - (TypeScript) Empêche l'utilisation de l'opérateur `void` lorsque c'est inutile / déjà le cas.
+  - (TypeScript) Vérifie qu'une assertion non-null n'est pas utilisé avec un opérateur null coalescent (e.g. `foo! ?? 'bar'`).
+  - Les exports de type doivent toujours être effectués via `export type ...`.
 
 ## 1.3.2 (2021-09-18)
 - Corrige le parsing de TypeScript dans la configuration Vue.

@@ -41,8 +41,8 @@ module.exports = {
         '@typescript-eslint/ban-tslint-comment': ['error'],
 
         // - Utilise l'utilisation de certains types:
-        //   - Il ne faut pas utiliser de classes primitives (`Boolean`, `String`, `Number`, notez les majuscules) en tant que type.
-        //   - Il faut utiliser le type `Record<string, any>` à la place de `Object`, `object` ou `{}`.
+        //   - Il ne faut pas utiliser de classes primitives (`Boolean`, `String`, `Number`, `Object`, notez les majuscules) en tant que type.
+        //   - Il faut utiliser le type `object` ou `Record<string, never>` à la place de `{}`.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-types.md
         '@typescript-eslint/ban-types': ['error'],
 
@@ -85,7 +85,11 @@ module.exports = {
             objectLiteralTypeAssertions: 'allow',
         }],
 
-        // - Les imports de type doivent toujouus être effectués via `import type ...`.
+        // - Les exports de type doivent toujours être effectués via `export type ...`.
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-exports.md
+        '@typescript-eslint/consistent-type-exports': ['error'],
+
+        // - Les imports de type doivent toujours être effectués via `import type ...`.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-imports.md
         '@typescript-eslint/consistent-type-imports': ['error', {
             prefer: 'type-imports',
@@ -345,6 +349,16 @@ module.exports = {
         'no-loss-of-precision': ['off'],
         '@typescript-eslint/no-loss-of-precision': ['error'],
 
+        // - Empêche l'utilisation de l'opérateur `void` lorsque c'est inutile / déjà le cas.
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-meaningless-void-operator.md
+        '@typescript-eslint/no-meaningless-void-operator': ['error', {
+            checkNever: false,
+        }],
+
+        // - Vérifie qu'une assertion non-null n'est pas utilisé avec un opérateur null coalescent (e.g. `foo! ?? 'bar'`).
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-non-null-asserted-nullish-coalescing.md
+        '@typescript-eslint/no-non-null-asserted-nullish-coalescing': ['error'],
+
         // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-expressions.md
         'no-unused-expressions': ['off'],
@@ -450,6 +464,7 @@ module.exports = {
             allowAny: true,
             allowBoolean: false,
             allowNullish: false,
+            allowRegExp: false,
         }],
 
         // (Prise en charge TypeScript, voir parent)
@@ -654,6 +669,9 @@ module.exports = {
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-inferrable-types.md
         '@typescript-eslint/no-inferrable-types': ['off'],
 
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-restricted-imports.md
+        '@typescript-eslint/no-restricted-imports': ['off'],
+
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-type-alias.md
         '@typescript-eslint/no-type-alias': ['off'],
 
@@ -674,6 +692,9 @@ module.exports = {
 
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-return.md
         '@typescript-eslint/no-unsafe-return': ['off'],
+
+        // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/padding-line-between-statements.md
+        '@typescript-eslint/padding-line-between-statements': ['off'],
 
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-literal-enum-member.md
         '@typescript-eslint/prefer-literal-enum-member': ['off'],
