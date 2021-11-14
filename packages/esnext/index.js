@@ -19,7 +19,7 @@ module.exports = {
         },
         'import/resolver': {
             node: {
-                extensions: ['.mjs', '.js', '.ts', '.d.ts', '.json'],
+                extensions: ['.mjs', '.cjs', '.js', '.ts', '.d.ts', '.json'],
             },
         },
     },
@@ -46,6 +46,7 @@ module.exports = {
         'import/extensions': ['error', 'ignorePackages', {
             js: 'never',
             jsx: 'never',
+            cjs: 'never',
             mjs: 'never',
             ts: 'never',
             tsx: 'never',

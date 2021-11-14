@@ -22,6 +22,7 @@ module.exports = {
             node: {
                 extensions: [
                     '.mjs',
+                    '.cjs',
                     '.js',
                     '.jsx',
                     '.ts',
