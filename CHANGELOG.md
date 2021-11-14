@@ -8,6 +8,7 @@
 - Ajoute la prise en charge de l'extension `.cjs`.
 - Améliore la prise en charge de l'extension `.mjs`.
 - Met à jour les dépendances (et notamment ESLint en version 8.x).
+- Ajoute une configuration pour Node.
 - Nouvelles règles:
   - Pas de propriétés privées non utilisées dans les classes.
 

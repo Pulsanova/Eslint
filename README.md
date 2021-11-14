@@ -16,11 +16,17 @@ qu'ils utilisent Github Packages pour les paquets `@pulsanova/*` (plus de détai
 _Note:_ Pour savoir quelle configuration utiliser, reportez-vous aux paragraphes  
 "Quand l'utiliser" disponibles dans les différentes configurations.
 
+### [`@pulsanova/vue`](packages/vue)  
+Configuration générale pour le développement d'une application "browser" avec utilisation de Vue.
+
 ### [`@pulsanova/react`](packages/react)  
 Configuration générale pour le développement d'une application "browser" avec utilisation de React.
 
 ### [`@pulsanova/browser`](packages/browser)  
 Configuration générale pour le développement d'une application "browser".
+
+### [`@pulsanova/node`](packages/node)  
+Configuration générale pour le développement d'une application Node.
 
 ### [`@pulsanova/esnext`](packages/esnext)  
 Configuration ESLint pour les projets ESNext (babel) avec utilisation de TypeScript.
