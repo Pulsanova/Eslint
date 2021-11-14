@@ -154,7 +154,7 @@ module.exports = {
             ignoreComments: false,
             outerIIFEBody: 1,
 
-            // https://github.com/benjamn/ast-types/blob/master/def/jsx.ts
+            // @see https://github.com/benjamn/ast-types/blob/master/def/jsx.ts
             ignoredNodes: [
                 'JSXElement',
                 'JSXElement > *',

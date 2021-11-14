@@ -42,7 +42,7 @@ module.exports = {
 
         // - L'extension ne doit pas être spécifiée dans les imports de fichiers contenant du JavaScript.
         //   (Le support de TypeScript est ajouté dans cet overwrite)
-        // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
+        // @see https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
         'import/extensions': ['error', 'ignorePackages', {
             js: 'never',
             jsx: 'never',

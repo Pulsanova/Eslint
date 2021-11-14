@@ -209,11 +209,11 @@ module.exports = {
         }],
 
         // - Les propriétés statiques des components React sous forme de classe doivent être dans des propriétés statiques.
-        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
         'react/static-property-placement': ['error', 'static public field'],
 
         //
-        // - Disabled rules.
+        // - Règles désactivées.
         //
 
         // @see https://eslint.org/docs/rules/no-underscore-dangle
@@ -222,7 +222,7 @@ module.exports = {
         // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/click-events-have-key-events.md
         'jsx-a11y/click-events-have-key-events': ['off'],
 
-        // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-associated-control.md
+        // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-associated-control.md
         'jsx-a11y/label-has-associated-control': ['off'],
 
         // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md

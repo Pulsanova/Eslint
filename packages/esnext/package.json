@@ -14,8 +14,8 @@
         "eslintconfig"
     ],
     "scripts": {
-        "find-new-rules": "eslint-find-rules --unused ./index.js --no-error",
-        "find-new-rules-ts": "eslint-find-rules --unused ./overrides/typescript.js --no-error"
+        "find-new-rules": "eslint-find-rules --unused --no-error ./index.js",
+        "find-new-rules-ts": "eslint-find-rules --unused --no-core --no-error ./overrides/typescript.js"
     },
     "dependencies": {
         "@babel/core": "~7.16.0",

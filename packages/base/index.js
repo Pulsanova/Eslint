@@ -95,7 +95,7 @@ module.exports = {
             ignoreComments: false,
             outerIIFEBody: 1,
 
-            // https://github.com/benjamn/ast-types/blob/master/def/jsx.ts
+            // @see https://github.com/benjamn/ast-types/blob/master/def/jsx.ts
             ignoredNodes: [
                 'JSXElement',
                 'JSXElement > *',
@@ -131,7 +131,7 @@ module.exports = {
 
         // - Empêche certains exports nommés qui pourraient porter à confusion:
         //   - `then`: Cet export causeraient beaucoup de confusion dans les imports dynamiques.
-        // https://eslint.org/docs/rules/no-restricted-exports
+        // @see https://eslint.org/docs/rules/no-restricted-exports
         'no-restricted-exports': ['error', {
             restrictedNamedExports: ['then'],
         }],
