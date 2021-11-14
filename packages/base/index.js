@@ -227,4 +227,14 @@ module.exports = {
         // @see https://eslint.org/docs/rules/no-underscore-dangle
         'no-underscore-dangle': ['off'],
     },
+
+    // - Overrides
+    overrides: [
+        {
+            files: ['**/*.mjs'],
+            parserOptions: {
+                sourceType: 'module',
+            },
+        },
+    ],
 };

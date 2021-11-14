@@ -6,6 +6,7 @@
   configuration ESLint pour l'utiliser (sinon le parsing ne sera pas adapté à votre configuration Babel).
 - Utilise maintenant la dernière version d'ECMAScript pour le parsing de base.
 - Ajoute la prise en charge de l'extension `.cjs`.
+- Améliore la prise en charge de l'extension `.mjs`.
 - Met à jour les dépendances (et notamment ESLint en version 8.x).
 - Nouvelles règles:
   - Pas de propriétés privées non utilisées dans les classes.
