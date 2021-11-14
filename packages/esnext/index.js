@@ -85,7 +85,7 @@ module.exports = {
 
     // - Overrides
     overrides: [
-        { files: ['**/*.ts?(x)'], ...require('./overrides/typescript') },
+        { files: ['**/*.ts?(x)'], ...require('./overrides/typescript.js') },
         {
             files: ['**/*.d.ts?(x)'],
             rules: {
