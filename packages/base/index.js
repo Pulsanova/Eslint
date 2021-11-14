@@ -5,7 +5,7 @@ module.exports = {
 
     // - Parseur
     parserOptions: {
-        ecmaVersion: 2021,
+        ecmaVersion: 'latest',
         sourceType: 'script',
     },
 
