@@ -12,9 +12,11 @@
 - Ajoute une configuration pour Node.
 - Nouvelles règles:
   - Pas de propriétés privées non utilisées dans les classes.
+  - Les exports de type doivent toujours être effectués via `export type ...`.
   - (TypeScript) Empêche l'utilisation de l'opérateur `void` lorsque c'est inutile / déjà le cas.
   - (TypeScript) Vérifie qu'une assertion non-null n'est pas utilisé avec un opérateur null coalescent (e.g. `foo! ?? 'bar'`).
-  - Les exports de type doivent toujours être effectués via `export type ...`.
+  - (React) Interdit l'utilisation de namespaces dans le JSX (e.g. `<ns:Comp />`) car non supportés.
+  - (React) Empêche l'utilisation de valeurs invalides pour certains attributs HTML (`rel` uniquement pour le moment).
 
 ## 1.3.2 (2021-09-18)
 - Corrige le parsing de TypeScript dans la configuration Vue.
