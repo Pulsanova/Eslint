@@ -1,5 +1,9 @@
 ## 2.0.0 (UNRELEASED)
 - [Breaking] Utilise `exports` dans les `package.json`.
+- [Breaking] La configuration `esnext` utilise maintenant le dernier parser Babel.  
+  Vous devez donc spécifier `parserOptions: { babelOptions: { configFile: "babel.config.js" } }`
+  en remplacement la valeur de `configFile` par le chemin vers votre configiration Babel dans votre 
+  configuration ESLint pour l'utiliser (sinon le parsing ne sera pas adapté à votre configuration Babel).
 - Met à jour les dépendances (et notamment ESLint en version 8.x).
 - Nouvelles règles:
   - Pas de propriétés privées non utilisées dans les classes.
