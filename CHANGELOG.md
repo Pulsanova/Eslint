@@ -1,4 +1,4 @@
-## 2.0.0 (UNRELEASED)
+## 2.0.0 (2021-11-19)
 - [Breaking] Utilise `exports` dans les `package.json`.
 - [Breaking] Supprime la configuration Webpack dans la configuration Vue, ce n'était pas sa responsabilité. 
 - [Breaking] La configuration `esnext` utilise maintenant le dernier parser Babel.  
