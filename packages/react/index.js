@@ -1,5 +1,9 @@
 'use strict';
 
+// - Corrige la prise en charge des plugins chargés dans les configs. partagées.
+// @see https://github.com/eslint/eslint/issues/3458
+require('@rushstack/eslint-patch/modern-module-resolution');
+
 module.exports = {
     // - Parseur
     parserOptions: {
@@ -22,6 +26,7 @@ module.exports = {
             node: {
                 extensions: [
                     '.mjs',
+                    '.cjs',
                     '.js',
                     '.jsx',
                     '.ts',
@@ -139,7 +144,9 @@ module.exports = {
 
         // - Vérifie qu'il n'y a pas d'utilisation inutile de `<React.Fragment>`.
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-useless-fragment.md
-        'react/jsx-no-useless-fragment': ['error'],
+        'react/jsx-no-useless-fragment': ['error', {
+            allowExpressions: false,
+        }],
 
         // - Utilisation de PascalCase (UpperCamelCase) pour nommé les components.
         //   Les components doivent être en PascalCase, les components tout en majuscule sont interdits.
@@ -157,6 +164,7 @@ module.exports = {
         //
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
         'react/jsx-pascal-case': ['error', {
+            allowLeadingUnderscore: true,
             allowAllCaps: false,
             ignore: [],
         }],
@@ -170,6 +178,15 @@ module.exports = {
         //   il faut considérer le state comme étant immutable.
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
         'react/no-direct-mutation-state': ['error'],
+
+        // - Empêche l'utilisation de valeurs invalides pour certains attributs HTML :
+        //   - Vérifie que la valeur des attributs `rel` est correcte en fonction de la balise l'utilisant.
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-invalid-html-attribute.md
+        'react/no-invalid-html-attribute': ['error', ['rel']],
+
+        // - Interdit l'utilisation de namespaces dans le JSX (e.g. `<ns:Comp />`) car non supportés par React.
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-namespace.md
+        'react/no-namespace': ['error'],
 
         // - Empêche l'utilisation de composants impbriqués instables.
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
@@ -208,11 +225,11 @@ module.exports = {
         }],
 
         // - Les propriétés statiques des components React sous forme de classe doivent être dans des propriétés statiques.
-        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
         'react/static-property-placement': ['error', 'static public field'],
 
         //
-        // - Disabled rules.
+        // - Règles désactivées.
         //
 
         // @see https://eslint.org/docs/rules/no-underscore-dangle
@@ -221,7 +238,7 @@ module.exports = {
         // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/click-events-have-key-events.md
         'jsx-a11y/click-events-have-key-events': ['off'],
 
-        // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-associated-control.md
+        // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/label-has-associated-control.md
         'jsx-a11y/label-has-associated-control': ['off'],
 
         // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md
@@ -245,9 +262,15 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-adjacent-inline-elements.md
         'react/no-adjacent-inline-elements': ['off'],
 
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-arrow-function-lifecycle.md
+        'react/no-arrow-function-lifecycle': ['off'],
+
         // NOTE: Too many false positives with functional components ...
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md
         'react/no-unused-prop-types': ['off'],
+
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-exact-props.md
+        'react/prefer-exact-props': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md
         'react/state-in-constructor': ['off'],
@@ -255,6 +278,6 @@ module.exports = {
 
     // - Overrides
     overrides: [
-        { files: ['**/*.ts?(x)'], ...require('./overrides/typescript') },
+        { files: ['**/*.ts?(x)'], ...require('./overrides/typescript.js') },
     ],
 };

@@ -1,3 +1,31 @@
+## 2.0.0 (2021-11-19)
+- [Breaking] Utilise `exports` dans les `package.json`.
+- [Breaking] Supprime la configuration Webpack dans la configuration Vue, ce n'était pas sa responsabilité. 
+- [Breaking] La configuration `esnext` utilise maintenant le dernier parser Babel.  
+  Vous devez donc spécifier `parserOptions: { babelOptions: { configFile: "babel.config.js" } }`
+  en remplacement la valeur de `configFile` par le chemin vers votre configiration Babel dans votre 
+  configuration ESLint pour l'utiliser (sinon le parsing ne sera pas adapté à votre configuration Babel).
+- Ajoute un patch ESLint corrigeant la prise en charge des plugins chargés dans les configs. partagées.
+- Utilise maintenant la dernière version d'ECMAScript pour le parsing de base.
+- Ajoute la prise en charge de l'extension `.cjs`.
+- Améliore la prise en charge de l'extension `.mjs`.
+- Met à jour les dépendances (et notamment ESLint en version 8.x).
+- Ajoute une configuration pour Node.
+- Nouvelles règles:
+  - Pas de propriétés privées non utilisées dans les classes.
+  - Les exports de type doivent toujours être effectués via `export type ...`.
+  - (TypeScript) Empêche l'utilisation de l'opérateur `void` lorsque c'est inutile / déjà le cas.
+  - (TypeScript) Vérifie qu'une assertion non-null n'est pas utilisé avec un opérateur null coalescent (e.g. `foo! ?? 'bar'`).
+  - (React) Interdit l'utilisation de namespaces dans le JSX (e.g. `<ns:Comp />`) car non supportés.
+  - (React / Vue) Empêche l'utilisation de valeurs invalides pour certains attributs HTML (`rel` uniquement pour le moment).
+  - (Vue) Interdit l'utilisation de `v-text` au profit des `children`.
+  - (Vue) Interdit l'utilisation d'attributs invalides sur les elements `<template>`.
+  - (Vue) Interdit l'utilisation de propriétés non définies dans les components.
+  - (Vue) Empêche l'utilisation de propriétés computed dans `data() {}` vu que celles-ci ne sont pas encore initialisées.
+  - (Vue) Interdit l'usage de l'attribut `tag` (déprécié en Vue 3.x) dans les `<RouterLink>` (ou `<router-link>`).
+  - (Vue) Contrôle la gestion des nouvelles lignes dans la déclation des blocks Vue (`<template>`, `<script>`.
+  - (Vue) Empêche l'utilsation de chaînes quotées inutilement (e.g. `{{ 'Hello' }}`).
+
 ## 1.3.2 (2021-09-18)
 - Corrige le parsing de TypeScript dans la configuration Vue.
 

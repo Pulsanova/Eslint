@@ -1,8 +1,12 @@
 'use strict';
 
+// - Corrige la prise en charge des plugins chargés dans les configs. partagées.
+// @see https://github.com/eslint/eslint/issues/3458
+require('@rushstack/eslint-patch/modern-module-resolution');
+
 module.exports = {
     // - Parseur
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
     parserOptions: {
         sourceType: 'module',
         ecmaFeatures: {
@@ -19,29 +23,21 @@ module.exports = {
         },
         'import/resolver': {
             node: {
-                extensions: ['.mjs', '.js', '.ts', '.d.ts', '.json'],
+                extensions: ['.mjs', '.cjs', '.js', '.ts', '.d.ts', '.json'],
             },
         },
     },
 
     // - Plugins
-    plugins: ['babel'],
+    plugins: ['@babel'],
 
     // - Règles
     extends: '@pulsanova/base',
     rules: {
         // (Prise en charge Babel, voir parent)
-        // @see https://eslint.org/docs/rules/camelcase
-        'camelcase': ['off'],
-        'babel/camelcase': ['error', {
-            ignoreDestructuring: false,
-            properties: 'never',
-        }],
-
-        // (Prise en charge Babel, voir parent)
         // @see https://eslint.org/docs/rules/new-cap
         'new-cap': ['off'],
-        'babel/new-cap': ['error', {
+        '@babel/new-cap': ['error', {
             newIsCap: true,
             newIsCapExceptions: [],
             capIsNew: false,
@@ -50,10 +46,11 @@ module.exports = {
 
         // - L'extension ne doit pas être spécifiée dans les imports de fichiers contenant du JavaScript.
         //   (Le support de TypeScript est ajouté dans cet overwrite)
-        // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
+        // @see https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
         'import/extensions': ['error', 'ignorePackages', {
             js: 'never',
             jsx: 'never',
+            cjs: 'never',
             mjs: 'never',
             ts: 'never',
             tsx: 'never',
@@ -62,47 +59,37 @@ module.exports = {
         // (Prise en charge Babel, voir parent)
         // @see https://eslint.org/docs/rules/object-curly-spacing
         'object-curly-spacing': ['off'],
-        'babel/object-curly-spacing': ['error', 'always'],
+        '@babel/object-curly-spacing': ['error', 'always'],
 
         // (Prise en charge Babel, voir parent)
         // @see https://eslint.org/docs/rules/semi
         'semi': ['off'],
-        'babel/semi': ['error', 'always'],
+        '@babel/semi': ['error', 'always'],
 
         // (Prise en charge Babel, voir parent)
         // @see https://eslint.org/docs/rules/no-unused-expressions
         'no-unused-expressions': ['off'],
-        'babel/no-unused-expressions': ['error', {
+        '@babel/no-unused-expressions': ['error', {
             allowShortCircuit: false,
             allowTaggedTemplates: false,
             allowTernary: true,
         }],
 
-        // (Prise en charge Babel, voir parent)
-        // @see https://eslint.org/docs/rules/quotes
-        'quotes': ['off'],
-        'babel/quotes': ['error', 'single', { allowTemplateLiterals: true }],
-
         // - Le mode strict ne doit jamais être déclaré, babel s'en charge.
         // @see https://eslint.org/docs/rules/strict
         'strict': ['error', 'never'],
-
-        // (Prise en charge Babel, voir parent)
-        // @see https://eslint.org/docs/rules/valid-typeof
-        'valid-typeof': ['off'],
-        'babel/valid-typeof': ['error', { requireStringLiterals: true }],
 
         //
         // - Règles désactivées.
         //
 
         // @see https://eslint.org/docs/rules/no-invalid-this
-        'babel/no-invalid-this': ['off'],
+        '@babel/no-invalid-this': ['off'],
     },
 
     // - Overrides
     overrides: [
-        { files: ['**/*.ts?(x)'], ...require('./overrides/typescript') },
+        { files: ['**/*.ts?(x)'], ...require('./overrides/typescript.js') },
         {
             files: ['**/*.d.ts?(x)'],
             rules: {

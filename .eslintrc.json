@@ -1,6 +1,3 @@
 {
-    "extends": "@pulsanova/base",
-    "rules": {
-        "global-require": ["off"]
-    }
+    "extends": "@pulsanova/node"
 }
