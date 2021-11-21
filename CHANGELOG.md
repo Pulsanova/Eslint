@@ -1,4 +1,4 @@
-## 2.0.2 (UNRELEASED)
+## 2.0.2 (2021-11-21)
 - Ajoute une dépendance manquante dans la configuration Vue.
 
 ## 2.0.1 (2021-11-21)
