@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-vue",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "main": "./index.js",
     "exports": "./index.js",
     "license": "MIT",
@@ -18,7 +18,7 @@
         "find-new-rules-ts": "eslint-find-rules --unused --no-core --no-error ./overrides/typescript.js"
     },
     "dependencies": {
-        "@pulsanova/eslint-config-browser": "2.0.0",
+        "@pulsanova/eslint-config-browser": "2.0.1",
         "@rushstack/eslint-patch": "^1.1.0",
         "eslint-config-airbnb": "~19.0.0",
         "eslint-plugin-react": "~7.27.1",
