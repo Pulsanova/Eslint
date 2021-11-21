@@ -232,12 +232,6 @@ module.exports = {
         // @see https://eslint.vuejs.org/rules/no-v-text.html
         'vue/no-v-text': ['error'],
 
-        // - Interdit l'utilisation de propriétés non définies dans les components.
-        // @see https://eslint.vuejs.org/rules/no-undef-properties.html
-        'vue/no-undef-properties': ['error', {
-            'ignores': ['/^\\$/'],
-        }],
-
         // Cf. la règle `no-useless-concat` (cette version ne fait que prendre en charge la règle dans les `<template>`).
         // @see https://eslint.org/docs/rules/no-useless-concat
         // @see https://eslint.vuejs.org/rules/no-useless-concat
@@ -410,14 +404,22 @@ module.exports = {
         // @see https://eslint.vuejs.org/rules/component-api-style.html
         'vue/component-api-style': ['off'],
 
-        // @see https://eslint.vuejs.org/rules/no-child-content.html
-        'vue/no-child-content': ['off'],
-
         // @see https://eslint.vuejs.org/rules/multi-word-component-names.html
         'vue/multi-word-component-names': ['off'],
 
+        // @see https://eslint.vuejs.org/rules/no-child-content.html
+        'vue/no-child-content': ['off'],
+
+        // - Désactivée car très contraignante (notamment lors de l'accès aux propriétés d'objets passés en prop)
+        // @see https://eslint.vuejs.org/rules/no-undef-properties.html
+        'vue/no-undef-properties': null,
+
         // @see https://eslint.vuejs.org/rules/no-restricted-class.html
         'vue/no-restricted-class': ['off'],
+
+        // - Désactivé car rapporte des faux positifs (au moins en Vue 2) : Les `class` sur les `<template>` sont bien utile.
+        // @see https://eslint.vuejs.org/rules/no-useless-template-attributes.html
+        'vue/no-useless-template-attributes': ['off'],
 
         // @see https://eslint.vuejs.org/rules/singleline-html-element-content-newline.html
         'vue/singleline-html-element-content-newline': ['off'],

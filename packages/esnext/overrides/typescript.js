@@ -222,10 +222,17 @@ module.exports = {
 
         // - Les types doivent être déclarés en PascalCase.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
-        '@typescript-eslint/naming-convention': ['error', {
-            selector: 'typeLike',
-            format: ['PascalCase'],
-        }],
+        '@typescript-eslint/naming-convention': [
+            'error',
+            {
+                selector: ['typeProperty', 'enumMember', 'typeMethod'],
+                format: ['camelCase'],
+            },
+            {
+                selector: 'typeLike',
+                format: ['PascalCase'],
+            },
+        ],
 
         // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-array-constructor.md
