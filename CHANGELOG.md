@@ -1,3 +1,7 @@
+## 2.0.3 (2021-11-21)
+- Désactive la règle `vue/no-undef-properties` qui rapporte trop de faux positifs.
+- Corrige le linting des membres des types aliases et enums qui ne fonctionnait plus correctement depuis la 2.0.1.
+
 ## 2.0.2 (2021-11-21)
 - Ajoute une dépendance manquante dans la configuration Vue.
 
