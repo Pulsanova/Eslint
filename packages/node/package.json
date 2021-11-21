@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-node",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "main": "./index.js",
     "exports": "./index.js",
     "license": "MIT",
@@ -17,7 +17,7 @@
         "find-new-rules": "eslint-find-rules --unused ./index.js --no-error"
     },
     "dependencies": {
-        "@pulsanova/eslint-config-base": "2.0.3",
+        "@pulsanova/eslint-config-base": "2.0.4",
         "@rushstack/eslint-patch": "^1.1.0"
     },
     "devDependencies": {
