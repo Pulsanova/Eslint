@@ -210,7 +210,9 @@ module.exports = {
 
         // - Interdit les assignements qui peuvent mener à des "races conditions" dû à l'usage de `await` ou `yield`.
         // @see https://eslint.org/docs/rules/require-atomic-updates
-        'require-atomic-updates': ['error'],
+        'require-atomic-updates': ['error', {
+            allowProperties: true,
+        }],
 
         // - Le mode strict doit être explicitement déclaré.
         // @see https://eslint.org/docs/rules/strict

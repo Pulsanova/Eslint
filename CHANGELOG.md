@@ -1,3 +1,6 @@
+## 2.1.0 (UNRELEASED)
+- Met à jour ESLint en version 8.3.0.
+
 ## 2.0.0 (2021-11-19)
 - [Breaking] Utilise `exports` dans les `package.json`.
 - [Breaking] Supprime la configuration Webpack dans la configuration Vue, ce n'était pas sa responsabilité. 
