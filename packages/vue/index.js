@@ -8,7 +8,7 @@ module.exports = {
     // - Parseur
     parser: require.resolve('vue-eslint-parser'),
     parserOptions: {
-        parser: '@babel/eslint-parser',
+        parser: require.resolve('@babel/eslint-parser'),
         sourceType: 'module',
         ecmaFeatures: {
             jsx: true,
