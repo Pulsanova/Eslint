@@ -1,3 +1,8 @@
+## 2.0.1 (2021-11-21)
+- Met à jour ESLint en version 8.3.0.
+- Corrige un problème avec des règles du plugin Babel mal renommées.
+- Corrige un problème avec le parseur utilisé pour la configuraiton Vue.
+
 ## 2.0.0 (2021-11-19)
 - [Breaking] Utilise `exports` dans les `package.json`.
 - [Breaking] Supprime la configuration Webpack dans la configuration Vue, ce n'était pas sa responsabilité. 

@@ -362,7 +362,7 @@ module.exports = {
         // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-expressions.md
         'no-unused-expressions': ['off'],
-        'babel/no-unused-expressions': ['off'],
+        '@babel/no-unused-expressions': ['off'],
         '@typescript-eslint/no-unused-expressions': ['error', {
             allowShortCircuit: false,
             allowTaggedTemplates: false,
@@ -414,7 +414,7 @@ module.exports = {
         // (Prise en charge Babel, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/object-curly-spacing.md
         'object-curly-spacing': ['off'],
-        'babel/object-curly-spacing': ['off'],
+        '@babel/object-curly-spacing': ['off'],
         '@typescript-eslint/object-curly-spacing': ['error', 'always'],
 
         // - Vérifie que `as const` est utilisé à la place des types littéraux quand c'est possible.
@@ -448,7 +448,7 @@ module.exports = {
         // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/quotes.md
         'quotes': ['off'],
-        'babel/quotes': ['off'],
+        '@babel/quotes': ['off'],
         '@typescript-eslint/quotes': ['error', 'single', { allowTemplateLiterals: true }],
 
         // - Intedit l'addition de deux variables qui ne sont pas du même type (par exemple l'un une chaîne et l'autre un nombre).
@@ -475,7 +475,7 @@ module.exports = {
         // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/semi.md
         'semi': ['off'],
-        'babel/semi': ['off'],
+        '@babel/semi': ['off'],
         '@typescript-eslint/semi': ['error', 'always'],
 
         // (Prise en charge TypeScript, voir parent)

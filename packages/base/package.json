@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-base",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "main": "./index.js",
     "exports": "./index.js",
     "license": "MIT",
@@ -22,10 +22,10 @@
         "eslint-plugin-import": "~2.25.3"
     },
     "devDependencies": {
-        "eslint": "^8.2.0",
+        "eslint": "^8.3.0",
         "eslint-find-rules": "^4.0.0"
     },
     "peerDependencies": {
-        "eslint": "^8.2.0"
+        "eslint": "^8.3.0"
     }
 }
