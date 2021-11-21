@@ -412,7 +412,7 @@ module.exports = {
 
         // - Désactivée car très contraignante (notamment lors de l'accès aux propriétés d'objets passés en prop)
         // @see https://eslint.vuejs.org/rules/no-undef-properties.html
-        'vue/no-undef-properties': null,
+        'vue/no-undef-properties': ['off'],
 
         // @see https://eslint.vuejs.org/rules/no-restricted-class.html
         'vue/no-restricted-class': ['off'],

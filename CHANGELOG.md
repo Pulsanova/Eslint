@@ -1,4 +1,4 @@
-## 2.0.3 (2021-11-21)
+## 2.0.(3-4) (2021-11-21)
 - Désactive la règle `vue/no-undef-properties` qui rapporte trop de faux positifs.
 - Corrige le linting des membres des types aliases et enums qui ne fonctionnait plus correctement depuis la 2.0.1.
 
