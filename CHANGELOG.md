@@ -6,6 +6,7 @@
 - Réactive la règle `import/order` qui a été corrigée et fonctionne maintenant correctement avec les imports de types.
 - Permet l'utilisation de `console.(log|error|etc.)` dans la config. Node.
 - Il est maintenant possible d'appeler `.toString()` sur les instance d'`Error`.
+- Améliore la prise en charge de la casse dans les types (#6).
 
 ## 2.0.(3-4) (2021-11-21)
 - Désactive la règle `vue/no-undef-properties` qui rapporte trop de faux positifs.

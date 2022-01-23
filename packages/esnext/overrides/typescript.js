@@ -231,13 +231,27 @@ module.exports = {
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/method-signature-style.md
         '@typescript-eslint/method-signature-style': ['error', 'method'],
 
-        // - Les types doivent être déclarés en PascalCase.
+        // - Vérifie le bon nommage de tout ce qui touche aux types:
+        //   - Le membres des `enum` doivent être en majuscules, comme pour les constantes.
+        //   - Les propriétés de type ainsi que les méthodes de type doivent être en camelCase, avec un éventuel underscore en préfixe.
+        //     (=> Ceci correspond aux conventions de nommage des proprités d'objets et méthodes en dehors de TypeScript)
+        //   - Les autres noms liés aux types (types aliases, etc.) doivent être déclarés en PascalCase.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
         '@typescript-eslint/naming-convention': [
             'error',
             {
-                selector: ['typeProperty', 'enumMember', 'typeMethod'],
+                selector: 'enumMember',
+                format: ['UPPER_CASE'],
+            },
+            {
+                selector: ['typeProperty', 'typeMethod'],
                 format: ['camelCase'],
+                leadingUnderscore: 'allow',
+                filter: {
+                    // - Ignore les propriétés / méthodes de type "gettext" (= `__`).
+                    regex: '^__$',
+                    match: false,
+                },
             },
             {
                 selector: 'typeLike',
