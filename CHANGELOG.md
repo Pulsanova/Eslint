@@ -1,4 +1,4 @@
-## 2.1.0 (UNRELEASED)
+## 2.1.0 (2022-01-23)
 - Les fichiers de tests unitaires typés (e.g. `.ts`) peuvent utilisés des dépendances de développement
   sans erreur remontées par ESLint (comme c'était déjà le cas pour les fichiers de TU non typés).
 - Les commentaires de désactivation ESLint inutiles sont maintenant signalés.
