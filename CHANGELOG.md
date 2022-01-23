@@ -1,4 +1,4 @@
-## 2.1.1 (UNRELEASED)
+## 2.1.1 (2022-01-23)
 - Fixe la version de `eslint-config-airbnb` dans la config Vue car posé des soucis avec la règle `react/function-component-definition`.  
   (=> A investiguer lors de la prochaine mise à jour des dépendances)
 
