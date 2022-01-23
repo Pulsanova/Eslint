@@ -151,23 +151,28 @@ module.exports = {
         }],
 
         // - Utilisation de PascalCase (UpperCamelCase) pour nommé les components.
-        //   Les components doivent être en PascalCase, les components tout en majuscule sont interdits.
+        //   - Les components doivent être en PascalCase, les components tout en majuscule sont interdits.
+        //   - Les components "privés" (préfixés par un underscore) sont interdits, c'est souvent signe d'une mauvaise structuration.
+        //   - Les components "namespacés" sont autorisés (e.g. `<Form.Input />`).
         //
         //    @example
         //    ```jsx
         //    <MyComponent />
+        //    <My.Component />
         //    <HTMLComponent />
         //
         //    // ET NON:
         //
         //    <My_component />
         //    <MY_COMPONENT />
+        //    <_MyComponent />
         //    ```
         //
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
         'react/jsx-pascal-case': ['error', {
-            allowLeadingUnderscore: true,
             allowAllCaps: false,
+            allowLeadingUnderscore: false,
+            allowNamespace: true,
             ignore: [],
         }],
 

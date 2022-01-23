@@ -10,6 +10,10 @@
 - Désactive les règles `react/jsx-uses-react` et `react/react-in-jsx-scope`, plus nécessaires avec
   le nouveau mécanisme de transmormation du JSX.
 - Prend en charge les hooks nommées `useUpdateEffect` comme étant des hooks avec dépendances.
+- Améliore la règle vérifiant le nommage des components, ceux-ci :  
+  - Doivent être en PascalCase, les components tout en majuscule sont interdits.
+  - Peuvent être "namespacés" sont autorisés (e.g. `<Form.Input />`).
+  - Ne doivent pas être "privés" (préfixés par un underscore), c'est souvent signe d'une mauvaise structuration.
 
 ## 2.0.(3-4) (2021-11-21)
 - Désactive la règle `vue/no-undef-properties` qui rapporte trop de faux positifs.
