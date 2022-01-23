@@ -7,6 +7,8 @@
 - Permet l'utilisation de `console.(log|error|etc.)` dans la config. Node.
 - Il est maintenant possible d'appeler `.toString()` sur les instance d'`Error`.
 - Améliore la prise en charge de la casse dans les types (#6).
+- Désactive les règles `react/jsx-uses-react` et `react/react-in-jsx-scope`, plus nécessaires avec
+  le nouveau mécanisme de transmormation du JSX.
 
 ## 2.0.(3-4) (2021-11-21)
 - Désactive la règle `vue/no-undef-properties` qui rapporte trop de faux positifs.

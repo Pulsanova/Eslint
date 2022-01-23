@@ -260,6 +260,10 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md
         'react/jsx-props-no-spreading': ['off'],
 
+        // - Plus nécessaire avec le nouveau mécanisme de transmormation du JSX.
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
+        'react/jsx-uses-react': ['off'],
+
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-adjacent-inline-elements.md
         'react/no-adjacent-inline-elements': ['off'],
 
@@ -272,6 +276,10 @@ module.exports = {
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-exact-props.md
         'react/prefer-exact-props': ['off'],
+
+        // - Plus nécessaire avec le nouveau mécanisme de transmormation du JSX.
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
+        'react/react-in-jsx-scope': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md
         'react/state-in-constructor': ['off'],
