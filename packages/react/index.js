@@ -86,7 +86,9 @@ module.exports = {
 
         // - Vérifie que les hooks avec dependances sont bien valides (`useEffect(..., [>> ICI <<])`)
         // @see https://github.com/facebook/react/issues/14920#issue-413077280
-        'react-hooks/exhaustive-deps': ['warn'],
+        'react-hooks/exhaustive-deps': ['warn', {
+            additionalHooks: '(useUpdateEffect)',
+        }],
 
         // - Valide ques les règles des hooks sont bien respectées.
         // @see https://reactjs.org/docs/hooks-rules.html

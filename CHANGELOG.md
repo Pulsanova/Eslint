@@ -9,6 +9,7 @@
 - Améliore la prise en charge de la casse dans les types (#6).
 - Désactive les règles `react/jsx-uses-react` et `react/react-in-jsx-scope`, plus nécessaires avec
   le nouveau mécanisme de transmormation du JSX.
+- Prend en charge les hooks nommées `useUpdateEffect` comme étant des hooks avec dépendances.
 
 ## 2.0.(3-4) (2021-11-21)
 - Désactive la règle `vue/no-undef-properties` qui rapporte trop de faux positifs.
