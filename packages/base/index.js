@@ -67,8 +67,8 @@ module.exports = {
                 'tests/**',
                 '**/__tests__/**',
                 '**/__mocks__/**',
-                '**/*.{test,spec}.js',
-                '**/{test,spec}.js',
+                '**/*.{test,spec}.{js,ts,tsx}',
+                '**/{test,spec}.{js,ts,tsx}',
                 '**/gulpfile.js',
                 '**/vue.config.js',
                 '**/rollup.config.js',
@@ -225,8 +225,9 @@ module.exports = {
         // @see https://eslint.org/docs/rules/id-denylist
         'id-denylist': ['off'],
 
-        // @see https://github.com/benmosher/eslint-plugin-import/issues/645
-        'import/order': ['off'],
+        // - Faux positifs avec les imports dynamiques (= `import(...).then((>>> module <<<) => {});`)
+        // @see https://github.com/benmosher/eslint-plugin-import/blob/1012eb951767279ce3b540a4ec4f29236104bb5b/docs/rules/no-import-module-exports.md
+        'import/no-import-module-exports': ['off'],
 
         // @see https://eslint.org/docs/rules/no-continue
         'no-continue': ['off'],
@@ -253,4 +254,5 @@ module.exports = {
             },
         },
     ],
+    reportUnusedDisableDirectives: true,
 };

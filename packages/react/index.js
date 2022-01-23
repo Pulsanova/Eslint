@@ -16,6 +16,7 @@ module.exports = {
     settings: {
         'import/extensions': [
             '.mjs',
+            '.cjs',
             '.js',
             '.jsx',
             '.ts',
@@ -26,7 +27,6 @@ module.exports = {
             node: {
                 extensions: [
                     '.mjs',
-                    '.cjs',
                     '.js',
                     '.jsx',
                     '.ts',
@@ -215,6 +215,7 @@ module.exports = {
                 'instance-variables',
                 'propTypes',
                 'defaultProps',
+                'constructor',
                 'static-methods',
                 'lifecycle',
                 'everything-else',

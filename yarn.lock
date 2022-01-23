@@ -925,19 +925,19 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@pulsanova/eslint-config-base@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@pulsanova/eslint-config-base/-/eslint-config-base-2.0.0.tgz#cf4c39e6f46c4ecca78aa954c17e588e006cb3b9"
-  integrity sha512-jhwk2QxYcwyDfCCNgmbkU8/Rs/+YgQxq0xpoOTlB9ifovswVjDWkgwB1j5r+75Ip54JeI4HPQ7/uWZUA/fWw7w==
+"@pulsanova/eslint-config-base@2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@pulsanova/eslint-config-base/-/eslint-config-base-2.0.4.tgz#345da7062ad73d020ca04c4fa7fb5ae3b95cd32f"
+  integrity sha512-ksM8yDKrp0a5jQHTB4twlTQVx0uQalIErpa0dLb0FHqDBztwD7Mfne+RWQqMScdakiU2RMvLsdoYSF2QVs9XRw==
   dependencies:
     "@rushstack/eslint-patch" "^1.1.0"
     eslint-config-airbnb-base "~15.0.0"
     eslint-plugin-import "~2.25.3"
 
 "@pulsanova/eslint-config-node@file:./packages/node":
-  version "2.0.0"
+  version "2.0.4"
   dependencies:
-    "@pulsanova/eslint-config-base" "2.0.0"
+    "@pulsanova/eslint-config-base" "2.0.4"
     "@rushstack/eslint-patch" "^1.1.0"
 
 "@rushstack/eslint-patch@^1.1.0":

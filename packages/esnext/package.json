@@ -18,7 +18,7 @@
         "find-new-rules-ts": "eslint-find-rules --unused --no-core --no-error ./overrides/typescript.js"
     },
     "dependencies": {
-        "@babel/core": "~7.16.0",
+        "@babel/core": "^7.16.0",
         "@babel/eslint-parser": "~7.16.3",
         "@babel/eslint-plugin": "~7.14.5",
         "@pulsanova/eslint-config-base": "2.0.4",

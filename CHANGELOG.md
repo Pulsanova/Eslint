@@ -1,3 +1,12 @@
+## 2.1.0 (UNRELEASED)
+- Les fichiers de tests unitaires typés (e.g. `.ts`) peuvent utilisés des dépendances de développement
+  sans erreur remontées par ESLint (comme c'était déjà le cas pour les fichiers de TU non typés).
+- Les commentaires de désactivation ESLint inutiles sont maintenant signalés.
+- Désactive la règle `import/no-import-module-exports` qui remonte des faux positifs avec les imports dynamiques.
+- Réactive la règle `import/order` qui a été corrigée et fonctionne maintenant correctement avec les imports de types.
+- Permet l'utilisation de `console.(log|error|etc.)` dans la config. Node.
+- Il est maintenant possible d'appeler `.toString()` sur les instance d'`Error`.
+
 ## 2.0.(3-4) (2021-11-21)
 - Désactive la règle `vue/no-undef-properties` qui rapporte trop de faux positifs.
 - Corrige le linting des membres des types aliases et enums qui ne fonctionnait plus correctement depuis la 2.0.1.
