@@ -16,6 +16,7 @@ module.exports = {
     settings: {
         'import/extensions': [
             '.mjs',
+            '.cjs',
             '.js',
             '.jsx',
             '.ts',
@@ -26,7 +27,6 @@ module.exports = {
             node: {
                 extensions: [
                     '.mjs',
-                    '.cjs',
                     '.js',
                     '.jsx',
                     '.ts',
@@ -86,7 +86,9 @@ module.exports = {
 
         // - Vérifie que les hooks avec dependances sont bien valides (`useEffect(..., [>> ICI <<])`)
         // @see https://github.com/facebook/react/issues/14920#issue-413077280
-        'react-hooks/exhaustive-deps': ['warn'],
+        'react-hooks/exhaustive-deps': ['warn', {
+            additionalHooks: '(useUpdateEffect)',
+        }],
 
         // - Valide ques les règles des hooks sont bien respectées.
         // @see https://reactjs.org/docs/hooks-rules.html
@@ -149,23 +151,28 @@ module.exports = {
         }],
 
         // - Utilisation de PascalCase (UpperCamelCase) pour nommé les components.
-        //   Les components doivent être en PascalCase, les components tout en majuscule sont interdits.
+        //   - Les components doivent être en PascalCase, les components tout en majuscule sont interdits.
+        //   - Les components "privés" (préfixés par un underscore) sont interdits, c'est souvent signe d'une mauvaise structuration.
+        //   - Les components "namespacés" sont autorisés (e.g. `<Form.Input />`).
         //
         //    @example
         //    ```jsx
         //    <MyComponent />
+        //    <My.Component />
         //    <HTMLComponent />
         //
         //    // ET NON:
         //
         //    <My_component />
         //    <MY_COMPONENT />
+        //    <_MyComponent />
         //    ```
         //
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
         'react/jsx-pascal-case': ['error', {
-            allowLeadingUnderscore: true,
             allowAllCaps: false,
+            allowLeadingUnderscore: false,
+            allowNamespace: true,
             ignore: [],
         }],
 
@@ -215,6 +222,7 @@ module.exports = {
                 'instance-variables',
                 'propTypes',
                 'defaultProps',
+                'constructor',
                 'static-methods',
                 'lifecycle',
                 'everything-else',
@@ -259,6 +267,10 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md
         'react/jsx-props-no-spreading': ['off'],
 
+        // - Plus nécessaire avec le nouveau mécanisme de transmormation du JSX.
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
+        'react/jsx-uses-react': ['off'],
+
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-adjacent-inline-elements.md
         'react/no-adjacent-inline-elements': ['off'],
 
@@ -271,6 +283,10 @@ module.exports = {
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-exact-props.md
         'react/prefer-exact-props': ['off'],
+
+        // - Plus nécessaire avec le nouveau mécanisme de transmormation du JSX.
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
+        'react/react-in-jsx-scope': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md
         'react/state-in-constructor': ['off'],

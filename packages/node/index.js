@@ -23,5 +23,8 @@ module.exports = {
 
         // @see https://eslint.org/docs/rules/global-require
         'global-require': ['off'],
+
+        // @see https://eslint.org/docs/rules/no-console
+        'no-console': ['off'],
     },
 };

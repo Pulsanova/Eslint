@@ -44,7 +44,18 @@ module.exports = {
         //   - Il ne faut pas utiliser de classes primitives (`Boolean`, `String`, `Number`, `Object`, notez les majuscules) en tant que type.
         //   - Il faut utiliser le type `object` ou `Record<string, never>` à la place de `{}`.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-types.md
-        '@typescript-eslint/ban-types': ['error'],
+        '@typescript-eslint/ban-types': ['error', {
+            extendDefaults: false,
+            types: {
+                'String': { message: 'Use string instead', fixWith: 'string' },
+                'Boolean': { message: 'Use boolean instead', fixWith: 'boolean' },
+                'Number': { message: 'Use number instead', fixWith: 'number' },
+                'Symbol': { message: 'Use symbol instead', fixWith: 'symbol' },
+                'Object': { message: 'Use Record<string, any> instead', fixWith: 'Record<string, any>' },
+                'object': { message: 'Use Record<string, any> instead', fixWith: 'Record<string, any>' },
+                '{}': { message: 'Use Record<string, any> instead', fixWith: 'Record<string, any>' },
+            },
+        }],
 
         // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/brace-style.md
@@ -220,13 +231,27 @@ module.exports = {
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/method-signature-style.md
         '@typescript-eslint/method-signature-style': ['error', 'method'],
 
-        // - Les types doivent être déclarés en PascalCase.
+        // - Vérifie le bon nommage de tout ce qui touche aux types:
+        //   - Le membres des `enum` doivent être en majuscules, comme pour les constantes.
+        //   - Les propriétés de type ainsi que les méthodes de type doivent être en camelCase, avec un éventuel underscore en préfixe.
+        //     (=> Ceci correspond aux conventions de nommage des proprités d'objets et méthodes en dehors de TypeScript)
+        //   - Les autres noms liés aux types (types aliases, etc.) doivent être déclarés en PascalCase.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
         '@typescript-eslint/naming-convention': [
             'error',
             {
-                selector: ['typeProperty', 'enumMember', 'typeMethod'],
+                selector: 'enumMember',
+                format: ['UPPER_CASE'],
+            },
+            {
+                selector: ['typeProperty', 'typeMethod'],
                 format: ['camelCase'],
+                leadingUnderscore: 'allow',
+                filter: {
+                    // - Ignore les propriétés / méthodes de type "gettext" (= `__`).
+                    regex: '^__$',
+                    match: false,
+                },
             },
             {
                 selector: 'typeLike',
@@ -242,7 +267,9 @@ module.exports = {
         // - Requiert que `.toString()` soit uniquement appelé sur les objets qui fournissent des informations
         //   utiles lorsque convertis en chaîne. (et non `"[object Object]"`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-base-to-string.md
-        '@typescript-eslint/no-base-to-string': ['error'],
+        '@typescript-eslint/no-base-to-string': ['error', {
+            ignoredTypeNames: ['Error'],
+        }],
 
         // - Interdit l'utilisation d'assertions non-null (e.g. `foo!`) dans des contextes qui pourraient porter à confusion.
         //   (e.g. `foo! == bar` ressemble trop à `foo !== bar`)
@@ -455,7 +482,6 @@ module.exports = {
         // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/quotes.md
         'quotes': ['off'],
-        '@babel/quotes': ['off'],
         '@typescript-eslint/quotes': ['error', 'single', { allowTemplateLiterals: true }],
 
         // - Intedit l'addition de deux variables qui ne sont pas du même type (par exemple l'un une chaîne et l'autre un nombre).

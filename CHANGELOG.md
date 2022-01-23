@@ -1,3 +1,20 @@
+## 2.1.0 (2022-01-23)
+- Les fichiers de tests unitaires typés (e.g. `.ts`) peuvent utilisés des dépendances de développement
+  sans erreur remontées par ESLint (comme c'était déjà le cas pour les fichiers de TU non typés).
+- Les commentaires de désactivation ESLint inutiles sont maintenant signalés.
+- Désactive la règle `import/no-import-module-exports` qui remonte des faux positifs avec les imports dynamiques.
+- Réactive la règle `import/order` qui a été corrigée et fonctionne maintenant correctement avec les imports de types.
+- Permet l'utilisation de `console.(log|error|etc.)` dans la config. Node.
+- Il est maintenant possible d'appeler `.toString()` sur les instance d'`Error`.
+- Améliore la prise en charge de la casse dans les types (#6).
+- Désactive les règles `react/jsx-uses-react` et `react/react-in-jsx-scope`, plus nécessaires avec
+  le nouveau mécanisme de transmormation du JSX.
+- Prend en charge les hooks nommées `useUpdateEffect` comme étant des hooks avec dépendances.
+- Améliore la règle vérifiant le nommage des components, ceux-ci :  
+  - Doivent être en PascalCase, les components tout en majuscule sont interdits.
+  - Peuvent être "namespacés" sont autorisés (e.g. `<Form.Input />`).
+  - Ne doivent pas être "privés" (préfixés par un underscore), c'est souvent signe d'une mauvaise structuration.
+
 ## 2.0.(3-4) (2021-11-21)
 - Désactive la règle `vue/no-undef-properties` qui rapporte trop de faux positifs.
 - Corrige le linting des membres des types aliases et enums qui ne fonctionnait plus correctement depuis la 2.0.1.
