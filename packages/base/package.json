@@ -17,15 +17,17 @@
         "find-new-rules": "eslint-find-rules --unused --no-error ./index.js"
     },
     "dependencies": {
-        "@rushstack/eslint-patch": "^1.1.0",
+        "@rushstack/eslint-patch": "^1.2.0",
         "eslint-config-airbnb-base": "~15.0.0",
-        "eslint-plugin-import": "~2.25.3"
+        "eslint-plugin-import": "~2.26.0",
+        "eslint-plugin-jsdoc": "~39.6.4",
+        "eslint-plugin-unicorn": "~45.0.1"
     },
     "devDependencies": {
-        "eslint": "^8.3.0",
-        "eslint-find-rules": "^4.0.0"
+        "eslint": "^8.28.0",
+        "eslint-find-rules": "^4.1.0"
     },
     "peerDependencies": {
-        "eslint": "^8.3.0"
+        "eslint": "^8.28.0"
     }
 }

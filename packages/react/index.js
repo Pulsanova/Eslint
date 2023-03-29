@@ -14,46 +14,37 @@ module.exports = {
 
     // - Configuration
     settings: {
-        'import/extensions': [
-            '.mjs',
-            '.cjs',
-            '.js',
-            '.jsx',
-            '.ts',
-            '.tsx',
-            '.d.ts',
-        ],
+        'import/extensions': ['.ts', '.tsx', '.js', '.jsx'],
+        'import/parsers': {
+            '@typescript-eslint/parser': ['.mts', '.cts', '.ts', '.tsx'],
+        },
         'import/resolver': {
             node: {
-                extensions: [
-                    '.mjs',
-                    '.js',
-                    '.jsx',
-                    '.ts',
-                    '.tsx',
-                    '.d.ts',
-                    '.json',
-                ],
+                extensions: ['.ts', '.tsx', '.js', '.jsx'],
             },
-        },
-        'import/parsers': {
-            '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
         },
     },
 
     // - Plugins
     plugins: [
-        'react-hooks',
+        '@tanstack/query',
+        'react-hooks-configurable',
         'class-methods-use-this-regex',
     ],
 
-    // - Rules
+    // - Règles
     extends: [
         '@pulsanova/eslint-config-browser',
         'eslint-config-airbnb/rules/react',
         'eslint-config-airbnb/rules/react-a11y',
     ].map(require.resolve),
     rules: {
+        // @see https://tanstack.com/query/v4/docs/eslint/exhaustive-deps
+        '@tanstack/query/exhaustive-deps': ['error'],
+
+        // @see https://tanstack.com/query/v4/docs/eslint/prefer-query-object-syntax
+        '@tanstack/query/prefer-query-object-syntax': ['error'],
+
         // @see https://eslint.org/docs/rules/class-methods-use-this
         'class-methods-use-this': ['off'],
         'class-methods-use-this-regex/class-methods-use-this': ['error', {
@@ -74,6 +65,18 @@ module.exports = {
             ],
         }],
 
+        // @see https://github.com/benmosher/eslint-plugin-import/blob/main/docs/rules/extensions.md
+        'import/extensions': ['error', 'ignorePackages', {
+            js: 'never',
+            jsx: 'never',
+            cjs: 'never',
+            mjs: 'never',
+            ts: 'never',
+            tsx: 'never',
+            cts: 'never',
+            mts: 'never',
+        }],
+
         // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/0745af376cdc8686d85a361ce36952b1fb1ccf6e/docs/rules/anchor-is-valid.md
         'jsx-a11y/anchor-is-valid': ['error', {
             components: [],
@@ -82,12 +85,18 @@ module.exports = {
         }],
 
         // @see https://github.com/facebook/react/issues/14920#issue-413077280
-        'react-hooks/exhaustive-deps': ['warn', {
+        'react-hooks-configurable/exhaustive-deps': ['warn', {
             additionalHooks: '(useUpdateEffect)',
+            additionalStableHooks: {
+                '(use.+Ref|useErrorHandler)': true,
+                'useAnimationControls': true, // - Pour `framer-motion`.
+                'useAnimation': true, // - Pour `framer-motion`.
+                'useEvent': true,
+            },
         }],
 
         // @see https://reactjs.org/docs/hooks-rules.html
-        'react-hooks/rules-of-hooks': ['error'],
+        'react-hooks-configurable/rules-of-hooks': ['error'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/function-component-definition.md
         'react/function-component-definition': ['error', {
@@ -95,7 +104,16 @@ module.exports = {
             unnamedComponents: 'arrow-function',
         }],
 
-        // @see https://github.com/facebookincubator/create-react-app/issues/87#issuecomment-234627904
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/iframe-missing-sandbox.md
+        'react/iframe-missing-sandbox': ['error'],
+
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md
+        'react/jsx-curly-brace-presence': ['error', {
+            props: 'never',
+            children: 'never',
+            propElementValues: 'always',
+        }],
+
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
         'react/jsx-filename-extension': ['error', {
             allow: 'always',
@@ -118,6 +136,9 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
         'react/jsx-indent-props': ['error', 4],
 
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/e2eaadae316f9506d163812a09424eb42698470a/docs/rules/jsx-no-constructed-context-values.md
+        'react/jsx-no-constructed-context-values': ['error'],
+
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-script-url.md
         'react/jsx-no-script-url': ['error', [
             { name: 'Link', props: ['to'] },
@@ -133,12 +154,9 @@ module.exports = {
         'react/jsx-pascal-case': ['error', {
             allowAllCaps: false,
             allowLeadingUnderscore: false,
-            allowNamespace: true,
+            allowNamespace: false,
             ignore: [],
         }],
-
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-constructed-context-values.md
-        'react/jsx-no-constructed-context-values': ['error'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
         'react/no-direct-mutation-state': ['error'],
@@ -152,13 +170,14 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
         'react/no-unstable-nested-components': ['error', { allowAsProps: true }],
 
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-exact-props.md
+        'react/prefer-exact-props': ['error'],
+
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-default-props.md
         'react/require-default-props': ['error', {
             forbidDefaultForRequired: true,
-
-            // @see https://github.com/reactjs/rfcs/pull/107
-            // @see https://twitter.com/dan_abramov/status/1133878326358171650
-            ignoreFunctionalComponents: true,
+            functions: 'ignore',
+            classes: 'defaultProps',
         }],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
@@ -206,8 +225,18 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
         'react/destructuring-assignment': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-newline.md
-        'react/jsx-newline': ['off'],
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/hook-use-state.md
+        'react/hook-use-state': ['off'],
+
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/e2eaadae316f9506d163812a09424eb42698470a/docs/rules/jsx-newline.md
+        'react/jsx-newline': 'off',
+
+        // TODO: À activer lorsqu'on pourra ignorer certains patterns dans la partie gauche des conditions
+        //       parce qu'en l'état, on est forcé de "contraindre" (coerce) même les booléens (e.g. `{!!isBoolean && 'foo'}`) ...
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/v7.30.0/docs/rules/jsx-no-leaked-render.md
+        'react/jsx-no-leaked-render': ['off', {
+            validStrategies: ['ternary', 'coerce'],
+        }],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-one-expression-per-line.md
         'react/jsx-one-expression-per-line': ['off'],
@@ -227,9 +256,6 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md
         'react/no-unused-prop-types': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-exact-props.md
-        'react/prefer-exact-props': ['off'],
-
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
         'react/react-in-jsx-scope': ['off'],
 
@@ -239,6 +265,9 @@ module.exports = {
 
     // - Overrides
     overrides: [
-        { files: ['**/*.ts?(x)'], ...require('./overrides/typescript.js') },
+        {
+            files: ['**/*.?({c,m})ts', '**/*.tsx'],
+            ...require('./overrides/typescript'),
+        },
     ],
 };

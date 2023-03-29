@@ -16,15 +16,22 @@ module.exports = {
 
     // - Configuration
     settings: {
-        'import/extensions': ['.mjs', '.js', '.ts', '.d.ts'],
+        'import/extensions': ['.ts', '.js'],
         'import/external-module-folders': ['node_modules', 'node_modules/@types'],
         'import/parsers': {
-            '@typescript-eslint/parser': ['.ts', '.d.ts'],
+            '@typescript-eslint/parser': ['.mts', '.cts', '.ts'],
         },
         'import/resolver': {
             node: {
-                extensions: ['.mjs', '.cjs', '.js', '.ts', '.d.ts', '.json'],
+                extensions: ['.ts', '.js'],
             },
+        },
+        'jsdoc': {
+            preferredTypes: {
+                'Object<>': 'Record<>',
+                'Object.<>': 'Record<>',
+            },
+            mode: 'permissive',
         },
     },
 
@@ -43,14 +50,14 @@ module.exports = {
             capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'],
         }],
 
-        // @see https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
+        // @see https://github.com/benmosher/eslint-plugin-import/blob/main/docs/rules/extensions.md
         'import/extensions': ['error', 'ignorePackages', {
             js: 'never',
-            jsx: 'never',
             cjs: 'never',
             mjs: 'never',
             ts: 'never',
-            tsx: 'never',
+            cts: 'never',
+            mts: 'never',
         }],
 
         // @see https://eslint.org/docs/rules/object-curly-spacing
@@ -82,17 +89,9 @@ module.exports = {
 
     // - Overrides
     overrides: [
-        { files: ['**/*.ts?(x)'], ...require('./overrides/typescript.js') },
         {
-            files: ['**/*.d.ts?(x)'],
-            rules: {
-                'max-classes-per-file': ['off'],
-                'no-redeclare': ['off'],
-                'no-var': ['off'],
-                'vars-on-top': ['off'],
-                '@typescript-eslint/no-extraneous-class': ['off'],
-                '@typescript-eslint/triple-slash-reference': ['off'],
-            },
+            files: ['**/*.?({c,m})ts', '**/*.tsx'],
+            ...require('./overrides/typescript'),
         },
     ],
 };

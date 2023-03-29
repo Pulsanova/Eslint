@@ -20,18 +20,18 @@
     "dependencies": {
         "@babel/eslint-parser": "~7.16.3",
         "@pulsanova/eslint-config-browser": "2.1.2",
-        "@rushstack/eslint-patch": "^1.1.0",
-        "eslint-config-airbnb": "19.0.1",
-        "eslint-plugin-react": "~7.27.1",
+        "@rushstack/eslint-patch": "^1.2.0",
+        "eslint-config-airbnb": "~19.0.4",
+        "eslint-plugin-react": "~7.31.11",
         "eslint-plugin-vue": "~8.1.1",
         "vue-eslint-parser": "~8.0.1"
     },
     "devDependencies": {
-        "eslint": "^8.3.0",
-        "eslint-find-rules": "^4.0.0"
+        "eslint": "^8.28.0",
+        "eslint-find-rules": "^4.1.0"
     },
     "peerDependencies": {
         "@vue/cli-service": ">=4.5.13",
-        "eslint": "^8.3.0"
+        "eslint": "^8.28.0"
     }
 }

@@ -18,13 +18,13 @@
     },
     "dependencies": {
         "@pulsanova/eslint-config-esnext": "2.1.2",
-        "@rushstack/eslint-patch": "^1.1.0"
+        "@rushstack/eslint-patch": "^1.2.0"
     },
     "devDependencies": {
-        "eslint": "^8.3.0",
-        "eslint-find-rules": "^4.0.0"
+        "eslint": "^8.28.0",
+        "eslint-find-rules": "^4.1.0"
     },
     "peerDependencies": {
-        "eslint": "^8.3.0"
+        "eslint": "^8.28.0"
     }
 }

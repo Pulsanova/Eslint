@@ -20,27 +20,13 @@ module.exports = {
 
     // - Configuration
     settings: {
-        'import/extensions': [
-            '.vue',
-            '.mjs',
-            '.js',
-            '.jsx',
-            '.ts',
-            '.tsx',
-            '.d.ts',
-        ],
+        'import/extensions': ['.vue', '.ts', '.tsx', '.js', '.jsx'],
+        'import/parsers': {
+            '@typescript-eslint/parser': ['.mts', '.cts', '.ts', '.tsx'],
+        },
         'import/resolver': {
             node: {
-                extensions: [
-                    '.mjs',
-                    '.cjs',
-                    '.js',
-                    '.jsx',
-                    '.ts',
-                    '.tsx',
-                    '.d.ts',
-                    '.json',
-                ],
+                extensions: ['.ts', '.tsx', '.js', '.jsx'],
             },
         },
         'react': {
@@ -50,9 +36,6 @@ module.exports = {
             // NOTE: Permet de désactiver l'alerte concernant la détection de React tout en
             // nous permettant d'utiliser les règles relatives au JSX.
             version: '999.999.999',
-        },
-        'import/parsers': {
-            '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
         },
     },
 
@@ -66,23 +49,33 @@ module.exports = {
         'eslint-config-airbnb/rules/react',
     ].map(require.resolve),
     rules: {
+        // @see https://eslint.org/docs/rules/class-methods-use-this
+        'class-methods-use-this': ['error', {
+            enforceForClassFields: true,
+            exceptMethods: [],
+        }],
+
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/iframe-missing-sandbox.md
+        'react/iframe-missing-sandbox': ['error'],
+
         // @see https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
         'import/extensions': ['error', 'ignorePackages', {
             vue: 'never',
             js: 'never',
             jsx: 'never',
+            cjs: 'never',
             mjs: 'never',
             ts: 'never',
             tsx: 'never',
+            cts: 'never',
+            mts: 'never',
         }],
 
-        // @see https://eslint.vuejs.org/rules/html-indent.html
-        'vue/html-indent': ['error', 4],
-
-        // @see https://eslint.org/docs/rules/class-methods-use-this
-        'class-methods-use-this': ['error', {
-            enforceForClassFields: true,
-            exceptMethods: [],
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md
+        'react/jsx-curly-brace-presence': ['error', {
+            props: 'never',
+            children: 'never',
+            propElementValues: 'always',
         }],
 
         // @see https://github.com/facebookincubator/create-react-app/issues/87#issuecomment-234627904
@@ -107,8 +100,9 @@ module.exports = {
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
         'react/jsx-pascal-case': ['error', {
-            allowLeadingUnderscore: true,
             allowAllCaps: false,
+            allowLeadingUnderscore: false,
+            allowNamespace: false,
             ignore: [],
         }],
 
@@ -153,6 +147,9 @@ module.exports = {
             singleline: 'beside',
             multiline: 'below',
         }],
+
+        // @see https://eslint.vuejs.org/rules/html-indent.html
+        'vue/html-indent': ['error', 4],
 
         // @see https://eslint.vuejs.org/rules/html-self-closing.html
         'vue/html-self-closing': ['error', {
@@ -225,6 +222,9 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/forbid-foreign-prop-types.md
         'react/forbid-foreign-prop-types': ['off'],
 
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/hook-use-state.md
+        'react/hook-use-state': ['off'],
+
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-fragments.md
         'react/jsx-fragments': ['off'],
 
@@ -237,11 +237,18 @@ module.exports = {
         // @see https://github.com/yannickcr/eslint-plugin-react/pull/1103/
         'react/no-unused-state': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-useless-fragment.md
-        'react/jsx-no-useless-fragment': ['off'],
-
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-constructed-context-values.md
         'react/jsx-no-constructed-context-values': ['off'],
+
+        // TODO: À activer lorsqu'on pourra ignorer certains patterns dans la partie gauche des conditions
+        //       parce qu'en l'état, on est forcé de "contraindre" (coerce) même les booléens (e.g. `{!!isBoolean && 'foo'}`) ...
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/v7.30.0/docs/rules/jsx-no-leaked-render.md
+        'react/jsx-no-leaked-render': ['off', {
+            validStrategies: ['ternary', 'coerce'],
+        }],
+
+        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-useless-fragment.md
+        'react/jsx-no-useless-fragment': ['off'],
 
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-one-expression-per-line.md
         'react/jsx-one-expression-per-line': ['off'],
@@ -369,6 +376,9 @@ module.exports = {
 
     // - Overrides
     overrides: [
-        { files: ['**/*.ts?(x)'], ...require('./overrides/typescript.js') },
+        {
+            files: ['**/*.?({c,m})ts', '**/*.tsx'],
+            ...require('./overrides/typescript'),
+        },
     ],
 };
