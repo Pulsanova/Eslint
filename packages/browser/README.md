@@ -15,8 +15,11 @@ Cette configuration est à utiliser quand __toutes__ les assertions suivantes so
 ## Installation
 
 ```bash
-yarn add --dev eslint
-yarn add --dev @pulsanova/eslint-config-browser
+# - NPM
+npm install --save-dev eslint @pulsanova/eslint-config-browser
+
+# - Yarn
+yarn add --dev eslint @pulsanova/eslint-config-browser
 ```
 
 ## Usage
@@ -28,9 +31,3 @@ Créez un fichier `.eslintrc.json` et ajoutez-y la configuration suivante:
     "extends": "@pulsanova/browser"
 }
 ```
-
-## Règles
-
-- _Toutes les règles de la [configuration ESNext](../esnext)_
-- Voir directement [le code source](index.js) des règles pour plus d'informations quant  
-  aux règles activées / overwritées dans cette configuration.

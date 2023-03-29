@@ -11,8 +11,11 @@ Cette configuration est à utiliser quand __toutes__ les assertions suivantes so
 ## Installation
 
 ```bash
-yarn add --dev eslint
-yarn add --dev @pulsanova/eslint-config-base
+# - NPM
+npm install --save-dev eslint @pulsanova/eslint-config-base
+
+# - Yarn
+yarn add --dev eslint @pulsanova/eslint-config-base
 ```
 
 ## Usage
@@ -24,18 +27,3 @@ Créez un fichier `.eslintrc.json` et ajoutez-y la configuration suivante:
     "extends": "@pulsanova/base"
 }
 ```
-
-## Règles
-
-Cette configuration étend la [Configuration de base AirBnb][airbnb-base-rules].
-
-Il est donc necessaire de connaitre le "[Airbnb JavaScript Style Guide][airbnb-style-guide]" avant
-d'utiliser cette configuration.
-
-Voir directement [le code source](index.js) des règles pour plus d'informations quant
-aux règles activées / overwritées dans cette configuration.  
-Celui-ci (le code source) contient des commentaires sur le pourquoi de toutes les règles
-activées / overwritées par rapport à la configuration de base AirBnb.
-
-[airbnb-style-guide]: https://github.com/airbnb/javascript
-[airbnb-base-rules]: https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base

@@ -15,8 +15,11 @@ Cette configuration est à utiliser quand __toutes__ les assertions suivantes so
 ## Installation
 
 ```bash
-yarn add --dev eslint
-yarn add --dev @pulsanova/eslint-config-react
+# - NPM
+npm install --save-dev eslint @pulsanova/eslint-config-react
+
+# - Yarn
+yarn add --dev eslint @pulsanova/eslint-config-react
 ```
 
 ## Usage
@@ -26,7 +29,7 @@ Créez un fichier `.eslintrc.js` et ajoutez-y la configuration suivante:
 ```js
 'use strict';
 
-modyle.exports = {
+module.exports = {
     extends: '@pulsanova/react',
     parserOptions: { 
         babelOptions: {
@@ -39,14 +42,3 @@ modyle.exports = {
     },
 };
 ```
-
-## Règles
-
-- La [configuration browser](../browser)
-- La [configuration AirBnb spécifique à React][airbnb-react-rules]
-- La [configuration AirBnb spécifique à l'accessibilité dans le JSX][airbnb-jsx-a11y-rules]
-- Voir directement [le code source](index.js) des règles pour plus d'informations quant
-  aux règles activées / overwritées dans cette configuration.
-
-[airbnb-react-rules]: https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb/rules/react.js
-[airbnb-jsx-a11y-rules]: https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb/rules/react-a11y.js

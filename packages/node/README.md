@@ -14,8 +14,11 @@ Cette configuration est à utiliser quand __toutes__ les assertions suivantes so
 ## Installation
 
 ```bash
-yarn add --dev eslint
-yarn add --dev @pulsanova/eslint-config-node
+# - NPM
+npm install --save-dev eslint @pulsanova/eslint-config-node
+
+# - Yarn
+yarn add --dev eslint @pulsanova/eslint-config-node
 ```
 
 ## Usage
@@ -27,9 +30,3 @@ Créez un fichier `.eslintrc.json` et ajoutez-y la configuration suivante:
     "extends": "@pulsanova/node"
 }
 ```
-
-## Règles
-
-- _Toutes les règles de la [configuration de base](../base)_
-- Voir directement [le code source](index.js) des règles pour plus d'informations quant  
-  aux règles activées / overwritées dans cette configuration.

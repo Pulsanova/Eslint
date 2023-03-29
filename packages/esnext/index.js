@@ -34,7 +34,6 @@ module.exports = {
     // - Règles
     extends: '@pulsanova/base',
     rules: {
-        // (Prise en charge Babel, voir parent)
         // @see https://eslint.org/docs/rules/new-cap
         'new-cap': ['off'],
         '@babel/new-cap': ['error', {
@@ -44,8 +43,6 @@ module.exports = {
             capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'],
         }],
 
-        // - L'extension ne doit pas être spécifiée dans les imports de fichiers contenant du JavaScript.
-        //   (Le support de TypeScript est ajouté dans cet overwrite)
         // @see https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
         'import/extensions': ['error', 'ignorePackages', {
             js: 'never',
@@ -56,17 +53,14 @@ module.exports = {
             tsx: 'never',
         }],
 
-        // (Prise en charge Babel, voir parent)
         // @see https://eslint.org/docs/rules/object-curly-spacing
         'object-curly-spacing': ['off'],
         '@babel/object-curly-spacing': ['error', 'always'],
 
-        // (Prise en charge Babel, voir parent)
         // @see https://eslint.org/docs/rules/semi
         'semi': ['off'],
         '@babel/semi': ['error', 'always'],
 
-        // (Prise en charge Babel, voir parent)
         // @see https://eslint.org/docs/rules/no-unused-expressions
         'no-unused-expressions': ['off'],
         '@babel/no-unused-expressions': ['error', {
@@ -75,7 +69,6 @@ module.exports = {
             allowTernary: true,
         }],
 
-        // - Le mode strict ne doit jamais être déclaré, babel s'en charge.
         // @see https://eslint.org/docs/rules/strict
         'strict': ['error', 'never'],
 

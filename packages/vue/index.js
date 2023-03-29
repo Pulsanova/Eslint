@@ -66,8 +66,6 @@ module.exports = {
         'eslint-config-airbnb/rules/react',
     ].map(require.resolve),
     rules: {
-        // - L'extension ne doit pas être spécifiée dans les imports de fichiers contenant du JavaScript.
-        //   (Le support des fichiers `.vue` est ajouté dans cet overwrite)
         // @see https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
         'import/extensions': ['error', 'ignorePackages', {
             vue: 'never',
@@ -78,19 +76,15 @@ module.exports = {
             tsx: 'never',
         }],
 
-        // - Le HTML de vue doit être indenté avec 4 espaces.
         // @see https://eslint.vuejs.org/rules/html-indent.html
         'vue/html-indent': ['error', 4],
 
-        // - Les méthodes de classe doivent utiliser `this` ou être extraites dans des fonctions pures externes à la classe.
         // @see https://eslint.org/docs/rules/class-methods-use-this
         'class-methods-use-this': ['error', {
             enforceForClassFields: true,
             exceptMethods: [],
         }],
 
-        // - Pas d'utilisation de l'extension `.jsx` mais uniquement `.js` ou `.tsx`.
-        //   Cette extension (`.jsx`) n'est plus recommandée (voir lien ci-dessous), il n'y a pas de raison de continuer à l'utiliser.
         // @see https://github.com/facebookincubator/create-react-app/issues/87#issuecomment-234627904
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
         'react/jsx-filename-extension': ['error', {
@@ -98,14 +92,6 @@ module.exports = {
             extensions: ['.js', '.tsx'],
         }],
 
-        // - Normalisation des noms des events handlers en JSX.
-        //
-        //   - Les méthodes "event handlers" dans les classes `React.Component` doivent être préfixées avec `handle`.
-        //     (e.g. `<MyComponent handleChange={this.handleChange} />`)
-        //
-        //   - Les props "event handlers" doivent être préfixées avec `on`.
-        //     (e.g. `<MyComponent onChange={this.props.onFoo} />`)
-        //
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md
         'react/jsx-handler-names': ['error', {
             eventHandlerPrefix: 'handle',
@@ -113,28 +99,12 @@ module.exports = {
             checkInlineFunction: false,
         }],
 
-        // - Le JSX doit être indenté avec 4 espaces.
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent.md
         'react/jsx-indent': ['error', 4],
 
-        // - Les props sur plusieurs lignes doivent être indentées avec 4 espaces.
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
         'react/jsx-indent-props': ['error', 4],
 
-        // - Utilisation de PascalCase (UpperCamelCase) pour nommé les components.
-        //   Les components doivent être en PascalCase, les components tout en majuscule sont interdits.
-        //
-        //    @example
-        //    ```jsx
-        //    <MyComponent />
-        //    <HTMLComponent />
-        //
-        //    // ET NON:
-        //
-        //    <My_component />
-        //    <MY_COMPONENT />
-        //    ```
-        //
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
         'react/jsx-pascal-case': ['error', {
             allowLeadingUnderscore: true,
@@ -142,35 +112,26 @@ module.exports = {
             ignore: [],
         }],
 
-        // - Empêche l'utilisation de valeurs invalides pour certains attributs HTML :
-        //   - Vérifie que la valeur des attributs `rel` est correcte en fonction de la balise l'utilisant.
         // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-invalid-html-attribute.md
         'react/no-invalid-html-attribute': ['error', ['rel']],
 
-        // - Cf. la règle `array-bracket-spacing` (cette version ne fait que prendre en charge la règle dans les `<template>`).
         // @see https://eslint.org/docs/rules/arrow-spacing
         // @see https://eslint.vuejs.org/rules/array-bracket-spacing.html
         'vue/array-bracket-spacing': ['error', 'never'],
 
-        // Cf. la règle `arrow-spacing` (cette version ne fait que prendre en charge la règle dans les `<template>`).
         // @see https://eslint.org/docs/rules/arrow-spacing
         // @see https://eslint.vuejs.org/rules/arrow-spacing.html
         'vue/arrow-spacing': ['error', { before: true, after: true }],
 
-        // - S'assure de la non utilisation des tirets pour les props de components.
         // @see https://eslint.vuejs.org/rules/attribute-hyphenation.html
         'vue/attribute-hyphenation': ['error', 'never', {
             ignore: [],
         }],
 
-        // Cf. la règle `block-spacing` (cette version ne fait que prendre en charge la règle dans les `<template>`).
         // @see https://eslint.org/docs/rules/block-spacing
         // @see https://eslint.vuejs.org/rules/block-spacing
         'vue/block-spacing': ['error', 'always'],
 
-        // - Contrôle la gestion des nouvelles lignes dans la déclation des blocks Vue (`<template>`, `<script>`) :
-        //   - Il doit toujours y avoir un saut de ligne avant et après le contenu des blocks.
-        //   - Il ne doit pas y avoir de lignes vides au début et à la fin des blocks.
         // @see https://eslint.vuejs.org/rules/block-tag-newline
         'vue/block-tag-newline': ['error', {
             singleline: 'always',
@@ -178,28 +139,21 @@ module.exports = {
             maxEmptyLines: 0,
         }],
 
-        // Cf. la règle `brace-style` (cette version ne fait que prendre en charge la règle dans les `<template>`).
         // @see https://eslint.org/docs/rules/brace-style
         // @see https://eslint.vuejs.org/rules/brace-style
         'vue/brace-style': ['error', '1tbs', { allowSingleLine: true }],
 
-        // - Ordre des éléments dans les fichiers vue: <template>, <style> puis <script>.
         // @see https://eslint.vuejs.org/rules/component-tags-order.html
         'vue/component-tags-order': ['error', {
             order: ['template', 'style', 'script'],
         }],
 
-        // - Contrôle le positionnement du premier attribut dans les composants :
-        //   - Si le composant est sur une ligne :
-        //   - Si le composant est sur plusieurs lignes :
         // @see https://eslint.vuejs.org/rules/first-attribute-linebreak.html
         'vue/first-attribute-linebreak': ['error', {
             singleline: 'beside',
             multiline: 'below',
         }],
 
-        // - Utilise les auto-fermeture pour tous les types de tags.
-        //   (même si en HTML natif on ne le fait pas pour les `<div>` par exemple)
         // @see https://eslint.vuejs.org/rules/html-self-closing.html
         'vue/html-self-closing': ['error', {
             svg: 'always',
@@ -211,33 +165,25 @@ module.exports = {
             },
         }],
 
-        // - Contrôle le nombre de props par ligne :
-        //   - Pas de limite pour les components single-line.
-        //   - Une seule prop. par ligne sur les components multi-ligne.
         // @see https://eslint.vuejs.org/rules/max-attributes-per-line.html
         'vue/max-attributes-per-line': ['error', {
             singleline: { max: Infinity },
             multiline: { max: 1 },
         }],
 
-        // - Interdit l'usage de l'attribut `tag` (déprécié en Vue 3.x) dans les `<RouterLink>` (ou `<router-link>`).
         // @see https://eslint.vuejs.org/rules/no-deprecated-router-link-tag-prop.html
         'vue/no-deprecated-router-link-tag-prop': ['error'],
 
-        // - Interdit l'utilisation de `expose({ ... })` (Vue 3) après un `await` => Doit obligatoirement être synchrone.
         // @see https://eslint.vuejs.org/rules/no-expose-after-await.html
         'vue/no-expose-after-await': ['error'],
 
-        // - Interdit l'utilisation de `v-text` au profit des `children`.
         // @see https://eslint.vuejs.org/rules/no-v-text.html
         'vue/no-v-text': ['error'],
 
-        // Cf. la règle `no-useless-concat` (cette version ne fait que prendre en charge la règle dans les `<template>`).
         // @see https://eslint.org/docs/rules/no-useless-concat
         // @see https://eslint.vuejs.org/rules/no-useless-concat
         'vue/no-useless-concat': ['error'],
 
-        // - Empêche l'utilsation de chaînes quotées inutilement (e.g. `{{ 'Hello' }}`).
         // @see https://eslint.vuejs.org/rules/no-useless-mustaches
         'vue/no-useless-mustaches': ['error', {
             ignoreIncludesComment: false,
@@ -399,8 +345,6 @@ module.exports = {
         // @see https://eslint.vuejs.org/rules/attributes-order.html
         'vue/attributes-order': ['off'],
 
-        // - Désactivé car nous utilisons `babel-preset-vca-jsx` qui nous permet de définir les
-        //   fonctions `setup` de manière simplifiée avec un sucre syntaxique.
         // @see https://eslint.vuejs.org/rules/component-api-style.html
         'vue/component-api-style': ['off'],
 
@@ -410,14 +354,12 @@ module.exports = {
         // @see https://eslint.vuejs.org/rules/no-child-content.html
         'vue/no-child-content': ['off'],
 
-        // - Désactivée car très contraignante (notamment lors de l'accès aux propriétés d'objets passés en prop)
         // @see https://eslint.vuejs.org/rules/no-undef-properties.html
         'vue/no-undef-properties': ['off'],
 
         // @see https://eslint.vuejs.org/rules/no-restricted-class.html
         'vue/no-restricted-class': ['off'],
 
-        // - Désactivé car rapporte des faux positifs (au moins en Vue 2) : Les `class` sur les `<template>` sont bien utile.
         // @see https://eslint.vuejs.org/rules/no-useless-template-attributes.html
         'vue/no-useless-template-attributes': ['off'],
 

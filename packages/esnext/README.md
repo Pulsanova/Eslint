@@ -9,13 +9,16 @@ au développement d'une application avec [Babel](https://babeljs.io) et [TypeScr
 
 Cette configuration est à utiliser quand __toutes__ les assertions suivantes sont exactes:
 - Le code est transpilé avec Babel.
-- Le code n'est pas déstiné aux navigateurs (sans quoi => Config. [browser](../browser)).
+- Le code n'est pas destiné aux navigateurs (sans quoi => Config. [browser](../browser)).
 
 ## Installation
 
 ```bash
-yarn add --dev eslint
-yarn add --dev @pulsanova/eslint-config-esnext
+# - NPM
+npm install --save-dev eslint @pulsanova/eslint-config-esnext
+
+# - Yarn
+yarn add --dev eslint @pulsanova/eslint-config-esnext
 ```
 
 ## Usage
@@ -25,7 +28,7 @@ Créez un fichier `.eslintrc.js` et ajoutez-y la configuration suivante:
 ```js
 'use strict';
 
-modyle.exports = {
+module.exports = {
     extends: '@pulsanova/esnext',
     parserOptions: { 
         babelOptions: {
@@ -38,9 +41,3 @@ modyle.exports = {
     },
 };
 ```
-
-## Règles
-
-- _Toutes les règles de la [configuration de base](../base)_
-- Voir directement [le code source](index.js) des règles pour plus d'informations quant  
-  aux règles activées / overwritées dans cette configuration.

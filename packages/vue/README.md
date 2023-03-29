@@ -1,6 +1,6 @@
 # Pulsanova - ESLint: Configuration Vue
 
-> Configuration ESLint __pour les projets browser__ Pulsanova __utilisant Vue 2__
+> Configuration ESLint __pour les projets browser__ Pulsanova __utilisant Vue__
 
 Cette configuration étend la [configuration browser](../browser) et ajoute des règles propre
 au développement d'une application React.
@@ -15,8 +15,11 @@ Cette configuration est à utiliser quand __toutes__ les assertions suivantes so
 ## Installation
 
 ```bash
-yarn add --dev eslint
-yarn add --dev @pulsanova/eslint-config-vue
+# - NPM
+npm install --save-dev eslint @pulsanova/eslint-config-vue
+
+# - Yarn
+yarn add --dev eslint @pulsanova/eslint-config-vue
 ```
 
 ## Usage
@@ -26,7 +29,7 @@ Créez un fichier `.eslintrc.js` et ajoutez-y la configuration suivante:
 ```js
 'use strict';
 
-modyle.exports = {
+module.exports = {
     extends: '@pulsanova/vue',
     parserOptions: { 
         babelOptions: {
@@ -39,10 +42,3 @@ modyle.exports = {
     },
 };
 ```
-
-## Règles
-
-- La [configuration browser](../browser)
-- Les [règles recommandées par le plugin Vue pour ESLint](https://eslint.vuejs.org/rules/)
-- Voir directement [le code source](index.js) des règles pour plus d'informations quant
-  aux règles activées / overwritées dans cette configuration.

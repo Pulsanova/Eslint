@@ -12,22 +12,15 @@ module.exports = {
 
     // - Règles
     rules: {
-        // - Requiert que les surcharge de méthodes soient placés à la suite.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/adjacent-overload-signatures.md
         '@typescript-eslint/adjacent-overload-signatures': ['error'],
 
-        // - Les types tableaux doivent toujours être déclarés de la même manière:
-        //   - Pour les tableaux de type simple, la forme "array" doit être utilisée (e.g. `string[]`).
-        //   - Pour les tableaux de type complexes, la forme "generic" doit être utilisée  (e.g. `Array<string | number>`).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/array-type.md
         '@typescript-eslint/array-type': ['error', {
             default: 'array-simple',
             readonly: 'array-simple',
         }],
 
-        // - Interdit l'utilisation des directives `// @ts-nocheck` et `// @ts-check` qui n'ont pas
-        //   de raison d'être utilisée car seuls les fichiers `.tsx?` doivent être typés (et non les fichiers `.js`).
-        //   Pour ce qui est de `// @ts-expect-error` et `// @ts-ignore`, un commentaire est exigé.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-ts-comment.md
         '@typescript-eslint/ban-ts-comment': ['error', {
             'ts-expect-error': 'allow-with-description',
@@ -36,13 +29,9 @@ module.exports = {
             'ts-check': true,
         }],
 
-        // - Interdit l'utilisation de commentaires TSLint (vu que ESLint est utilisé).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-tslint-comment.md
         '@typescript-eslint/ban-tslint-comment': ['error'],
 
-        // - Utilise l'utilisation de certains types:
-        //   - Il ne faut pas utiliser de classes primitives (`Boolean`, `String`, `Number`, `Object`, notez les majuscules) en tant que type.
-        //   - Il faut utiliser le type `object` ou `Record<string, never>` à la place de `{}`.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-types.md
         '@typescript-eslint/ban-types': ['error', {
             extendDefaults: false,
@@ -57,16 +46,13 @@ module.exports = {
             },
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/brace-style.md
         'brace-style': ['off'],
         '@typescript-eslint/brace-style': ['error', '1tbs', { allowSingleLine: true }],
 
-        // - Les littéraux exposés dans les classes doivent être déclarés en tant que propriétés.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/class-literal-property-style.md
         '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/comma-dangle.md
         'comma-dangle': ['off'],
         '@typescript-eslint/comma-dangle': ['error', {
@@ -80,39 +66,32 @@ module.exports = {
             tuples: 'always-multiline',
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/comma-spacing.md
         'comma-spacing': ['off'],
         '@typescript-eslint/comma-spacing': ['error', { before: false, after: true }],
 
-        // - Les définitions d'objets avec membres non connus doivent être effectuées via `Record<..., ...>` (et non `{ [key: ...]: ... }`).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-indexed-object-style.md
         '@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
 
-        // - Vérifie que les assertions de type (= le casting de type) est toujours effectué via `as` ('foo' as string).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-assertions.md
         '@typescript-eslint/consistent-type-assertions': ['error', {
             assertionStyle: 'as',
             objectLiteralTypeAssertions: 'allow',
         }],
 
-        // - Les exports de type doivent toujours être effectués via `export type ...`.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-exports.md
         '@typescript-eslint/consistent-type-exports': ['error'],
 
-        // - Les imports de type doivent toujours être effectués via `import type ...`.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-imports.md
         '@typescript-eslint/consistent-type-imports': ['error', {
             prefer: 'type-imports',
             disallowTypeAnnotations: true,
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/default-param-last.md
         'default-param-last': ['off'],
         '@typescript-eslint/default-param-last': ['error'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/dot-notation.md
         'dot-notation': ['off'],
         '@typescript-eslint/dot-notation': ['error', {
@@ -121,14 +100,6 @@ module.exports = {
             allowProtectedClassPropertyAccess: false,
         }],
 
-        // - Requiert que les fonctions et méthodes spécifient leur type de retour.
-        //   A noter qu'il est aussi autorisé de spécifié le type de retour sur une éventuelle variable
-        //   contenant la fonction plutôt que sur celle-ci.
-        //
-        //   Quelques exceptions:
-        //   - Les fonctions retournant un autre fonctions n'ont pas l'obligation de typer leur retour.
-        //   - Les fonctions déclarées en paramètre / en tant qu'expression.
-        //
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md
         '@typescript-eslint/explicit-function-return-type': ['error', {
             allowExpressions: true,
@@ -137,7 +108,6 @@ module.exports = {
             allowConciseArrowFunctionExpressionsStartingWithVoid: false,
         }],
 
-        // - Requiert la déclaration de la visibilité sur chaque membre des classes, sauf le constructeur quand il est `public`.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-member-accessibility.md
         '@typescript-eslint/explicit-member-accessibility': ['error', {
             accessibility: 'explicit',
@@ -147,12 +117,10 @@ module.exports = {
             },
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/func-call-spacing.md
         'func-call-spacing': ['off'],
         '@typescript-eslint/func-call-spacing': ['error', 'never'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
         // NOTE: https://github.com/typescript-eslint/typescript-eslint/issues/1824
         'indent': ['off'],
@@ -190,7 +158,6 @@ module.exports = {
             ],
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/keyword-spacing.md
         'keyword-spacing': ['off'],
         '@typescript-eslint/keyword-spacing': ['error', {
@@ -203,7 +170,6 @@ module.exports = {
             },
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/lines-between-class-members.md
         'lines-between-class-members': ['off'],
         '@typescript-eslint/lines-between-class-members': ['error', 'always', {
@@ -211,9 +177,6 @@ module.exports = {
             exceptAfterSingleLine: false,
         }],
 
-        // - Normalise la déclaration des types et des interfaces:
-        //   - Les interfaces doivent utiliser des points-virgules en tant que délimiteur, après TOUS les éléments (même sur une seule ligne).
-        //   - Les types (e.g. `type Foo = {};`) doivent utiliser des virgules en tant que délimiteur, avec une virgule trainante lorsque multi-ligne.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-delimiter-style.md
         '@typescript-eslint/member-delimiter-style': ['error', {
             multiline: { delimiter: 'comma', requireLast: true },
@@ -226,16 +189,9 @@ module.exports = {
             },
         }],
 
-        // - Les intefaces doivent utiliser le style `méthode` pour déclarer les ... méthodes.
-        //   (e.g. `{ func(arg: string): number; }` et non `{ func: (arg: string) => number; }`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/method-signature-style.md
         '@typescript-eslint/method-signature-style': ['error', 'method'],
 
-        // - Vérifie le bon nommage de tout ce qui touche aux types:
-        //   - Le membres des `enum` doivent être en majuscules, comme pour les constantes.
-        //   - Les propriétés de type ainsi que les méthodes de type doivent être en camelCase, avec un éventuel underscore en préfixe.
-        //     (=> Ceci correspond aux conventions de nommage des proprités d'objets et méthodes en dehors de TypeScript)
-        //   - Les autres noms liés aux types (types aliases, etc.) doivent être déclarés en PascalCase.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
         '@typescript-eslint/naming-convention': [
             'error',
@@ -259,45 +215,35 @@ module.exports = {
             },
         ],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-array-constructor.md
         'no-array-constructor': ['off'],
         '@typescript-eslint/no-array-constructor': ['error'],
 
-        // - Requiert que `.toString()` soit uniquement appelé sur les objets qui fournissent des informations
-        //   utiles lorsque convertis en chaîne. (et non `"[object Object]"`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-base-to-string.md
         '@typescript-eslint/no-base-to-string': ['error', {
             ignoredTypeNames: ['Error'],
         }],
 
-        // - Interdit l'utilisation d'assertions non-null (e.g. `foo!`) dans des contextes qui pourraient porter à confusion.
-        //   (e.g. `foo! == bar` ressemble trop à `foo !== bar`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-confusing-non-null-assertion.md
         '@typescript-eslint/no-confusing-non-null-assertion': ['error'],
 
-        // - Empêche l'utilisation d'expressions de type `void` dans des contextes déroutants.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-confusing-void-expression.md
         '@typescript-eslint/no-confusing-void-expression': ['error', {
             ignoreArrowShorthand: false,
             ignoreVoidOperator: false,
         }],
 
-        // - Empêche l'utilisation de `as` là ou `!` serait plus approprié.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/non-nullable-type-assertion-style.md
         '@typescript-eslint/non-nullable-type-assertion-style': ['error'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-dupe-class-members.md
         'no-dupe-class-members': ['off'],
         '@typescript-eslint/no-dupe-class-members': ['error'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-duplicate-imports.md
         'no-duplicate-imports': ['off'],
         '@typescript-eslint/no-duplicate-imports': ['error'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-function.md
         'no-empty-function': ['off'],
         '@typescript-eslint/no-empty-function': ['error', {
@@ -309,17 +255,13 @@ module.exports = {
             ],
         }],
 
-        // - Interdit les assertions non-null (e.g. `foo!.bar`) qui ne sont pas utiles.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-non-null-assertion.md
         '@typescript-eslint/no-extra-non-null-assertion': ['error'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-semi.md
         'no-extra-semi': ['off'],
         '@typescript-eslint/no-extra-semi': ['error'],
 
-        // - Interdit l'utilisation des classes comme des namespaces.
-        //   Permet toutefois les classes contenant uniquement un constructeur, un décorateur ou des statiques.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extraneous-class.md
         '@typescript-eslint/no-extraneous-class': ['error', {
             allowConstructorOnly: true,
@@ -328,72 +270,57 @@ module.exports = {
             allowEmpty: false,
         }],
 
-        // - Interdit l'utilisation de `void` en dehors des retours de fonctions et des types génériques.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-invalid-void-type.md
         '@typescript-eslint/no-invalid-void-type': ['error', {
             allowAsThisParameter: true,
             allowInGenericTypeArguments: true,
         }],
 
-        // - Vérifie la déclaration des constructeurs dans les classes et `new()` dans les interfaces (et pas un mélange des deux).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-misused-new.md
         '@typescript-eslint/no-misused-new': ['error'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-loop-func.md
         'no-loop-func': ['off'],
         '@typescript-eslint/no-loop-func': ['error'],
 
-        // - Interdit l'utilisation des namespaces, sauf dans les fichiers de définition.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-namespace.md
         '@typescript-eslint/no-namespace': ['error', {
             allowDeclarations: false,
             allowDefinitionFiles: true,
         }],
 
-        // - Interdit l'usage d'une assertion non-null (e.g. `foo!.bar`) après une chaîne optionnelle (e.g. `foo?.bar!`).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-non-null-asserted-optional-chain.md
         '@typescript-eslint/no-non-null-asserted-optional-chain': ['error'],
 
-        // - Interdit l'utilisation des prioriétés déclarées implicitement via des paramètres de méthode.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-parameter-properties.md
         '@typescript-eslint/no-parameter-properties': ['error'],
 
-        // - Avertisssement lors de l'utilisation d'un qualifier inutile dans les enums ou namespace (e.g. `enum A { B, C = A.B }` => `enum A { B, C = B }`).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-qualifier.md
         '@typescript-eslint/no-unnecessary-qualifier': ['error'],
 
-        // - Avertissement lors de la spécification d'un argument de type qui est déjà la valeur par défaut.
-        //   (e.g. Pour `Type Foo<T = string> = T[];`, ceci n'est pas utile: `const foo: Foo<string> = ['a'];`, ceci suffit: `const foo: Foo = ['a'];`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-arguments.md
         '@typescript-eslint/no-unnecessary-type-arguments': ['error'],
 
-        // - Interdit les assertions de type (= type casting) qui ne changent pas le type de l'expression / sont inutiles.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-assertion.md
         '@typescript-eslint/no-unnecessary-type-assertion': ['error', {
             typesToIgnore: [],
         }],
 
-        // - Interdit les contraintes inutiles dans les génériques.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-constraint.md
         '@typescript-eslint/no-unnecessary-type-constraint': ['error'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-loss-of-precision.md
         'no-loss-of-precision': ['off'],
         '@typescript-eslint/no-loss-of-precision': ['error'],
 
-        // - Empêche l'utilisation de l'opérateur `void` lorsque c'est inutile / déjà le cas.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-meaningless-void-operator.md
         '@typescript-eslint/no-meaningless-void-operator': ['error', {
             checkNever: false,
         }],
 
-        // - Vérifie qu'une assertion non-null n'est pas utilisé avec un opérateur null coalescent (e.g. `foo! ?? 'bar'`).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-non-null-asserted-nullish-coalescing.md
         '@typescript-eslint/no-non-null-asserted-nullish-coalescing': ['error'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-expressions.md
         'no-unused-expressions': ['off'],
         '@babel/no-unused-expressions': ['off'],
@@ -403,7 +330,6 @@ module.exports = {
             allowTernary: true,
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
         // NOTE: https://github.com/typescript-eslint/typescript-eslint/issues/1856
         'no-unused-vars': ['off'],
@@ -413,14 +339,12 @@ module.exports = {
             vars: 'all',
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-redeclare.md
         'no-redeclare': 'off',
         '@typescript-eslint/no-redeclare': ['error', {
             ignoreDeclarationMerge: true,
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-shadow.md
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error', {
@@ -428,7 +352,6 @@ module.exports = {
             ignoreFunctionTypeParameterNameValueShadow: false,
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
         // NOTE: https://github.com/typescript-eslint/typescript-eslint/issues/1856
         'no-use-before-define': ['off'],
@@ -440,57 +363,43 @@ module.exports = {
             variables: true,
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-useless-constructor.md
         'no-useless-constructor': ['off'],
         '@typescript-eslint/no-useless-constructor': ['error'],
 
-        // (Prise en charge Babel, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/object-curly-spacing.md
         'object-curly-spacing': ['off'],
         '@babel/object-curly-spacing': ['off'],
         '@typescript-eslint/object-curly-spacing': ['error', 'always'],
 
-        // - Vérifie que `as const` est utilisé à la place des types littéraux quand c'est possible.
-        //   (e.g. `let foo: 2 = 2;` => `let foo = 2 as const;`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-as-const.md
         '@typescript-eslint/prefer-as-const': ['error'],
 
-        // - Vérifie que toutes les valeurs des enum sont bien explicitement déclarées.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-enum-initializers.md
         '@typescript-eslint/prefer-enum-initializers': ['error'],
 
-        // - Interdit l'utilisation d'interfaces avec call signature pour définir le type d'une fonction simple.
-        //   (e.g. `interface MyFunc { (): string }` => `type MyFunc = () => string;`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-function-type.md
         '@typescript-eslint/prefer-function-type': ['error'],
 
-        // - Préfère l'utilisation du mot-clé `namespace` plutôt que `module` pour éviter la confusion avec les modules ES2015.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-namespace-keyword.md
         '@typescript-eslint/prefer-namespace-keyword': ['error'],
 
-        // - Requiert l'utilisation du générique lors de l'utilisation de `Array#reduce` plutôt que de caster le type en deuxième paramètre.
-        //   (e.g. `[].reduce(() => {}, {} as MyObject)` => [].reduce<MyObject>(() => {}, {})`)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-reduce-type-parameter.md
         '@typescript-eslint/prefer-reduce-type-parameter': ['error'],
 
-        // - Préfère l'utilisation du mot-clé `this` en type de retour (qui a une signification particulière) plutôt que le nom de classe.
         // @see https://www.typescriptlang.org/docs/handbook/2/classes.html#this-types
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-return-this-type.md
         '@typescript-eslint/prefer-return-this-type': ['error'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/quotes.md
         'quotes': ['off'],
         '@typescript-eslint/quotes': ['error', 'single', { allowTemplateLiterals: true }],
 
-        // - Intedit l'addition de deux variables qui ne sont pas du même type (par exemple l'un une chaîne et l'autre un nombre).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/restrict-plus-operands.md
         '@typescript-eslint/restrict-plus-operands': ['error', {
             checkCompoundAssignments: true,
         }],
 
-        // - Interdit l'utilisation d'expression retournant autre chose que des chaînes ou des nombres dans les littéraux de gabarits.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/restrict-template-expressions.md
         '@typescript-eslint/restrict-template-expressions': ['error', {
             allowNumber: true,
@@ -500,18 +409,15 @@ module.exports = {
             allowRegExp: false,
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/return-await.md
         'no-return-await': ['off'],
         '@typescript-eslint/return-await': ['error', 'in-try-catch'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/semi.md
         'semi': ['off'],
         '@babel/semi': ['off'],
         '@typescript-eslint/semi': ['error', 'always'],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/space-before-function-paren.md
         'space-before-function-paren': ['off'],
         '@typescript-eslint/space-before-function-paren': ['error', {
@@ -520,16 +426,13 @@ module.exports = {
             named: 'never',
         }],
 
-        // (Prise en charge TypeScript, voir parent)
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/space-infix-ops.md
         'space-infix-ops': ['off'],
         '@typescript-eslint/space-infix-ops': ['error', { int32Hint: false }],
 
-        // - Requiert que les switchs soient exhaustifs lorsqu'ils utilisent un type `union` permettant de détecter ce genre d'erreur.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/switch-exhaustiveness-check.md
         '@typescript-eslint/switch-exhaustiveness-check': ['error'],
 
-        // - Interdit l'utilisation des références "triple slash" (e.g. `/// <reference path="foo" />`).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/triple-slash-reference.md
         '@typescript-eslint/triple-slash-reference': ['error', {
             path: 'never',
@@ -537,10 +440,6 @@ module.exports = {
             lib: 'never',
         }],
 
-        // - Vérifie le style des déclarations de type:
-        //   - Requiert qu'il n'y ait pas d'espace avant les deux-points (`foo:`).
-        //   - Requiert qu'il y ait un espace après les deux-points (`: string`).
-        //   - Requiert qu'il y ait un espace avant et après les flêches (`() => string`).
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/type-annotation-spacing.md
         '@typescript-eslint/type-annotation-spacing': ['error', {
             before: false,
@@ -550,9 +449,6 @@ module.exports = {
             },
         }],
 
-        // - Cette règle oblige a spécifier explicitement le type de certains éléments du code:
-        //   - Les paramètres des fonctions, fonctions flêchées et des méthodes.
-        //   - Les propriétés, que ce soit de classe ou des objets littéraux de type.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/typedef.md
         '@typescript-eslint/typedef': ['error', {
             arrayDestructuring: false,
@@ -565,7 +461,6 @@ module.exports = {
             variableDeclarationIgnoreFunction: true,
         }],
 
-        // - Vérifie que les surcharges de méthode ne peuvent pas être fusionnées en une seule signature.
         // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/unified-signatures.md
         '@typescript-eslint/unified-signatures': ['error'],
 
@@ -662,7 +557,7 @@ module.exports = {
         '@typescript-eslint/unbound-method': ['off'],
 
         //
-        // - Rgèles incompatible / non-optimisées.
+        // - Règles incompatible / non-optimisées.
         //
 
         // @see https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/exports-last.md
