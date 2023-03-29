@@ -1,9 +1,9 @@
 {
     "name": "@pulsanova/eslint-config-vue",
     "version": "2.1.2",
+    "license": "MIT",
     "main": "./index.js",
     "exports": "./index.js",
-    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "ssh://git@github.com:Pulsanova/Eslint.git",

@@ -1,10 +1,10 @@
-name : CI
-on   : [push, pull_request]
-jobs :
-    "Linting":
-        runs-on : ubuntu-latest
-        steps   :
+name: CI
+on: [push, pull_request]
+jobs:
+    "Lint":
+        runs-on: ubuntu-latest
+        steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
-            - run: yarn install --pure-lockfile
-            - run: yarn lint --max-warnings 0 --color
+            - run: npm ci
+            - run: npm run lint -- --max-warnings 0 --color

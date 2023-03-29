@@ -1,20 +1,12 @@
-name : Publication
+name: Publication
 on:
     push:
         tags: ['*']
 jobs:
-    build:
-        runs-on : ubuntu-latest
-        steps   :
+    "Publish":
+        runs-on: ubuntu-latest
+        steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
-            - run: yarn install --pure-lockfile
-            - run: yarn lint --max-warnings 0 --color
-    publish:
-        needs   : build
-        runs-on : ubuntu-latest
-        steps   :
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
-            - run: yarn install --pure-lockfile
-            - run: yarn publish-all --yes
+            - run: npm ci
+            - run: npm run publish-all -- --yes

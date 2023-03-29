@@ -3,7 +3,7 @@
 > Configuration ESLint __pour les projets browser__ Pulsanova __utilisant Vue__
 
 Cette configuration étend la [configuration browser](../browser) et ajoute des règles propre
-au développement d'une application React.
+au développement d'une application Vue.
 
 ## Quand l'utiliser ?
 

@@ -1,9 +1,9 @@
 {
     "name": "@pulsanova/eslint-config-browser",
     "version": "2.1.2",
+    "license": "MIT",
     "main": "./index.js",
     "exports": "./index.js",
-    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "ssh://git@github.com:Pulsanova/Eslint.git",
@@ -14,7 +14,7 @@
         "eslintconfig"
     ],
     "scripts": {
-        "find-new-rules": "eslint-find-rules --unused ./index.js --no-error"
+        "find-new-rules": "eslint-find-rules --unused --no-error ./index.js"
     },
     "dependencies": {
         "@pulsanova/eslint-config-esnext": "2.1.2",
