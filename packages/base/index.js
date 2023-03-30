@@ -445,7 +445,7 @@ module.exports = {
             onlyIfContainsSeparator: true,
             number: {
                 onlyIfContainsSeparator: false,
-                minimumDigits: 6,
+                minimumDigits: 5,
             },
         }],
 
