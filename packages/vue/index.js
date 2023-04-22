@@ -489,6 +489,9 @@ module.exports = {
         // @see https://eslint.vuejs.org/rules/no-undef-properties.html
         'vue/no-undef-properties': ['off'],
 
+        // @see https://eslint.vuejs.org/rules/no-reserved-component-names.html
+        'vue/no-reserved-component-names': ['off'],
+
         // @see https://eslint.vuejs.org/rules/no-restricted-class.html
         'vue/no-restricted-class': ['off'],
 

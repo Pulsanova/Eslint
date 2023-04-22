@@ -381,9 +381,6 @@ module.exports = {
         // @see https://typescript-eslint.io/rules/no-unnecessary-type-constraint
         '@typescript-eslint/no-unnecessary-type-constraint': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-unsafe-enum-comparison
-        '@typescript-eslint/no-unsafe-enum-comparison': ['error'],
-
         // @see https://typescript-eslint.io/rules/no-unused-expressions
         'no-unused-expressions': ['off'],
         '@babel/no-unused-expressions': ['off'],
@@ -494,19 +491,6 @@ module.exports = {
         // @see https://typescript-eslint.io/rules/space-infix-ops
         'space-infix-ops': ['off'],
         '@typescript-eslint/space-infix-ops': ['error', { int32Hint: false }],
-
-        // @see https://typescript-eslint.io/rules/strict-boolean-expressions
-        '@typescript-eslint/strict-boolean-expressions': ['error', {
-            allowAny: true,
-            allowString: false,
-            allowNumber: false,
-            allowNullableObject: true,
-            allowNullableBoolean: false,
-            allowNullableString: false,
-            allowNullableNumber: false,
-            allowNullableEnum: true,
-            allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing: false,
-        }],
 
         // @see https://typescript-eslint.io/rules/switch-exhaustiveness-check
         '@typescript-eslint/switch-exhaustiveness-check': ['error'],
@@ -722,6 +706,9 @@ module.exports = {
         // @see https://typescript-eslint.io/rules/no-unsafe-declaration-merging
         '@typescript-eslint/no-unsafe-declaration-merging': ['off'],
 
+        // @see https://typescript-eslint.io/rules/no-unsafe-enum-comparison
+        '@typescript-eslint/no-unsafe-enum-comparison': ['off'],
+
         // @see https://typescript-eslint.io/rules/no-unsafe-member-access
         '@typescript-eslint/no-unsafe-member-access': ['off'],
 
@@ -742,6 +729,9 @@ module.exports = {
 
         // @see https://typescript-eslint.io/rules/sort-type-union-intersection-members
         '@typescript-eslint/sort-type-union-intersection-members': ['off'],
+
+        // @see https://typescript-eslint.io/rules/strict-boolean-expressions
+        '@typescript-eslint/strict-boolean-expressions': ['off'],
 
         // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-param-type.md
         'jsdoc/require-param-type': ['off'],
