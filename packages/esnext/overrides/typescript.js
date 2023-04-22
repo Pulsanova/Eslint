@@ -188,6 +188,32 @@ module.exports = {
             },
         }],
 
+        // @see https://typescript-eslint.io/rules/lines-around-comment
+        'lines-around-comment': ['off'],
+        '@typescript-eslint/lines-around-comment': ['error', {
+            beforeBlockComment: true,
+            afterBlockComment: false,
+            beforeLineComment: false,
+            afterLineComment: false,
+            afterHashbangComment: true,
+            allowObjectStart: true,
+            allowObjectEnd: true,
+            allowBlockStart: true,
+            allowBlockEnd: true,
+            allowClassStart: true,
+            allowClassEnd: true,
+            allowArrayStart: true,
+            allowArrayEnd: true,
+            allowEnumEnd: true,
+            allowEnumStart: true,
+            allowInterfaceEnd: true,
+            allowInterfaceStart: true,
+            allowModuleEnd: true,
+            allowModuleStart: true,
+            allowTypeEnd: true,
+            allowTypeStart: true,
+        }],
+
         // @see https://typescript-eslint.io/rules/lines-between-class-members
         'lines-between-class-members': ['off'],
         '@typescript-eslint/lines-between-class-members': ['error', 'always', {

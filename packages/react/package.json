@@ -29,7 +29,7 @@
         "eslint-plugin-react-hooks-configurable": "~4.6.0"
     },
     "devDependencies": {
-        "eslint": "^8.28.0",
+        "eslint": "^8.39.0",
         "eslint-find-rules": "^4.1.0",
         "react": "^17.0.2",
         "react-dom": "^17.0.2"

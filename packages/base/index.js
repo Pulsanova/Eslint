@@ -286,9 +286,26 @@ module.exports = {
         // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/valid-types.md
         'jsdoc/valid-types': ['error'],
 
+        // @see https://eslint.org/docs/latest/rules/lines-around-comment
+        'lines-around-comment': ['error', {
+            beforeBlockComment: true,
+            afterBlockComment: false,
+            beforeLineComment: false,
+            afterLineComment: false,
+            afterHashbangComment: true,
+            allowObjectStart: true,
+            allowObjectEnd: true,
+            allowBlockStart: true,
+            allowBlockEnd: true,
+            allowClassStart: true,
+            allowClassEnd: true,
+            allowArrayStart: true,
+            allowArrayEnd: true,
+        }],
+
         // @see https://eslint.org/docs/latest/rules/logical-assignment-operators
         'logical-assignment-operators': ['error', 'always', {
-            enforceForIfStatements: false,
+            enforceForIfStatements: true,
         }],
 
         // @see https://eslint.org/docs/rules/max-len
