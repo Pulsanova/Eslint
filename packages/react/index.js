@@ -98,59 +98,59 @@ module.exports = {
         // @see https://reactjs.org/docs/hooks-rules.html
         'react-hooks-configurable/rules-of-hooks': ['error'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/function-component-definition.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/function-component-definition.md
         'react/function-component-definition': ['error', {
             namedComponents: 'arrow-function',
             unnamedComponents: 'arrow-function',
         }],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/iframe-missing-sandbox.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/iframe-missing-sandbox.md
         'react/iframe-missing-sandbox': ['error'],
 
-        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md
+        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md
         'react/jsx-curly-brace-presence': ['error', {
             props: 'never',
             children: 'never',
             propElementValues: 'always',
         }],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
         'react/jsx-filename-extension': ['error', {
             allow: 'always',
             extensions: ['.js', '.tsx'],
         }],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-fragments.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-fragments.md
         'react/jsx-fragments': ['error', 'element'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md
         'react/jsx-handler-names': ['error', {
             eventHandlerPrefix: 'handle',
             eventHandlerPropPrefix: 'on',
             checkInlineFunction: false,
         }],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-indent.md
         'react/jsx-indent': ['error', 4],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
         'react/jsx-indent-props': ['error', 4],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/e2eaadae316f9506d163812a09424eb42698470a/docs/rules/jsx-no-constructed-context-values.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/e2eaadae316f9506d163812a09424eb42698470a/docs/rules/jsx-no-constructed-context-values.md
         'react/jsx-no-constructed-context-values': ['error'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-script-url.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-script-url.md
         'react/jsx-no-script-url': ['error', [
             { name: 'Link', props: ['to'] },
             { name: 'Button', props: ['to'] },
         ]],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-useless-fragment.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-useless-fragment.md
         'react/jsx-no-useless-fragment': ['error', {
             allowExpressions: false,
         }],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
         'react/jsx-pascal-case': ['error', {
             allowAllCaps: false,
             allowLeadingUnderscore: false,
@@ -158,29 +158,29 @@ module.exports = {
             ignore: [],
         }],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
         'react/no-direct-mutation-state': ['error'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-invalid-html-attribute.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-invalid-html-attribute.md
         'react/no-invalid-html-attribute': ['error', ['rel']],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-namespace.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-namespace.md
         'react/no-namespace': ['error'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
         'react/no-unstable-nested-components': ['error', { allowAsProps: true }],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/prefer-exact-props.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prefer-exact-props.md
         'react/prefer-exact-props': ['error'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-default-props.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-default-props.md
         'react/require-default-props': ['error', {
             forbidDefaultForRequired: true,
             functions: 'ignore',
             classes: 'defaultProps',
         }],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
         'react/sort-comp': ['error', {
             order: [
                 'type-annotations',
@@ -200,7 +200,7 @@ module.exports = {
             ],
         }],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
         'react/static-property-placement': ['error', 'static public field'],
 
         //
@@ -219,16 +219,16 @@ module.exports = {
         // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md
         'jsx-a11y/mouse-events-have-key-events': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/default-props-match-prop-types.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/default-props-match-prop-types.md
         'react/default-props-match-prop-types': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
         'react/destructuring-assignment': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/hook-use-state.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/hook-use-state.md
         'react/hook-use-state': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/e2eaadae316f9506d163812a09424eb42698470a/docs/rules/jsx-newline.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/e2eaadae316f9506d163812a09424eb42698470a/docs/rules/jsx-newline.md
         'react/jsx-newline': 'off',
 
         // TODO: À activer lorsqu'on pourra ignorer certains patterns dans la partie gauche des conditions
@@ -238,28 +238,28 @@ module.exports = {
             validStrategies: ['ternary', 'coerce'],
         }],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-one-expression-per-line.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-one-expression-per-line.md
         'react/jsx-one-expression-per-line': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md
         'react/jsx-props-no-spreading': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
         'react/jsx-uses-react': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-adjacent-inline-elements.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-adjacent-inline-elements.md
         'react/no-adjacent-inline-elements': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-arrow-function-lifecycle.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-arrow-function-lifecycle.md
         'react/no-arrow-function-lifecycle': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md
         'react/no-unused-prop-types': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
         'react/react-in-jsx-scope': ['off'],
 
-        // @see https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md
         'react/state-in-constructor': ['off'],
     },
 
