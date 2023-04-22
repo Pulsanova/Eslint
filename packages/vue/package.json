@@ -18,13 +18,13 @@
         "find-new-rules-ts": "eslint-find-rules --unused --no-core --no-error ./overrides/typescript.js"
     },
     "dependencies": {
-        "@babel/eslint-parser": "~7.16.3",
+        "@babel/eslint-parser": "~7.21.3",
         "@pulsanova/eslint-config-browser": "2.2.1",
         "@rushstack/eslint-patch": "^1.2.0",
         "eslint-config-airbnb": "~19.0.4",
-        "eslint-plugin-react": "~7.31.11",
-        "eslint-plugin-vue": "~8.1.1",
-        "vue-eslint-parser": "~8.0.1"
+        "eslint-plugin-react": "~7.32.2",
+        "eslint-plugin-vue": "~9.11.0",
+        "vue-eslint-parser": "~9.1.1"
     },
     "devDependencies": {
         "eslint": "^8.39.0",

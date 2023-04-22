@@ -77,12 +77,15 @@ module.exports = {
             mts: 'never',
         }],
 
-        // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/0745af376cdc8686d85a361ce36952b1fb1ccf6e/docs/rules/anchor-is-valid.md
+        // @see https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/anchor-is-valid.md
         'jsx-a11y/anchor-is-valid': ['error', {
             components: [],
             specialLink: ['to'],
             aspects: ['noHref', 'invalidHref', 'preferButton'],
         }],
+
+        // @see https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/no-aria-hidden-on-focusable.md
+        'jsx-a11y/no-aria-hidden-on-focusable': ['error'],
 
         // @see https://github.com/facebook/react/issues/14920#issue-413077280
         'react-hooks-configurable/exhaustive-deps': ['warn', {
@@ -167,6 +170,9 @@ module.exports = {
         // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-namespace.md
         'react/no-namespace': ['error'],
 
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/HEAD/docs/rules/no-object-type-as-default-prop.md
+        'react/no-object-type-as-default-prop': ['error'],
+
         // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
         'react/no-unstable-nested-components': ['error', { allowAsProps: true }],
 
@@ -210,6 +216,9 @@ module.exports = {
         // @see https://eslint.org/docs/rules/no-underscore-dangle
         'no-underscore-dangle': ['off'],
 
+        // @see https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/anchor-ambiguous-text.md
+        'jsx-a11y/anchor-ambiguous-text': ['off'],
+
         // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/click-events-have-key-events.md
         'jsx-a11y/click-events-have-key-events': ['off'],
 
@@ -218,6 +227,9 @@ module.exports = {
 
         // @see https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/mouse-events-have-key-events.md
         'jsx-a11y/mouse-events-have-key-events': ['off'],
+
+        // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/main/docs/rules/prefer-tag-over-role.md
+        'jsx-a11y/prefer-tag-over-role': ['off'],
 
         // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/default-props-match-prop-types.md
         'react/default-props-match-prop-types': ['off'],
@@ -261,6 +273,9 @@ module.exports = {
 
         // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md
         'react/state-in-constructor': ['off'],
+
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/sort-default-props.md
+        'react/sort-default-props': ['off'],
     },
 
     // - Overrides

@@ -20,19 +20,19 @@
     "dependencies": {
         "@pulsanova/eslint-config-browser": "2.2.1",
         "@rushstack/eslint-patch": "^1.2.0",
-        "@tanstack/eslint-plugin-query": "~4.15.1",
+        "@tanstack/eslint-plugin-query": "~4.29.4",
         "eslint-config-airbnb": "~19.0.4",
         "eslint-plugin-class-methods-use-this-regex": "~1.0.0",
-        "eslint-plugin-import": "~2.26.0",
-        "eslint-plugin-jsx-a11y": "~6.6.1",
-        "eslint-plugin-react": "~7.31.11",
+        "eslint-plugin-import": "~2.27.5",
+        "eslint-plugin-jsx-a11y": "~6.7.1",
+        "eslint-plugin-react": "~7.32.2",
         "eslint-plugin-react-hooks-configurable": "~4.6.0"
     },
     "devDependencies": {
         "eslint": "^8.39.0",
         "eslint-find-rules": "^4.1.0",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "react": "^17 || ^18",
+        "react-dom": "^17 || ^18"
     },
     "peerDependencies": {
         "eslint": "^8.28.0",

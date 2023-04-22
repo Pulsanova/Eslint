@@ -120,9 +120,11 @@ module.exports = {
         // @see https://typescript-eslint.io/rules/explicit-function-return-type
         '@typescript-eslint/explicit-function-return-type': ['error', {
             allowedNames: [],
+            allowIIFEs: true,
             allowExpressions: true,
             allowTypedFunctionExpressions: true,
             allowHigherOrderFunctions: true,
+            allowFunctionsWithoutTypeParameters: false,
             allowConciseArrowFunctionExpressionsStartingWithVoid: false,
         }],
 
@@ -195,7 +197,7 @@ module.exports = {
             afterBlockComment: false,
             beforeLineComment: false,
             afterLineComment: false,
-            afterHashbangComment: true,
+            // afterHashbangComment: true,
             allowObjectStart: true,
             allowObjectEnd: true,
             allowBlockStart: true,
@@ -313,6 +315,9 @@ module.exports = {
             allowEmpty: false,
         }],
 
+        // @see https://typescript-eslint.io/rules/no-import-type-side-effects
+        '@typescript-eslint/no-import-type-side-effects': ['error'],
+
         // @see https://typescript-eslint.io/rules/no-invalid-void-type
         '@typescript-eslint/no-invalid-void-type': ['error', {
             allowInGenericTypeArguments: true,
@@ -336,6 +341,9 @@ module.exports = {
 
         // @see https://typescript-eslint.io/rules/no-misused-new
         '@typescript-eslint/no-misused-new': ['error'],
+
+        // @see https://typescript-eslint.io/rules/no-mixed-enums
+        '@typescript-eslint/no-mixed-enums': ['error'],
 
         // @see https://typescript-eslint.io/rules/no-namespace
         '@typescript-eslint/no-namespace': ['error', {
@@ -372,6 +380,9 @@ module.exports = {
 
         // @see https://typescript-eslint.io/rules/no-unnecessary-type-constraint
         '@typescript-eslint/no-unnecessary-type-constraint': ['error'],
+
+        // @see https://typescript-eslint.io/rules/no-unsafe-enum-comparison
+        '@typescript-eslint/no-unsafe-enum-comparison': ['error'],
 
         // @see https://typescript-eslint.io/rules/no-unused-expressions
         'no-unused-expressions': ['off'],
@@ -453,6 +464,7 @@ module.exports = {
         '@typescript-eslint/restrict-template-expressions': ['error', {
             allowNumber: true,
             allowAny: true,
+            allowNever: true,
             allowBoolean: false,
             allowNullable: false,
             allowRegExp: false,
@@ -482,6 +494,19 @@ module.exports = {
         // @see https://typescript-eslint.io/rules/space-infix-ops
         'space-infix-ops': ['off'],
         '@typescript-eslint/space-infix-ops': ['error', { int32Hint: false }],
+
+        // @see https://typescript-eslint.io/rules/strict-boolean-expressions
+        '@typescript-eslint/strict-boolean-expressions': ['error', {
+            allowAny: true,
+            allowString: false,
+            allowNumber: false,
+            allowNullableObject: true,
+            allowNullableBoolean: false,
+            allowNullableString: false,
+            allowNullableNumber: false,
+            allowNullableEnum: true,
+            allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing: false,
+        }],
 
         // @see https://typescript-eslint.io/rules/switch-exhaustiveness-check
         '@typescript-eslint/switch-exhaustiveness-check': ['error'],
@@ -621,9 +646,6 @@ module.exports = {
         // @see https://typescript-eslint.io/rules/require-await
         '@typescript-eslint/require-await': ['off'],
 
-        // @see https://typescript-eslint.io/rules/strict-boolean-expressions
-        '@typescript-eslint/strict-boolean-expressions': ['off'],
-
         // @see https://typescript-eslint.io/rules/unbound-method
         '@typescript-eslint/unbound-method': ['off'],
 
@@ -660,6 +682,9 @@ module.exports = {
 
         // @see https://typescript-eslint.io/rules/init-declarations
         '@typescript-eslint/init-declarations': ['off'],
+
+        // @see https://typescript-eslint.io/rules/no-duplicate-type-constituents
+        '@typescript-eslint/no-duplicate-type-constituents': ['off'],
 
         // @see https://typescript-eslint.io/rules/no-explicit-any
         '@typescript-eslint/no-explicit-any': ['off'],

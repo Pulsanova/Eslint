@@ -142,6 +142,9 @@ module.exports = {
             order: ['template', 'style', 'script'],
         }],
 
+        // @see https://eslint.vuejs.org/rules/custom-event-name-casing.html
+        'vue/custom-event-name-casing': ['error', 'camelCase'],
+
         // @see https://eslint.vuejs.org/rules/first-attribute-linebreak.html
         'vue/first-attribute-linebreak': ['error', {
             singleline: 'beside',
@@ -174,6 +177,9 @@ module.exports = {
         // @see https://eslint.vuejs.org/rules/no-expose-after-await.html
         'vue/no-expose-after-await': ['error'],
 
+        // @see https://eslint.vuejs.org/rules/no-lifecycle-after-await.html
+        'vue/no-lifecycle-after-await': ['error'],
+
         // @see https://eslint.vuejs.org/rules/no-v-text.html
         'vue/no-v-text': ['error'],
 
@@ -199,6 +205,116 @@ module.exports = {
 
         // @see https://eslint.vuejs.org/rules/valid-v-memo
         'vue/valid-v-memo': ['off'],
+
+        //
+        // - Règles liées aux `<template>` ou `.vue`, non utilisés.
+        //   (nous utilisons du JSX / TSX pour les components Vue)
+        //
+
+        // @see https://eslint.vuejs.org/rules/array-element-newline.html
+        'vue/array-element-newline': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/block-lang.html
+        'vue/block-lang': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/camelcase.html
+        'vue/camelcase': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/comma-dangle.html
+        'vue/comma-dangle': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/comma-spacing.html
+        'vue/comma-spacing': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/comma-style.html
+        'vue/comma-style': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/component-name-in-template-casing.html
+        'vue/component-name-in-template-casing': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/component-options-name-casing.html
+        'vue/component-options-name-casing': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/dot-location.html
+        'vue/dot-location': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/dot-notation.html
+        'vue/dot-notation': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/eqeqeq.html
+        'vue/eqeqeq': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/func-call-spacing.html
+        'vue/func-call-spacing': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/key-spacing.html
+        'vue/key-spacing': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/keyword-spacing.html
+        'vue/keyword-spacing': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/multiline-ternary.html
+        'vue/multiline-ternary': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/no-constant-condition.html
+        'vue/no-constant-condition': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/no-empty-pattern.html
+        'vue/no-empty-pattern': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/no-extra-parens.html
+        'vue/no-extra-parens': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/no-irregular-whitespace.html
+        'vue/no-irregular-whitespace': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/no-loss-of-precision.html
+        'vue/no-loss-of-precision': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/no-restricted-syntax.html
+        'vue/no-restricted-syntax': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/no-sparse-arrays.html
+        'vue/no-sparse-arrays': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/object-curly-newline.html
+        'vue/object-curly-newline': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/object-curly-spacing.html
+        'vue/object-curly-spacing': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/object-property-newline.html
+        'vue/object-property-newline': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/object-shorthand.html
+        'vue/object-shorthand': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/operator-linebreak.html
+        'vue/operator-linebreak': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/prefer-template.html
+        'vue/prefer-template': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/quote-props.html
+        'vue/quote-props': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/space-in-parens.html
+        'vue/space-in-parens': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/space-infix-ops.html
+        'vue/space-infix-ops': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/space-unary-ops.html
+        'vue/space-unary-ops': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/template-curly-spacing.html
+        'vue/template-curly-spacing': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/valid-v-is.html
+        'vue/valid-v-is': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/v-for-delimiter-style.html
+        'vue/v-for-delimiter-style': ['off'],
 
         //
         // - Règles désactivées.
@@ -295,6 +411,9 @@ module.exports = {
         // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-namespace.md
         'react/no-namespace': ['off'],
 
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/HEAD/docs/rules/no-object-type-as-default-prop.md
+        'react/no-object-type-as-default-prop': ['off'],
+
         // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-redundant-should-component-update.md
         'react/no-redundant-should-component-update': ['off'],
 
@@ -346,6 +465,9 @@ module.exports = {
         // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
         'react/sort-comp': ['off'],
 
+        // @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/sort-default-props.md
+        'react/sort-default-props': ['off'],
+
         // @see https://eslint.vuejs.org/rules/array-bracket-newline.html
         'vue/array-bracket-newline': ['off'],
 
@@ -357,6 +479,9 @@ module.exports = {
 
         // @see https://eslint.vuejs.org/rules/multi-word-component-names.html
         'vue/multi-word-component-names': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/no-boolean-default.html
+        'vue/no-boolean-default': ['off'],
 
         // @see https://eslint.vuejs.org/rules/no-child-content.html
         'vue/no-child-content': ['off'],
@@ -370,8 +495,17 @@ module.exports = {
         // @see https://eslint.vuejs.org/rules/no-useless-template-attributes.html
         'vue/no-useless-template-attributes': ['off'],
 
+        // @see https://eslint.vuejs.org/rules/prefer-prop-type-boolean-first.html
+        'vue/prefer-prop-type-boolean-first': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/require-direct-export.html
+        'vue/require-direct-export': ['off'],
+
         // @see https://eslint.vuejs.org/rules/singleline-html-element-content-newline.html
         'vue/singleline-html-element-content-newline': ['off'],
+
+        // @see https://eslint.vuejs.org/rules/sort-keys.html
+        'vue/sort-keys': ['off'],
     },
 
     // - Overrides

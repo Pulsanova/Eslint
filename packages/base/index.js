@@ -66,6 +66,12 @@ module.exports = {
         // @see https://eslint.org/docs/rules/grouped-accessor-pairs
         'grouped-accessor-pairs': ['error', 'getBeforeSet'],
 
+        // @see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/consistent-type-specifier-style.md
+        'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+
+        // @see https://github.com/benmosher/eslint-plugin-import/blob/main/docs/rules/extensions.md
+        'import/extensions': ['error', 'ignorePackages', { js: 'never' }],
+
         // @see https://github.com/benmosher/eslint-plugin-import/blob/main/docs/rules/no-extraneous-dependencies.md
         'import/no-extraneous-dependencies': ['error', {
             devDependencies: [
@@ -87,12 +93,12 @@ module.exports = {
             optionalDependencies: false,
         }],
 
-        // @see https://github.com/benmosher/eslint-plugin-import/blob/main/docs/rules/extensions.md
-        'import/extensions': ['error', 'ignorePackages', { js: 'never' }],
+        // @see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-empty-named-blocks.md
+        'import/no-empty-named-blocks': ['error'],
 
         // @see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
         'import/order': ['error', {
-            groups: [
+            'groups': [
                 [
                     'builtin',
                     'external',
@@ -105,15 +111,18 @@ module.exports = {
                 'object',
                 'type',
             ],
-            pathGroups: [
+            'pathGroups': [
                 { pattern: './*.scss', group: 'builtin', position: 'before' },
                 { pattern: '**/*.scss', group: 'builtin', position: 'before' },
             ],
-            warnOnUnassignedImports: true,
+            'warnOnUnassignedImports': true,
+            'newlines-between': 'always-and-inside-groups',
+            'distinctGroup': false,
+        }],
 
-            // TODO [eslint-plugin-import@>=2.27.0]: À activer lorsque la version 2.27.0 sera releasée.
-            // 'newlines-between': 'always-and-inside-groups',
-            // 'distinctGroup': false,
+        // @see https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md
+        'import/prefer-default-export': ['error', {
+            target: 'single',
         }],
 
         // @see https://eslint.org/docs/rules/indent
