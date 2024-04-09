@@ -14,24 +14,25 @@
         "eslintconfig"
     ],
     "scripts": {
-        "find-new-rules": "eslint-find-rules --unused --no-error ./index.js",
-        "find-new-rules-ts": "eslint-find-rules --unused --no-core --no-error ./overrides/typescript.js"
+        "find-new-rules": "eslint-find-rules --unused --no-error --deprecated ./index.js",
+        "find-new-rules-ts": "eslint-find-rules --unused --no-core --no-error --deprecated ./overrides/typescript.js"
     },
     "dependencies": {
-        "@babel/core": "^7.21.4",
-        "@babel/eslint-parser": "~7.21.3",
-        "@babel/eslint-plugin": "~7.19.1",
+        "@babel/core": "^7",
+        "@babel/eslint-parser": "~7.24.1",
+        "@babel/eslint-plugin": "~7.23.5",
         "@pulsanova/eslint-config-base": "2.3.0",
-        "@rushstack/eslint-patch": "^1.2.0",
-        "@typescript-eslint/eslint-plugin": "~5.59.0",
-        "@typescript-eslint/parser": "~5.59.0"
+        "@rushstack/eslint-patch": "^1.10.2",
+        "@stylistic/eslint-plugin-ts": "~1.7.0",
+        "@typescript-eslint/eslint-plugin": "~7.6.0",
+        "@typescript-eslint/parser": "~7.6.0"
     },
     "devDependencies": {
-        "eslint": "^8.39.0",
+        "eslint": "^8.57.0",
         "eslint-find-rules": "^4.1.0",
-        "typescript": "^5.0.4"
+        "typescript": "^5.4.4"
     },
     "peerDependencies": {
-        "eslint": "^8.28.0"
+        "eslint": "^8.57.0"
     }
 }

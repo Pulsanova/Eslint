@@ -14,28 +14,26 @@
         "eslintconfig"
     ],
     "scripts": {
-        "find-new-rules": "eslint-find-rules --unused --no-error ./index.js",
-        "find-new-rules-ts": "eslint-find-rules --unused --no-core --no-error ./overrides/typescript.js"
+        "find-new-rules": "eslint-find-rules --unused --no-error --deprecated ./index.js",
+        "find-new-rules-ts": "eslint-find-rules --unused --no-error --no-core --deprecated ./overrides/typescript.js"
     },
     "dependencies": {
         "@pulsanova/eslint-config-browser": "2.3.1",
-        "@rushstack/eslint-patch": "^1.2.0",
-        "@tanstack/eslint-plugin-query": "~4.29.4",
-        "eslint-config-airbnb": "~19.0.4",
+        "@rushstack/eslint-patch": "^1.10.2",
+        "@tanstack/eslint-plugin-query": "~5.28.11",
         "eslint-plugin-class-methods-use-this-regex": "~1.0.0",
-        "eslint-plugin-import": "~2.27.5",
-        "eslint-plugin-jsx-a11y": "~6.7.1",
-        "eslint-plugin-react": "~7.32.2",
+        "eslint-plugin-jsx-a11y": "~6.8.0",
+        "eslint-plugin-react": "~7.34.1",
         "eslint-plugin-react-hooks-configurable": "~4.6.0"
     },
     "devDependencies": {
-        "eslint": "^8.39.0",
+        "eslint": "^8.57.0",
         "eslint-find-rules": "^4.1.0",
         "react": "^17 || ^18",
         "react-dom": "^17 || ^18"
     },
     "peerDependencies": {
-        "eslint": "^8.28.0",
+        "eslint": "^8.57.0",
         "react": "*",
         "react-dom": "*"
     }

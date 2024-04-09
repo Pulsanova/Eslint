@@ -4,11 +4,15 @@ module.exports = {
     // - Parseur
     parser: '@typescript-eslint/parser',
     parserOptions: {
+        project: true,
         warnOnUnsupportedTypeScriptVersion: true,
     },
 
     // - Plugins
-    plugins: ['@typescript-eslint'],
+    plugins: [
+        '@typescript-eslint',
+        '@stylistic/ts',
+    ],
 
     // - Configuration
     settings: {
@@ -28,51 +32,84 @@ module.exports = {
 
     // - Règles
     rules: {
-        // @see https://typescript-eslint.io/rules/adjacent-overload-signatures
+        // https://typescript-eslint.io/rules/adjacent-overload-signatures
         '@typescript-eslint/adjacent-overload-signatures': ['error'],
 
-        // @see https://typescript-eslint.io/rules/array-type
+        // https://typescript-eslint.io/rules/array-type
         '@typescript-eslint/array-type': ['error', {
             default: 'array-simple',
             readonly: 'array-simple',
         }],
 
-        // @see https://typescript-eslint.io/rules/ban-ts-comment
+        // https://typescript-eslint.io/rules/ban-ts-comment
         '@typescript-eslint/ban-ts-comment': ['error', {
+            'ts-check': true,
             'ts-expect-error': 'allow-with-description',
             'ts-ignore': 'allow-with-description',
             'ts-nocheck': true,
-            'ts-check': true,
         }],
 
-        // @see https://typescript-eslint.io/rules/ban-tslint-comment
+        // https://typescript-eslint.io/rules/ban-tslint-comment
         '@typescript-eslint/ban-tslint-comment': ['error'],
 
-        // @see https://typescript-eslint.io/rules/ban-types
+        // https://typescript-eslint.io/rules/ban-types
         '@typescript-eslint/ban-types': ['error', {
             extendDefaults: false,
             types: {
-                'String': { message: 'Use string instead', fixWith: 'string' },
+                'BigInt': { message: 'Use bigint instead', fixWith: 'bigint' },
                 'Boolean': { message: 'Use boolean instead', fixWith: 'boolean' },
                 'Number': { message: 'Use number instead', fixWith: 'number' },
+                'String': { message: 'Use string instead', fixWith: 'string' },
                 'Symbol': { message: 'Use symbol instead', fixWith: 'symbol' },
-                'BigInt': { message: 'Use bigint instead', fixWith: 'bigint' },
-                'Object': { message: 'Use Record<string, any> instead', fixWith: 'Record<string, any>' },
+                'Object': {
+                    message: [
+                        'The `Object` type actually means "any non-nullish value".',
+                        '- If you want a type meaning "any object literal", you probably want `Record<string, any>` instead.',
+                        '- If you really want a type meaning "any non-nullish value", you probably want `NonNullable<unknown>` instead.',
+                    ].join('\n'),
+                    suggest: [
+                        'Record<string, any>',
+                        'NonNullable<unknown>',
+                    ],
+                },
                 'object': { message: 'Use Record<string, any> instead', fixWith: 'Record<string, any>' },
-                '{}': { message: 'Use Record<string, any> instead', fixWith: 'Record<string, any>' },
+                '{}': {
+                    message: [
+                        '`{}` actually means "any non-nullish value".',
+                        '- If you want a type meaning "any object literal", you probably want `Record<string, any>` instead.',
+                        '- If you want a type meaning "empty object", you probably want `Record<string, never>` instead.',
+                        '- If you really want a type meaning "any non-nullish value", you probably want `NonNullable<unknown>` instead.',
+                    ].join('\n'),
+                    suggest: [
+                        'Record<string, any>',
+                        'Record<string, never>',
+                        'NonNullable<unknown>',
+                    ],
+                },
             },
         }],
 
-        // @see https://typescript-eslint.io/rules/brace-style
-        'brace-style': ['off'],
-        '@typescript-eslint/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+        // https://eslint.style/rules/default/block-spacing
+        '@stylistic/js/block-spacing': ['off'],
+        '@stylistic/ts/block-spacing': ['error', 'always'],
 
-        // @see https://typescript-eslint.io/rules/class-literal-property-style
+        // https://eslint.style/rules/default/brace-style
+        '@stylistic/js/brace-style': ['off'],
+        '@stylistic/ts/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+
+        // https://typescript-eslint.io/rules/class-literal-property-style
         '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
 
-        // @see https://typescript-eslint.io/rules/comma-dangle
-        'comma-dangle': ['off'],
-        '@typescript-eslint/comma-dangle': ['error', {
+        // https://typescript-eslint.io/rules/class-methods-use-this
+        'class-methods-use-this': ['off'],
+        '@typescript-eslint/class-methods-use-this': ['error', {
+            ignoreClassesThatImplementAnInterface: true,
+            exceptMethods: [],
+        }],
+
+        // https://eslint.style/rules/default/comma-dangle
+        '@stylistic/js/comma-dangle': ['off'],
+        '@stylistic/ts/comma-dangle': ['error', {
             arrays: 'always-multiline',
             enums: 'always-multiline',
             exports: 'always-multiline',
@@ -83,33 +120,37 @@ module.exports = {
             tuples: 'always-multiline',
         }],
 
-        // @see https://typescript-eslint.io/rules/comma-spacing
-        'comma-spacing': ['off'],
-        '@typescript-eslint/comma-spacing': ['error', { before: false, after: true }],
+        // https://eslint.style/rules/default/comma-spacing
+        '@stylistic/js/comma-spacing': ['off'],
+        '@stylistic/ts/comma-spacing': ['error', { before: false, after: true }],
 
-        // @see https://typescript-eslint.io/rules/consistent-indexed-object-style
+        // https://typescript-eslint.io/rules/consistent-indexed-object-style
         '@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
 
-        // @see https://typescript-eslint.io/rules/consistent-type-assertions
+        // https://typescript-eslint.io/rules/consistent-return
+        'consistent-return': ['error'],
+        '@typescript-eslint/consistent-return': ['error'],
+
+        // https://typescript-eslint.io/rules/consistent-type-assertions
         '@typescript-eslint/consistent-type-assertions': ['error', {
             assertionStyle: 'as',
             objectLiteralTypeAssertions: 'allow',
         }],
 
-        // @see https://typescript-eslint.io/rules/consistent-type-exports
+        // https://typescript-eslint.io/rules/consistent-type-exports
         '@typescript-eslint/consistent-type-exports': ['error'],
 
-        // @see https://typescript-eslint.io/rules/consistent-type-imports
+        // https://typescript-eslint.io/rules/consistent-type-imports
         '@typescript-eslint/consistent-type-imports': ['error', {
             prefer: 'type-imports',
             disallowTypeAnnotations: true,
         }],
 
-        // @see https://typescript-eslint.io/rules/default-param-last
+        // https://typescript-eslint.io/rules/default-param-last
         'default-param-last': ['off'],
         '@typescript-eslint/default-param-last': ['error'],
 
-        // @see https://typescript-eslint.io/rules/dot-notation
+        // https://typescript-eslint.io/rules/dot-notation
         'dot-notation': ['off'],
         '@typescript-eslint/dot-notation': ['error', {
             allowKeywords: true,
@@ -117,7 +158,7 @@ module.exports = {
             allowProtectedClassPropertyAccess: false,
         }],
 
-        // @see https://typescript-eslint.io/rules/explicit-function-return-type
+        // https://typescript-eslint.io/rules/explicit-function-return-type
         '@typescript-eslint/explicit-function-return-type': ['error', {
             allowedNames: [],
             allowIIFEs: true,
@@ -128,7 +169,7 @@ module.exports = {
             allowConciseArrowFunctionExpressionsStartingWithVoid: false,
         }],
 
-        // @see https://typescript-eslint.io/rules/explicit-member-accessibility
+        // https://typescript-eslint.io/rules/explicit-member-accessibility
         '@typescript-eslint/explicit-member-accessibility': ['error', {
             accessibility: 'explicit',
             ignoredMethodNames: [],
@@ -137,14 +178,15 @@ module.exports = {
             },
         }],
 
-        // @see https://typescript-eslint.io/rules/func-call-spacing
-        'func-call-spacing': ['off'],
-        '@typescript-eslint/func-call-spacing': ['error', 'never'],
+        // https://eslint.style/rules/ts/block-spacing
+        '@stylistic/ts/func-call-spacing': ['off'],
+        '@stylistic/js/function-call-spacing': ['off'],
+        '@stylistic/ts/function-call-spacing': ['error', 'always'],
 
-        // @see https://typescript-eslint.io/rules/indent
+        // https://eslint.style/rules/default/indent
         // NOTE: https://github.com/typescript-eslint/typescript-eslint/issues/1824
-        'indent': ['off'],
-        '@typescript-eslint/indent': ['error', 4, {
+        '@stylistic/js/indent': ['off'],
+        '@stylistic/ts/indent': ['error', 4, {
             ArrayExpression: 1,
             CallExpression: { arguments: 1 },
             FunctionDeclaration: { parameters: 1, body: 1 },
@@ -178,9 +220,16 @@ module.exports = {
             ],
         }],
 
-        // @see https://typescript-eslint.io/rules/keyword-spacing
-        'keyword-spacing': ['off'],
-        '@typescript-eslint/keyword-spacing': ['error', {
+        // https://eslint.style/rules/js/key-spacing
+        '@stylistic/js/key-spacing': ['off'],
+        '@stylistic/ts/key-spacing': ['error', {
+            beforeColon: false,
+            afterColon: true,
+        }],
+
+        // https://eslint.style/rules/default/keyword-spacing
+        '@stylistic/js/keyword-spacing': ['off'],
+        '@stylistic/ts/keyword-spacing': ['error', {
             after: true,
             before: true,
             overrides: {
@@ -190,9 +239,9 @@ module.exports = {
             },
         }],
 
-        // @see https://typescript-eslint.io/rules/lines-around-comment
-        'lines-around-comment': ['off'],
-        '@typescript-eslint/lines-around-comment': ['error', {
+        // https://eslint.style/rules/default/lines-around-comment
+        '@stylistic/js/lines-around-comment': ['off'],
+        '@stylistic/ts/lines-around-comment': ['error', {
             beforeBlockComment: true,
             afterBlockComment: false,
             beforeLineComment: false,
@@ -216,15 +265,15 @@ module.exports = {
             allowTypeStart: true,
         }],
 
-        // @see https://typescript-eslint.io/rules/lines-between-class-members
-        'lines-between-class-members': ['off'],
-        '@typescript-eslint/lines-between-class-members': ['error', 'always', {
+        // https://eslint.style/rules/default/lines-between-class-members
+        '@stylistic/js/lines-between-class-members': ['off'],
+        '@stylistic/ts/lines-between-class-members': ['error', 'always', {
             exceptAfterOverload: true,
             exceptAfterSingleLine: false,
         }],
 
-        // @see https://typescript-eslint.io/rules/member-delimiter-style
-        '@typescript-eslint/member-delimiter-style': ['error', {
+        // https://eslint.style/rules/default/member-delimiter-style
+        '@stylistic/ts/member-delimiter-style': ['error', {
             multiline: { delimiter: 'comma', requireLast: true },
             singleline: { delimiter: 'comma', requireLast: false },
             overrides: {
@@ -235,10 +284,10 @@ module.exports = {
             },
         }],
 
-        // @see https://typescript-eslint.io/rules/method-signature-style
+        // https://typescript-eslint.io/rules/method-signature-style
         '@typescript-eslint/method-signature-style': ['error', 'method'],
 
-        // @see https://typescript-eslint.io/rules/naming-convention
+        // https://typescript-eslint.io/rules/naming-convention
         '@typescript-eslint/naming-convention': [
             'error',
             {
@@ -261,35 +310,35 @@ module.exports = {
             },
         ],
 
-        // @see https://typescript-eslint.io/rules/non-nullable-type-assertion-style
+        // https://typescript-eslint.io/rules/non-nullable-type-assertion-style
         '@typescript-eslint/non-nullable-type-assertion-style': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-array-constructor
+        // https://typescript-eslint.io/rules/no-array-constructor
         'no-array-constructor': ['off'],
         '@typescript-eslint/no-array-constructor': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-base-to-string
+        // https://typescript-eslint.io/rules/no-base-to-string
         '@typescript-eslint/no-base-to-string': ['error', {
             ignoredTypeNames: ['Error'],
         }],
 
-        // @see https://typescript-eslint.io/rules/no-confusing-non-null-assertion
+        // https://typescript-eslint.io/rules/no-confusing-non-null-assertion
         '@typescript-eslint/no-confusing-non-null-assertion': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-confusing-void-expression
+        // https://typescript-eslint.io/rules/no-confusing-void-expression
         '@typescript-eslint/no-confusing-void-expression': ['error', {
             ignoreArrowShorthand: false,
             ignoreVoidOperator: false,
         }],
 
-        // @see https://typescript-eslint.io/rules/no-dupe-class-members
+        // https://typescript-eslint.io/rules/no-dupe-class-members
         'no-dupe-class-members': ['off'],
         '@typescript-eslint/no-dupe-class-members': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-duplicate-enum-values
+        // https://typescript-eslint.io/rules/no-duplicate-enum-values
         '@typescript-eslint/no-duplicate-enum-values': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-empty-function
+        // https://typescript-eslint.io/rules/no-empty-function
         'no-empty-function': ['off'],
         '@typescript-eslint/no-empty-function': ['error', {
             allow: [
@@ -300,14 +349,14 @@ module.exports = {
             ],
         }],
 
-        // @see https://typescript-eslint.io/rules/no-extra-non-null-assertion
+        // https://typescript-eslint.io/rules/no-extra-non-null-assertion
         '@typescript-eslint/no-extra-non-null-assertion': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-extra-semi
-        'no-extra-semi': ['off'],
-        '@typescript-eslint/no-extra-semi': ['error'],
+        // https://eslint.style/rules/default/no-extra-semi
+        '@stylistic/js/no-extra-semi': ['off'],
+        '@stylistic/ts/no-extra-semi': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-extraneous-class
+        // https://typescript-eslint.io/rules/no-extraneous-class
         '@typescript-eslint/no-extraneous-class': ['error', {
             allowConstructorOnly: true,
             allowStaticOnly: true,
@@ -315,73 +364,76 @@ module.exports = {
             allowEmpty: false,
         }],
 
-        // @see https://typescript-eslint.io/rules/no-import-type-side-effects
+        // https://typescript-eslint.io/rules/no-import-type-side-effects
         '@typescript-eslint/no-import-type-side-effects': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-invalid-void-type
+        // https://typescript-eslint.io/rules/no-invalid-void-type
         '@typescript-eslint/no-invalid-void-type': ['error', {
             allowInGenericTypeArguments: true,
         }],
 
-        // @see https://typescript-eslint.io/rules/no-loop-func
+        // https://typescript-eslint.io/rules/no-loop-func
         'no-loop-func': ['off'],
         '@typescript-eslint/no-loop-func': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-loss-of-precision
+        // https://typescript-eslint.io/rules/no-loss-of-precision
         'no-loss-of-precision': ['off'],
         '@typescript-eslint/no-loss-of-precision': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-meaningless-void-operator
+        // https://typescript-eslint.io/rules/no-meaningless-void-operator
         '@typescript-eslint/no-meaningless-void-operator': ['error', {
             checkNever: false,
         }],
 
-        // @see https://typescript-eslint.io/rules/no-non-null-asserted-nullish-coalescing
+        // https://typescript-eslint.io/rules/no-non-null-asserted-nullish-coalescing
         '@typescript-eslint/no-non-null-asserted-nullish-coalescing': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-misused-new
+        // https://typescript-eslint.io/rules/no-misused-new
         '@typescript-eslint/no-misused-new': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-mixed-enums
+        // https://typescript-eslint.io/rules/no-mixed-enums
         '@typescript-eslint/no-mixed-enums': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-namespace
+        // https://typescript-eslint.io/rules/no-namespace
         '@typescript-eslint/no-namespace': ['error', {
             allowDeclarations: false,
             allowDefinitionFiles: true,
         }],
 
-        // @see https://typescript-eslint.io/rules/no-non-null-asserted-optional-chain
+        // https://typescript-eslint.io/rules/no-non-null-asserted-optional-chain
         '@typescript-eslint/no-non-null-asserted-optional-chain': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-redeclare
+        // https://typescript-eslint.io/rules/no-redeclare
         'no-redeclare': 'off',
         '@typescript-eslint/no-redeclare': ['error', {
             ignoreDeclarationMerge: true,
         }],
 
-        // @see https://typescript-eslint.io/rules/no-shadow
+        // https://typescript-eslint.io/rules/no-shadow
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error', {
             ignoreTypeValueShadow: false,
             ignoreFunctionTypeParameterNameValueShadow: false,
         }],
 
-        // @see https://typescript-eslint.io/rules/no-unnecessary-qualifier
+        // https://typescript-eslint.io/rules/no-unnecessary-qualifier
         '@typescript-eslint/no-unnecessary-qualifier': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-unnecessary-type-arguments
+        // https://typescript-eslint.io/rules/no-unnecessary-type-arguments
         '@typescript-eslint/no-unnecessary-type-arguments': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-unnecessary-type-assertion
+        // https://typescript-eslint.io/rules/no-unnecessary-type-assertion
         '@typescript-eslint/no-unnecessary-type-assertion': ['error', {
             typesToIgnore: [],
         }],
 
-        // @see https://typescript-eslint.io/rules/no-unnecessary-type-constraint
+        // https://typescript-eslint.io/rules/no-unnecessary-type-constraint
         '@typescript-eslint/no-unnecessary-type-constraint': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-unused-expressions
+        // https://typescript-eslint.io/rules/no-unsafe-enum-comparison
+        '@typescript-eslint/no-unsafe-enum-comparison': ['error'],
+
+        // https://typescript-eslint.io/rules/no-unused-expressions
         'no-unused-expressions': ['off'],
         '@babel/no-unused-expressions': ['off'],
         '@typescript-eslint/no-unused-expressions': ['error', {
@@ -390,7 +442,7 @@ module.exports = {
             allowTernary: true,
         }],
 
-        // @see https://typescript-eslint.io/rules/no-unused-vars
+        // https://typescript-eslint.io/rules/no-unused-vars
         'no-unused-vars': ['off'],
         '@typescript-eslint/no-unused-vars': ['error', {
             args: 'after-used',
@@ -398,7 +450,7 @@ module.exports = {
             vars: 'all',
         }],
 
-        // @see https://typescript-eslint.io/rules/no-use-before-define
+        // https://typescript-eslint.io/rules/no-use-before-define
         'no-use-before-define': ['off'],
         '@typescript-eslint/no-use-before-define': ['error', {
             classes: true,
@@ -408,102 +460,129 @@ module.exports = {
             variables: true,
         }],
 
-        // @see https://typescript-eslint.io/rules/no-useless-constructor
+        // https://typescript-eslint.io/rules/no-useless-constructor
         'no-useless-constructor': ['off'],
         '@typescript-eslint/no-useless-constructor': ['error'],
 
-        // @see https://typescript-eslint.io/rules/no-useless-empty-export
+        // https://typescript-eslint.io/rules/no-useless-empty-export
         '@typescript-eslint/no-useless-empty-export': ['error'],
 
-        // @see https://typescript-eslint.io/rules/object-curly-spacing
-        'object-curly-spacing': ['off'],
+        // https://eslint.style/rules/default/object-curly-spacing
+        '@stylistic/js/object-curly-spacing': ['off'],
         '@babel/object-curly-spacing': ['off'],
-        '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+        '@stylistic/ts/object-curly-spacing': ['error', 'always'],
 
-        // @see https://typescript-eslint.io/rules/parameter-properties
+        // https://typescript-eslint.io/rules/parameter-properties
         '@typescript-eslint/parameter-properties': ['error', {
-            prefer: 'class-properties',
+            prefer: 'class-property',
         }],
 
-        // @see https://typescript-eslint.io/rules/prefer-as-const
+        // https://typescript-eslint.io/rules/prefer-as-const
         '@typescript-eslint/prefer-as-const': ['error'],
 
-        // @see https://typescript-eslint.io/rules/prefer-enum-initializers
+        // https://typescript-eslint.io/rules/prefer-destructuring
+        'prefer-destructuring': ['off'],
+        '@typescript-eslint/prefer-destructuring': [
+            'error',
+            {
+                AssignmentExpression: { array: true, object: false },
+                VariableDeclarator: { array: false, object: true },
+            },
+            {
+                enforceForRenamedProperties: false,
+            },
+        ],
+
+        // https://typescript-eslint.io/rules/prefer-enum-initializers
         '@typescript-eslint/prefer-enum-initializers': ['error'],
 
-        // @see https://typescript-eslint.io/rules/prefer-function-type
+        // https://typescript-eslint.io/rules/prefer-function-type
         '@typescript-eslint/prefer-function-type': ['error'],
 
-        // @see https://typescript-eslint.io/rules/prefer-namespace-keyword
+        // https://typescript-eslint.io/rules/prefer-namespace-keyword
         '@typescript-eslint/prefer-namespace-keyword': ['error'],
 
-        // @see https://typescript-eslint.io/rules/prefer-reduce-type-parameter
+        // https://typescript-eslint.io/rules/prefer-promise-reject-errors
+        'prefer-promise-reject-errors': ['off'],
+        '@typescript-eslint/prefer-promise-reject-errors': ['error', {
+            allowEmptyReject: true,
+        }],
+
+        // https://typescript-eslint.io/rules/prefer-reduce-type-parameter
         '@typescript-eslint/prefer-reduce-type-parameter': ['error'],
 
-        // @see https://www.typescriptlang.org/docs/handbook/2/classes.html#this-types
-        // @see https://typescript-eslint.io/rules/prefer-return-this-type
+        // https://www.typescriptlang.org/docs/handbook/2/classes.html#this-types
+        // https://typescript-eslint.io/rules/prefer-return-this-type
         '@typescript-eslint/prefer-return-this-type': ['error'],
 
-        // @see https://typescript-eslint.io/rules/prefer-ts-expect-error
+        // https://typescript-eslint.io/rules/prefer-ts-expect-error
         '@typescript-eslint/prefer-ts-expect-error': ['error'],
 
-        // @see https://typescript-eslint.io/rules/quotes
-        'quotes': ['off'],
-        '@typescript-eslint/quotes': ['error', 'single', { allowTemplateLiterals: true }],
+        // https://eslint.style/rules/default/quotes
+        '@stylistic/js/quotes': ['off'],
+        '@stylistic/ts/quotes': ['error', 'single', { allowTemplateLiterals: true }],
 
-        // @see https://typescript-eslint.io/rules/restrict-plus-operands
+        // https://eslint.style/rules/js/quote-props
+        '@stylistic/js/quote-props': ['off'],
+        '@stylistic/ts/quote-props': ['error', 'consistent'],
+
+        // https://typescript-eslint.io/rules/restrict-plus-operands
         '@typescript-eslint/restrict-plus-operands': ['error', {
-            checkCompoundAssignments: true,
+            skipCompoundAssignments: false,
             allowAny: false,
         }],
 
-        // @see https://typescript-eslint.io/rules/restrict-template-expressions
+        // https://typescript-eslint.io/rules/restrict-template-expressions
         '@typescript-eslint/restrict-template-expressions': ['error', {
             allowNumber: true,
             allowAny: true,
             allowNever: true,
+            allowArray: false,
             allowBoolean: false,
-            allowNullable: false,
+            allowNullish: false,
             allowRegExp: false,
         }],
 
-        // @see https://typescript-eslint.io/rules/return-await
+        // https://typescript-eslint.io/rules/return-await
         'no-return-await': ['off'],
         '@typescript-eslint/return-await': ['error', 'in-try-catch'],
 
-        // @see https://typescript-eslint.io/rules/semi
-        'semi': ['off'],
+        // https://eslint.style/rules/default/semi
+        '@stylistic/js/semi': ['off'],
         '@babel/semi': ['off'],
-        '@typescript-eslint/semi': ['error', 'always'],
+        '@stylistic/ts/semi': ['error', 'always'],
 
-        // @see https://typescript-eslint.io/rules/space-before-blocks
-        'space-before-blocks': ['off'],
-        '@typescript-eslint/space-before-blocks': ['error'],
+        // https://eslint.style/rules/default/space-before-blocks
+        '@stylistic/js/space-before-blocks': ['off'],
+        '@stylistic/ts/space-before-blocks': ['error'],
 
-        // @see https://typescript-eslint.io/rules/space-before-function-paren
-        'space-before-function-paren': ['off'],
-        '@typescript-eslint/space-before-function-paren': ['error', {
+        // https://eslint.style/rules/default/space-before-function-paren
+        '@stylistic/js/space-before-function-paren': ['off'],
+        '@stylistic/ts/space-before-function-paren': ['error', {
             anonymous: 'never',
             asyncArrow: 'always',
             named: 'never',
         }],
 
-        // @see https://typescript-eslint.io/rules/space-infix-ops
-        'space-infix-ops': ['off'],
-        '@typescript-eslint/space-infix-ops': ['error', { int32Hint: false }],
+        // https://eslint.style/rules/default/space-infix-ops
+        '@stylistic/js/space-infix-ops': ['off'],
+        '@stylistic/ts/space-infix-ops': ['error', { int32Hint: false }],
 
-        // @see https://typescript-eslint.io/rules/switch-exhaustiveness-check
-        '@typescript-eslint/switch-exhaustiveness-check': ['error'],
+        // https://typescript-eslint.io/rules/switch-exhaustiveness-check
+        '@typescript-eslint/switch-exhaustiveness-check': ['error', {
+            allowDefaultCaseForExhaustiveSwitch: true,
+            requireDefaultForNonUnion: false,
+        }],
 
-        // @see https://typescript-eslint.io/rules/triple-slash-reference
+        // https://typescript-eslint.io/rules/triple-slash-reference
         '@typescript-eslint/triple-slash-reference': ['error', {
             path: 'never',
             types: 'never',
             lib: 'never',
         }],
 
-        // @see https://typescript-eslint.io/rules/type-annotation-spacing
-        '@typescript-eslint/type-annotation-spacing': ['error', {
+        // https://eslint.style/rules/default/type-annotation-spacing
+        '@stylistic/ts/type-annotation-spacing': ['error', {
             before: false,
             after: true,
             overrides: {
@@ -511,7 +590,7 @@ module.exports = {
             },
         }],
 
-        // @see https://typescript-eslint.io/rules/typedef
+        // https://typescript-eslint.io/rules/typedef
         '@typescript-eslint/typedef': ['error', {
             arrayDestructuring: false,
             arrowParameter: true,
@@ -523,12 +602,15 @@ module.exports = {
             variableDeclarationIgnoreFunction: true,
         }],
 
-        // @see https://typescript-eslint.io/rules/unified-signatures
+        // https://typescript-eslint.io/rules/unified-signatures
         '@typescript-eslint/unified-signatures': ['error', {
             ignoreDifferentlyNamedParameters: true,
         }],
 
-        // @see https://github.com/benmosher/eslint-plugin-import/blob/main/docs/rules/extensions.md
+        // https://typescript-eslint.io/rules/use-unknown-in-catch-callback-variable
+        '@typescript-eslint/use-unknown-in-catch-callback-variable': ['error'],
+
+        // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
         'import/extensions': ['error', 'ignorePackages', {
             js: 'never',
             cjs: 'never',
@@ -538,19 +620,19 @@ module.exports = {
             mts: 'never',
         }],
 
-        // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/no-types.md
+        // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/no-types.md
         'jsdoc/no-types': ['error'],
 
-        // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-description.md
+        // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-description.md
         'jsdoc/require-description': ['error', {
             checkConstructors: false,
             exemptedBy: ['inheritDoc', 'see'],
         }],
 
-        // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-param-description.md
+        // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-param-description.md
         'jsdoc/require-param-description': ['error'],
 
-        // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-returns-description.md
+        // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-returns-description.md
         'jsdoc/require-returns-description': ['error'],
 
         //
@@ -558,79 +640,94 @@ module.exports = {
         //   (devrait être prises en charges par d'autres configs / règles / plugins)
         //
 
-        // @see https://typescript-eslint.io/rules/await-thenable
+        // https://typescript-eslint.io/rules/await-thenable
         '@typescript-eslint/await-thenable': ['off'],
 
-        // @see https://typescript-eslint.io/rules/member-ordering
+        // https://typescript-eslint.io/rules/member-ordering
         '@typescript-eslint/member-ordering': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-dynamic-delete
+        // https://typescript-eslint.io/rules/no-array-delete
+        '@typescript-eslint/no-array-delete': ['off'],
+
+        // https://typescript-eslint.io/rules/no-dynamic-delete
         '@typescript-eslint/no-dynamic-delete': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-extra-parens
-        '@typescript-eslint/no-extra-parens': ['off'],
+        // https://eslint.style/rules/default/no-extra-parens
+        '@stylistic/ts/no-extra-parens': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-floating-promises
+        // https://typescript-eslint.io/rules/no-floating-promises
         '@typescript-eslint/no-floating-promises': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-for-in-array
+        // https://typescript-eslint.io/rules/no-for-in-array
         '@typescript-eslint/no-for-in-array': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-implied-eval
+        // https://typescript-eslint.io/rules/no-implied-eval
         '@typescript-eslint/no-implied-eval': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-invalid-this
+        // https://typescript-eslint.io/rules/no-invalid-this
         '@typescript-eslint/no-invalid-this': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-magic-numbers
+        // https://typescript-eslint.io/rules/no-magic-numbers
         '@typescript-eslint/no-magic-numbers': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-misused-promises
+        // https://typescript-eslint.io/rules/no-misused-promises
         '@typescript-eslint/no-misused-promises': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-require-imports
+        // https://typescript-eslint.io/rules/no-require-imports
         '@typescript-eslint/no-require-imports': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-this-alias
+        // https://typescript-eslint.io/rules/no-this-alias
         '@typescript-eslint/no-this-alias': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-throw-literal
-        '@typescript-eslint/no-throw-literal': ['off'],
+        // https://eslint.style/rules/default/no-throw-literal
+        '@stylistic/ts/no-throw-literal': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-unnecessary-boolean-literal-compare
+        // https://typescript-eslint.io/rules/no-unnecessary-boolean-literal-compare
         '@typescript-eslint/no-unnecessary-boolean-literal-compare': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-var-requires
+        // https://typescript-eslint.io/rules/no-unsafe-unary-minus
+        '@typescript-eslint/no-unsafe-unary-minus': ['off'],
+
+        // https://typescript-eslint.io/rules/no-useless-template-literals
+        '@typescript-eslint/no-useless-template-literals': ['off'],
+
+        // https://typescript-eslint.io/rules/no-var-requires
         '@typescript-eslint/no-var-requires': ['off'],
 
-        // @see https://typescript-eslint.io/rules/prefer-for-of
+        // https://typescript-eslint.io/rules/only-throw-error
+        '@typescript-eslint/only-throw-error': ['off'],
+
+        // https://typescript-eslint.io/rules/prefer-find
+        '@typescript-eslint/prefer-find': ['off'],
+
+        // https://typescript-eslint.io/rules/prefer-for-of
         '@typescript-eslint/prefer-for-of': ['off'],
 
-        // @see https://typescript-eslint.io/rules/prefer-includes
+        // https://typescript-eslint.io/rules/prefer-includes
         '@typescript-eslint/prefer-includes': ['off'],
 
-        // @see https://typescript-eslint.io/rules/prefer-nullish-coalescing
+        // https://typescript-eslint.io/rules/prefer-nullish-coalescing
         '@typescript-eslint/prefer-nullish-coalescing': ['off'],
 
-        // @see https://typescript-eslint.io/rules/prefer-optional-chain
+        // https://typescript-eslint.io/rules/prefer-optional-chain
         '@typescript-eslint/prefer-optional-chain': ['off'],
 
-        // @see https://typescript-eslint.io/rules/prefer-regexp-exec
+        // https://typescript-eslint.io/rules/prefer-regexp-exec
         '@typescript-eslint/prefer-regexp-exec': ['off'],
 
-        // @see https://typescript-eslint.io/rules/prefer-string-starts-ends-with
+        // https://typescript-eslint.io/rules/prefer-string-starts-ends-with
         '@typescript-eslint/prefer-string-starts-ends-with': ['off'],
 
-        // @see https://typescript-eslint.io/rules/promise-function-async
+        // https://typescript-eslint.io/rules/promise-function-async
         '@typescript-eslint/promise-function-async': ['off'],
 
-        // @see https://typescript-eslint.io/rules/require-array-sort-compare
+        // https://typescript-eslint.io/rules/require-array-sort-compare
         '@typescript-eslint/require-array-sort-compare': ['off'],
 
-        // @see https://typescript-eslint.io/rules/require-await
+        // https://typescript-eslint.io/rules/require-await
         '@typescript-eslint/require-await': ['off'],
 
-        // @see https://typescript-eslint.io/rules/unbound-method
+        // https://typescript-eslint.io/rules/unbound-method
         '@typescript-eslint/unbound-method': ['off'],
 
         //
@@ -639,122 +736,119 @@ module.exports = {
 
         // TODO: À re-activer lorsque typescript-eslint#1236 aura été fixé.
         // @see https://github.com/typescript-eslint/typescript-eslint/issues/1236
-        // @see https://eslint.org/docs/rules/func-style
+        // https://eslint.org/docs/rules/func-style
         'func-style': ['off'],
 
-        // @see https://eslint.org/docs/rules/no-undef
+        // https://eslint.org/docs/rules/no-undef
         'no-undef': ['off'],
 
-        // @see https://github.com/benmosher/eslint-plugin-import/blob/main/docs/rules/exports-last.md
+        // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/exports-last.md
         'import/exports-last': ['off'],
 
         //
         // - Règles désactivées.
         //
 
-        // @see https://typescript-eslint.io/rules/consistent-generic-constructors
+        // https://typescript-eslint.io/rules/consistent-generic-constructors
         '@typescript-eslint/consistent-generic-constructors': ['off'],
 
-        // @see https://typescript-eslint.io/rules/consistent-type-definitions
+        // https://typescript-eslint.io/rules/consistent-type-definitions
         '@typescript-eslint/consistent-type-definitions': ['off'],
 
-        // @see https://typescript-eslint.io/rules/explicit-module-boundary-types
+        // https://typescript-eslint.io/rules/explicit-module-boundary-types
         '@typescript-eslint/explicit-module-boundary-types': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-empty-interface
+        // https://typescript-eslint.io/rules/no-empty-interface
         '@typescript-eslint/no-empty-interface': ['off'],
 
-        // @see https://typescript-eslint.io/rules/init-declarations
+        // https://typescript-eslint.io/rules/init-declarations
         '@typescript-eslint/init-declarations': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-duplicate-type-constituents
+        // https://typescript-eslint.io/rules/max-params
+        '@typescript-eslint/max-params': ['off'],
+
+        // https://typescript-eslint.io/rules/no-duplicate-type-constituents
         '@typescript-eslint/no-duplicate-type-constituents': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-explicit-any
+        // https://typescript-eslint.io/rules/no-explicit-any
         '@typescript-eslint/no-explicit-any': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-implicit-any-catch
-        '@typescript-eslint/no-implicit-any-catch': ['off'],
-
-        // @see https://typescript-eslint.io/rules/no-inferrable-types
+        // https://typescript-eslint.io/rules/no-inferrable-types
         '@typescript-eslint/no-inferrable-types': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-non-null-assertion
+        // https://typescript-eslint.io/rules/no-non-null-assertion
         '@typescript-eslint/no-non-null-assertion': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-redundant-type-constituents
+        // https://typescript-eslint.io/rules/no-redundant-type-constituents
         '@typescript-eslint/no-redundant-type-constituents': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-restricted-imports
+        // https://typescript-eslint.io/rules/no-restricted-imports
         '@typescript-eslint/no-restricted-imports': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-type-alias
-        '@typescript-eslint/no-type-alias': ['off'],
+        // https://eslint.style/rules/default/no-type-alias
+        '@stylistic/ts/no-type-alias': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-unnecessary-condition
+        // https://typescript-eslint.io/rules/no-unnecessary-condition
         '@typescript-eslint/no-unnecessary-condition': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-unsafe-argument
+        // https://typescript-eslint.io/rules/no-unsafe-argument
         '@typescript-eslint/no-unsafe-argument': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-unsafe-assignment
+        // https://typescript-eslint.io/rules/no-unsafe-assignment
         '@typescript-eslint/no-unsafe-assignment': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-unsafe-call
+        // https://typescript-eslint.io/rules/no-unsafe-call
         '@typescript-eslint/no-unsafe-call': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-unsafe-declaration-merging
+        // https://typescript-eslint.io/rules/no-unsafe-declaration-merging
         '@typescript-eslint/no-unsafe-declaration-merging': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-unsafe-enum-comparison
-        '@typescript-eslint/no-unsafe-enum-comparison': ['off'],
-
-        // @see https://typescript-eslint.io/rules/no-unsafe-member-access
+        // https://typescript-eslint.io/rules/no-unsafe-member-access
         '@typescript-eslint/no-unsafe-member-access': ['off'],
 
-        // @see https://typescript-eslint.io/rules/no-unsafe-return
+        // https://typescript-eslint.io/rules/no-unsafe-return
         '@typescript-eslint/no-unsafe-return': ['off'],
 
-        // @see https://typescript-eslint.io/rules/padding-line-between-statements
-        '@typescript-eslint/padding-line-between-statements': ['off'],
+        // https://eslint.style/rules/default/padding-line-between-statements
+        '@stylistic/ts/padding-line-between-statements': ['off'],
 
-        // @see https://typescript-eslint.io/rules/prefer-literal-enum-member
+        // https://typescript-eslint.io/rules/prefer-literal-enum-member
         '@typescript-eslint/prefer-literal-enum-member': ['off'],
 
-        // @see https://typescript-eslint.io/rules/prefer-readonly
+        // https://typescript-eslint.io/rules/prefer-readonly
         '@typescript-eslint/prefer-readonly': ['off'],
 
-        // @see https://typescript-eslint.io/rules/prefer-readonly-parameter-types
+        // https://typescript-eslint.io/rules/prefer-readonly-parameter-types
         '@typescript-eslint/prefer-readonly-parameter-types': ['off'],
 
-        // @see https://typescript-eslint.io/rules/sort-type-union-intersection-members
-        '@typescript-eslint/sort-type-union-intersection-members': ['off'],
+        // https://typescript-eslint.io/rules/sort-type-constituents
+        '@typescript-eslint/sort-type-constituents': ['off'],
 
-        // @see https://typescript-eslint.io/rules/strict-boolean-expressions
+        // https://typescript-eslint.io/rules/strict-boolean-expressions
         '@typescript-eslint/strict-boolean-expressions': ['off'],
 
-        // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-param-type.md
+        // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-param-type.md
         'jsdoc/require-param-type': ['off'],
 
         // - Désactivée car son utilisation avec des overloads TS successifs est fastidieux (chaque overload doit avoir sa propre doc...).
         // @see https://github.com/gajus/eslint-plugin-jsdoc/issues/903#issuecomment-1287848062
-        // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/check-param-names.md
+        // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/check-param-names.md
         'jsdoc/check-param-names': ['off'],
 
-        // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-property-type.md
+        // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-property-type.md
         'jsdoc/require-property-type': ['off'],
 
         // - Désactivée car son utilisation avec des overloads TS successifs est fastidieux (chaque overload doit avoir sa propre doc...).
         // @see https://github.com/gajus/eslint-plugin-jsdoc/issues/903#issuecomment-1287848062
-        // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-returns-check.md
+        // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-returns-check.md
         'jsdoc/require-returns-check': ['off'],
 
-        // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-returns-type.md
+        // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-returns-type.md
         'jsdoc/require-returns-type': ['off'],
 
         // - Désactivée car son utilisation avec des overloads TS successifs est fastidieux (chaque overload doit avoir sa propre doc...).
         // @see https://github.com/gajus/eslint-plugin-jsdoc/issues/903#issuecomment-1287848062
-        // @see https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-yields-check.md
+        // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-yields-check.md
         'jsdoc/require-yields-check': ['off'],
     },
 

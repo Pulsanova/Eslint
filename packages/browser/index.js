@@ -9,4 +9,8 @@ module.exports = {
 
     // - Règles
     extends: '@pulsanova/esnext',
+    rules: {
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-post-message-target-origin.md
+        'unicorn/require-post-message-target-origin': ['error'],
+    },
 };

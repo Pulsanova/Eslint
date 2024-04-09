@@ -31,9 +31,9 @@ Créez un fichier `.eslintrc.js` et ajoutez-y la configuration suivante:
 
 module.exports = {
     extends: '@pulsanova/react',
-    parserOptions: { 
+    parserOptions: {
         babelOptions: {
-            configFile: '[Chemin vers votre configuration Babel]' 
+            configFile: '[Chemin vers votre configuration Babel]',
         },
 
         // - Si votre projet utilise TypeScript...

@@ -14,20 +14,21 @@
         "eslintconfig"
     ],
     "scripts": {
-        "find-new-rules": "eslint-find-rules --unused --no-error ./index.js"
+        "find-new-rules": "eslint-find-rules --unused --no-error --deprecated ./index.js"
     },
     "dependencies": {
-        "@rushstack/eslint-patch": "^1.2.0",
-        "eslint-config-airbnb-base": "~15.0.0",
-        "eslint-plugin-import": "~2.27.5",
-        "eslint-plugin-jsdoc": "~39.6.4",
-        "eslint-plugin-unicorn": "~46.0.0"
+        "@rushstack/eslint-patch": "^1.10.2",
+        "@stylistic/eslint-plugin-js": "~1.7.0",
+        "eslint-plugin-import": "~2.29.1",
+        "eslint-plugin-jsdoc": "~48.2.3",
+        "confusing-browser-globals": "~1.0.11",
+        "eslint-plugin-unicorn": "~52.0.0"
     },
     "devDependencies": {
-        "eslint": "^8.39.0",
+        "eslint": "^8.57.0",
         "eslint-find-rules": "^4.1.0"
     },
     "peerDependencies": {
-        "eslint": "^8.28.0"
+        "eslint": "^8.57.0"
     }
 }

@@ -14,17 +14,17 @@
         "eslintconfig"
     ],
     "scripts": {
-        "find-new-rules": "eslint-find-rules --unused --no-error ./index.js"
+        "find-new-rules": "eslint-find-rules --unused --no-error --deprecated ./index.js"
     },
     "dependencies": {
         "@pulsanova/eslint-config-base": "2.3.0",
-        "@rushstack/eslint-patch": "^1.2.0"
+        "@rushstack/eslint-patch": "^1.10.2"
     },
     "devDependencies": {
-        "eslint": "^8.39.0",
+        "eslint": "^8.57.0",
         "eslint-find-rules": "^4.1.0"
     },
     "peerDependencies": {
-        "eslint": "^8.28.0"
+        "eslint": "^8.57.0"
     }
 }

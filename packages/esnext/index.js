@@ -16,14 +16,14 @@ module.exports = {
 
     // - Configuration
     settings: {
-        'import/extensions': ['.ts', '.js'],
+        'import/extensions': ['.d.ts', '.ts', '.js'],
         'import/external-module-folders': ['node_modules', 'node_modules/@types'],
         'import/parsers': {
             '@typescript-eslint/parser': ['.mts', '.cts', '.ts'],
         },
         'import/resolver': {
             node: {
-                extensions: ['.ts', '.js'],
+                extensions: ['.d.ts', '.ts', '.js', '.json'],
             },
         },
         'jsdoc': {
@@ -41,7 +41,7 @@ module.exports = {
     // - Règles
     extends: '@pulsanova/base',
     rules: {
-        // @see https://eslint.org/docs/rules/new-cap
+        // https://eslint.org/docs/rules/new-cap
         'new-cap': ['off'],
         '@babel/new-cap': ['error', {
             newIsCap: true,
@@ -50,7 +50,7 @@ module.exports = {
             capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'],
         }],
 
-        // @see https://github.com/benmosher/eslint-plugin-import/blob/main/docs/rules/extensions.md
+        // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
         'import/extensions': ['error', 'ignorePackages', {
             js: 'never',
             cjs: 'never',
@@ -60,15 +60,19 @@ module.exports = {
             mts: 'never',
         }],
 
-        // @see https://eslint.org/docs/rules/object-curly-spacing
-        'object-curly-spacing': ['off'],
+        // https://eslint.style/rules/js/object-curly-spacing
+        '@stylistic/js/object-curly-spacing': ['off'],
         '@babel/object-curly-spacing': ['error', 'always'],
 
-        // @see https://eslint.org/docs/rules/semi
-        'semi': ['off'],
+        // https://eslint.style/rules/js/semi
+        '@stylistic/js/semi': ['off'],
         '@babel/semi': ['error', 'always'],
 
-        // @see https://eslint.org/docs/rules/no-unused-expressions
+        // https://eslint.org/docs/rules/no-undef
+        'no-undef': ['off'],
+        '@babel/no-undef': ['off'],
+
+        // https://eslint.org/docs/rules/no-unused-expressions
         'no-unused-expressions': ['off'],
         '@babel/no-unused-expressions': ['error', {
             allowShortCircuit: false,
@@ -76,14 +80,14 @@ module.exports = {
             allowTernary: true,
         }],
 
-        // @see https://eslint.org/docs/rules/strict
+        // https://eslint.org/docs/rules/strict
         'strict': ['error', 'never'],
 
         //
         // - Règles désactivées.
         //
 
-        // @see https://eslint.org/docs/rules/no-invalid-this
+        // https://eslint.org/docs/rules/no-invalid-this
         '@babel/no-invalid-this': ['off'],
     },
 
@@ -91,7 +95,7 @@ module.exports = {
     overrides: [
         {
             files: ['**/*.?({c,m})ts', '**/*.tsx'],
-            ...require('./overrides/typescript'),
+            ...require('./overrides/typescript.js'),
         },
     ],
 };
