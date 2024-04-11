@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-vue",
-    "version": "2.4.0",
+    "version": "2.4.1",
     "license": "MIT",
     "main": "./index.js",
     "exports": "./index.js",
@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "@babel/eslint-parser": "~7.24.1",
-        "@pulsanova/eslint-config-browser": "2.4.0",
+        "@pulsanova/eslint-config-browser": "2.4.1",
         "@rushstack/eslint-patch": "^1.10.2",
         "eslint-plugin-react": "~7.34.1",
         "eslint-plugin-vue": "~9.24.1",
