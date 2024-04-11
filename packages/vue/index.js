@@ -207,17 +207,6 @@ module.exports = {
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unescaped-entities.md
         'react/no-unescaped-entities': ['error'],
 
-        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md
-        'react/no-unknown-property': ['error', {
-            ignore: [
-                'for',
-                'class',
-                'v-model',
-                'v-tooltip',
-                'v-clickOutside',
-            ],
-        }],
-
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-class-component-methods.md
         'react/no-unused-class-component-methods': ['error'],
 
@@ -228,8 +217,14 @@ module.exports = {
             withinOption: {
                 props: 'ignore',
                 data: 'ignore',
-                computed: 'always',
-                methods: 'always',
+                computed: {
+                    betweenItems: 'always',
+                    withinEach: 'ignore',
+                },
+                methods: {
+                    betweenItems: 'always',
+                    withinEach: 'ignore',
+                },
             },
         }],
 
@@ -832,6 +827,9 @@ module.exports = {
 
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-typos.md
         'react/no-typos': ['off'],
+
+        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md
+        'react/no-unknown-property': ['off'],
 
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unsafe.md
         'react/no-unsafe': ['off'],
