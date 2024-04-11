@@ -181,7 +181,7 @@ module.exports = {
         // https://eslint.style/rules/ts/block-spacing
         '@stylistic/ts/func-call-spacing': ['off'],
         '@stylistic/js/function-call-spacing': ['off'],
-        '@stylistic/ts/function-call-spacing': ['error', 'always'],
+        '@stylistic/ts/function-call-spacing': ['error', 'never'],
 
         // https://eslint.style/rules/default/indent
         // NOTE: https://github.com/typescript-eslint/typescript-eslint/issues/1824

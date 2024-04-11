@@ -584,7 +584,9 @@ module.exports = {
         'jsdoc/check-alignment': ['error'],
 
         // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/check-line-alignment.md
-        'jsdoc/check-line-alignment': ['error', 'never'],
+        'jsdoc/check-line-alignment': ['error', 'never', {
+            disableWrapIndent: true,
+        }],
 
         // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/check-param-names.md
         'jsdoc/check-param-names': ['error', {

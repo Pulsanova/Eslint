@@ -40,7 +40,10 @@ module.exports = {
     },
 
     // - Plugins
-    plugins: ['vue'],
+    plugins: [
+        'vue',
+        'react',
+    ],
 
     // - Règles
     extends: [
@@ -206,7 +209,13 @@ module.exports = {
 
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md
         'react/no-unknown-property': ['error', {
-            ignore: ['class'],
+            ignore: [
+                'for',
+                'class',
+                'v-model',
+                'v-tooltip',
+                'v-clickOutside',
+            ],
         }],
 
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-class-component-methods.md
@@ -214,8 +223,14 @@ module.exports = {
 
         // https://eslint.vuejs.org/rules/padding-lines-in-component-definition.html
         'vue/padding-lines-in-component-definition': ['error', {
+            groupSingleLineProperties: true,
             betweenOptions: 'never',
-            withinOption: 'never',
+            withinOption: {
+                props: 'ignore',
+                data: 'ignore',
+                computed: 'always',
+                methods: 'always',
+            },
         }],
 
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-render-return.md
