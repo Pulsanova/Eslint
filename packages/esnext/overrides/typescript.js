@@ -430,9 +430,6 @@ module.exports = {
         // https://typescript-eslint.io/rules/no-unnecessary-type-constraint
         '@typescript-eslint/no-unnecessary-type-constraint': ['error'],
 
-        // https://typescript-eslint.io/rules/no-unsafe-enum-comparison
-        '@typescript-eslint/no-unsafe-enum-comparison': ['error'],
-
         // https://typescript-eslint.io/rules/no-unused-expressions
         'no-unused-expressions': ['off'],
         '@babel/no-unused-expressions': ['off'],
@@ -802,6 +799,11 @@ module.exports = {
 
         // https://typescript-eslint.io/rules/no-unsafe-declaration-merging
         '@typescript-eslint/no-unsafe-declaration-merging': ['off'],
+
+        // NOTE: Reporte n'importe quelle comparaison avec un enum si l'un des sides n'est
+        //       pas explicitement du type de l'enum, trop fastidieux / inutile en l'état.
+        // https://typescript-eslint.io/rules/no-unsafe-enum-comparison
+        '@typescript-eslint/no-unsafe-enum-comparison': ['off'],
 
         // https://typescript-eslint.io/rules/no-unsafe-member-access
         '@typescript-eslint/no-unsafe-member-access': ['off'],
