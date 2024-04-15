@@ -198,6 +198,9 @@ module.exports = {
             ignore: [],
         }],
 
+        // https://eslint.vuejs.org/rules/match-component-import-name.html
+        'vue/match-component-import-name': ['error'],
+
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-children-prop.md
         'react/no-children-prop': ['error'],
 
@@ -312,14 +315,32 @@ module.exports = {
         // https://eslint.vuejs.org/rules/no-lifecycle-after-await.html
         'vue/no-lifecycle-after-await': ['error'],
 
+        // https://eslint.vuejs.org/rules/no-potential-component-option-typo.html
+        'vue/no-potential-component-option-typo': ['error', {
+            presets: ['vue', 'vue-router'],
+            custom: ['modal'],
+        }],
+
         // https://eslint.vuejs.org/rules/no-required-prop-with-default.html
         'vue/no-required-prop-with-default': ['error'],
 
         // https://eslint.vuejs.org/rules/no-this-in-before-route-enter.html
         'vue/no-this-in-before-route-enter': ['error'],
 
+        // https://eslint.vuejs.org/rules/no-undef-components.html
+        'vue/no-undef-components': ['error'],
+
+        // https://eslint.vuejs.org/rules/no-undef-properties.html
+        'vue/no-undef-properties': ['error'],
+
         // https://eslint.vuejs.org/rules/no-unused-emit-declarations.html
         'vue/no-unused-emit-declarations': ['error'],
+
+        // https://eslint.vuejs.org/rules/no-unused-properties.html
+        'vue/no-unused-properties': ['error'],
+
+        // https://eslint.vuejs.org/rules/no-unused-refs.html
+        'vue/no-unused-refs': ['error'],
 
         // https://eslint.org/docs/rules/no-useless-concat
         // https://eslint.vuejs.org/rules/no-useless-concat
@@ -333,6 +354,9 @@ module.exports = {
 
         // https://eslint.vuejs.org/rules/no-v-text.html
         'vue/no-v-text': ['error'],
+
+        // https://eslint.vuejs.org/rules/prefer-prop-type-boolean-first.html
+        'vue/prefer-prop-type-boolean-first': ['error'],
 
         // https://eslint.vuejs.org/rules/prefer-import-from-vue.html
         'vue/prefer-import-from-vue': ['error'],
@@ -454,8 +478,14 @@ module.exports = {
         //   (nous utilisons du JSX / TSX pour les components Vue)
         //
 
+        // https://eslint.vuejs.org/rules/array-bracket-newline.html
+        'vue/array-bracket-newline': ['off'],
+
         // https://eslint.vuejs.org/rules/array-element-newline.html
         'vue/array-element-newline': ['off'],
+
+        // https://eslint.vuejs.org/rules/attributes-order.html
+        'vue/attributes-order': ['off'],
 
         // https://eslint.vuejs.org/rules/block-lang.html
         'vue/block-lang': ['off'],
@@ -580,17 +610,17 @@ module.exports = {
         // https://eslint.vuejs.org/rules/no-static-inline-styles.html
         'vue/no-static-inline-styles': ['off'],
 
+        // https://eslint.vuejs.org/rules/no-child-content.html
+        'vue/no-child-content': ['off'],
+
         // https://eslint.vuejs.org/rules/no-template-target-blank.html
         'vue/no-template-target-blank': ['off'],
 
-        // https://eslint.vuejs.org/rules/no-unused-properties.html
-        'vue/no-unused-properties': ['off'],
-
-        // https://eslint.vuejs.org/rules/no-unused-refs.html
-        'vue/no-unused-refs': ['off'],
-
         // https://eslint.vuejs.org/rules/no-use-v-else-with-v-for.html
         'vue/no-use-v-else-with-v-for': ['off'],
+
+        // https://eslint.vuejs.org/rules/no-useless-template-attributes.html
+        'vue/no-useless-template-attributes': ['off'],
 
         // https://eslint.vuejs.org/rules/no-useless-v-bind.html
         'vue/no-useless-v-bind': ['off'],
@@ -622,6 +652,9 @@ module.exports = {
         // https://eslint.vuejs.org/rules/prefer-template.html
         'vue/prefer-template': ['off'],
 
+        // https://eslint.vuejs.org/rules/prefer-separate-static-class.html
+        'vue/prefer-separate-static-class': ['off'],
+
         // https://eslint.vuejs.org/rules/prefer-true-attribute-shorthand.html
         'vue/prefer-true-attribute-shorthand': ['off'],
 
@@ -636,6 +669,9 @@ module.exports = {
 
         // https://eslint.vuejs.org/rules/script-indent.html
         'vue/script-indent': ['off'],
+
+        // https://eslint.vuejs.org/rules/singleline-html-element-content-newline.html
+        'vue/singleline-html-element-content-newline': ['off'],
 
         // https://eslint.vuejs.org/rules/space-in-parens.html
         'vue/space-in-parens': ['off'],
@@ -879,20 +915,11 @@ module.exports = {
         // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/style-prop-object.md
         'react/style-prop-object': ['off'],
 
-        // https://eslint.vuejs.org/rules/array-bracket-newline.html
-        'vue/array-bracket-newline': ['off'],
-
-        // https://eslint.vuejs.org/rules/attributes-order.html
-        'vue/attributes-order': ['off'],
-
         // https://eslint.vuejs.org/rules/component-api-style.html
         'vue/component-api-style': ['off'],
 
         // https://eslint.vuejs.org/rules/match-component-file-name.html
         'vue/match-component-file-name': ['off'],
-
-        // https://eslint.vuejs.org/rules/match-component-import-name.html
-        'vue/match-component-import-name': ['off'],
 
         // https://eslint.vuejs.org/rules/multi-word-component-names.html
         'vue/multi-word-component-names': ['off'],
@@ -902,12 +929,6 @@ module.exports = {
 
         // https://eslint.vuejs.org/rules/no-boolean-default.html
         'vue/no-boolean-default': ['off'],
-
-        // https://eslint.vuejs.org/rules/no-child-content.html
-        'vue/no-child-content': ['off'],
-
-        // https://eslint.vuejs.org/rules/no-potential-component-option-typo.html
-        'vue/no-potential-component-option-typo': ['off'],
 
         // https://eslint.vuejs.org/rules/no-reserved-component-names.html
         'vue/no-reserved-component-names': ['off'],
@@ -927,23 +948,8 @@ module.exports = {
         // https://eslint.vuejs.org/rules/no-restricted-props.html
         'vue/no-restricted-props': ['off'],
 
-        // https://eslint.vuejs.org/rules/no-undef-components.html
-        'vue/no-undef-components': ['off'],
-
-        // https://eslint.vuejs.org/rules/no-undef-properties.html
-        'vue/no-undef-properties': ['off'],
-
         // https://eslint.vuejs.org/rules/no-unsupported-features.html
         'vue/no-unsupported-features': ['off'],
-
-        // https://eslint.vuejs.org/rules/no-useless-template-attributes.html
-        'vue/no-useless-template-attributes': ['off'],
-
-        // https://eslint.vuejs.org/rules/prefer-prop-type-boolean-first.html
-        'vue/prefer-prop-type-boolean-first': ['off'],
-
-        // https://eslint.vuejs.org/rules/prefer-separate-static-class.html
-        'vue/prefer-separate-static-class': ['off'],
 
         // https://eslint.vuejs.org/rules/require-direct-export.html
         'vue/require-direct-export': ['off'],
@@ -957,9 +963,6 @@ module.exports = {
 
         // https://eslint.vuejs.org/rules/require-typed-object-prop.html
         'vue/require-typed-object-prop': ['off'],
-
-        // https://eslint.vuejs.org/rules/singleline-html-element-content-newline.html
-        'vue/singleline-html-element-content-newline': ['off'],
 
         // https://eslint.vuejs.org/rules/sort-keys.html
         'vue/sort-keys': ['off'],
