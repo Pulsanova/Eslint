@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-browser",
-    "version": "2.4.3",
+    "version": "2.5.0",
     "license": "MIT",
     "main": "./index.js",
     "exports": "./index.js",
@@ -17,7 +17,7 @@
         "find-new-rules": "eslint-find-rules --unused --no-error ./index.js"
     },
     "dependencies": {
-        "@pulsanova/eslint-config-esnext": "2.4.3",
+        "@pulsanova/eslint-config-esnext": "2.5.0",
         "@rushstack/eslint-patch": "^1.10.2"
     },
     "devDependencies": {

@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-esnext",
-    "version": "2.4.3",
+    "version": "2.5.0",
     "license": "MIT",
     "main": "./index.js",
     "exports": "./index.js",
@@ -21,7 +21,7 @@
         "@babel/core": "^7",
         "@babel/eslint-parser": "~7.24.1",
         "@babel/eslint-plugin": "~7.23.5",
-        "@pulsanova/eslint-config-base": "2.4.3",
+        "@pulsanova/eslint-config-base": "2.5.0",
         "@rushstack/eslint-patch": "^1.10.2",
         "@stylistic/eslint-plugin-ts": "~1.7.0",
         "@typescript-eslint/eslint-plugin": "~7.6.0",
