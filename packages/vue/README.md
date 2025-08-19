@@ -24,21 +24,21 @@ yarn add --dev eslint @pulsanova/eslint-config-vue
 
 ## Usage
 
-Créez un fichier `.eslintrc.js` et ajoutez-y la configuration suivante:
+Créez un fichier `eslint.config.mjs` et ajoutez-y la configuration suivante:
 
 ```js
-'use strict';
+import vueConfig from '@pulsanova/eslint-config-vue';
 
-module.exports = {
-    extends: '@pulsanova/vue',
-    parserOptions: { 
-        babelOptions: {
-            configFile: '[Chemin vers votre configuration Babel]' 
+export default [
+    ...vueConfig,
+    {
+        languageOptions: {
+            parserOptions: {
+                babelOptions: {
+                    configFile: '[Chemin vers votre configuration Babel]',
+                },
+            },
         },
-
-        // - Si votre projet utilise TypeScript...
-        project: '[Chemin vers votre configuration TypeScript]',
-        tsconfigRootDir: __dirname,
     },
-};
+];
 ```

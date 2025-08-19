@@ -2,6 +2,7 @@
     "name": "@pulsanova/eslint-config-browser",
     "version": "2.5.0",
     "license": "MIT",
+    "type": "module",
     "main": "./index.js",
     "exports": "./index.js",
     "repository": {
@@ -14,17 +15,20 @@
         "eslintconfig"
     ],
     "scripts": {
-        "find-new-rules": "eslint-find-rules --unused --no-error ./index.js"
+        "find-new-rules": "eslint-find-rules --unused --no-error --deprecated --flatConfig ./index.js --ext .js .ts .cjs .mjs .cts .mts",
+        "inspect-config": "eslint --inspect-config --config ./index.js"
     },
     "dependencies": {
         "@pulsanova/eslint-config-esnext": "2.5.0",
-        "@rushstack/eslint-patch": "^1.10.2"
+        "confusing-browser-globals": "~1.0.11",
+        "eslint-plugin-no-jquery": "~3.1.1",
+        "globals": "^16.3.0"
     },
     "devDependencies": {
-        "eslint": "^8.57.0",
-        "eslint-find-rules": "^4.1.0"
+        "eslint": "^9.33.0",
+        "eslint-find-rules": "^5.0.0"
     },
     "peerDependencies": {
-        "eslint": "^8.57.0"
+        "eslint": "^9.33.0"
     }
 }

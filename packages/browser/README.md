@@ -11,6 +11,7 @@ Cette configuration est à utiliser quand __toutes__ les assertions suivantes so
 - Le code est transpilé avec Babel.
 - Le code est destiné à être exécuté dans un navigateur.
 - Le code n'utilise pas React, sans quoi il faut utiliser la config. [react](../react).
+- Le code n'utilise pas Vue, sans quoi il faut utiliser la config. [vue](../vue).
 
 ## Installation
 
@@ -24,10 +25,21 @@ yarn add --dev eslint @pulsanova/eslint-config-browser
 
 ## Usage
 
-Créez un fichier `.eslintrc.json` et ajoutez-y la configuration suivante:
+Créez un fichier `eslint.config.mjs` et ajoutez-y la configuration suivante:
 
-```json
-{
-    "extends": "@pulsanova/browser"
-}
+```js
+import browserConfig from '@pulsanova/eslint-config-browser';
+
+export default [
+    ...browserConfig,
+    {
+        languageOptions: {
+            parserOptions: {
+                babelOptions: {
+                    configFile: '[Chemin vers votre configuration Babel]',
+                },
+            },
+        },
+    },
+];
 ```

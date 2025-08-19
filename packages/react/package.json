@@ -2,6 +2,7 @@
     "name": "@pulsanova/eslint-config-react",
     "version": "2.5.0",
     "license": "MIT",
+    "type": "module",
     "main": "./index.js",
     "exports": "./index.js",
     "repository": {
@@ -14,26 +15,25 @@
         "eslintconfig"
     ],
     "scripts": {
-        "find-new-rules": "eslint-find-rules --unused --no-error --deprecated ./index.js",
-        "find-new-rules-ts": "eslint-find-rules --unused --no-error --no-core --deprecated ./overrides/typescript.js"
+        "find-new-rules": "eslint-find-rules --unused --no-error --deprecated --flatConfig ./index.js --ext .js .ts .cjs .mjs .cts .mts .jsx .tsx",
+        "inspect-config": "eslint --inspect-config --config ./index.js"
     },
     "dependencies": {
         "@pulsanova/eslint-config-browser": "2.5.0",
-        "@rushstack/eslint-patch": "^1.10.2",
-        "@tanstack/eslint-plugin-query": "~5.28.11",
-        "eslint-plugin-class-methods-use-this-regex": "~1.0.0",
-        "eslint-plugin-jsx-a11y": "~6.8.0",
-        "eslint-plugin-react": "~7.34.1",
-        "eslint-plugin-react-hooks-configurable": "~4.6.0"
+        "@tanstack/eslint-plugin-query": "~5.83.1",
+        "eslint-plugin-class-methods-use-this-regex": "~1.1.1",
+        "eslint-plugin-jsx-a11y": "~6.10.2",
+        "eslint-plugin-react": "~7.37.5",
+        "eslint-plugin-react-hooks-configurable": "~5.2.0"
     },
     "devDependencies": {
-        "eslint": "^8.57.0",
-        "eslint-find-rules": "^4.1.0",
-        "react": "^17 || ^18",
-        "react-dom": "^17 || ^18"
+        "eslint": "^9.33.0",
+        "eslint-find-rules": "^5.0.0",
+        "react": "^17 || ^18 || ^19",
+        "react-dom": "^17 || ^18 || ^19"
     },
     "peerDependencies": {
-        "eslint": "^8.57.0",
+        "eslint": "^9.33.0",
         "react": "*",
         "react-dom": "*"
     }

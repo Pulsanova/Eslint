@@ -20,10 +20,8 @@ yarn add --dev eslint @pulsanova/eslint-config-base
 
 ## Usage
 
-Créez un fichier `.eslintrc.json` et ajoutez-y la configuration suivante:
+Créez un fichier `eslint.config.mjs` et ajoutez-y la configuration suivante:
 
-```json
-{
-    "extends": "@pulsanova/base"
-}
+```js
+export { default } from '@pulsanova/eslint-config-base';
 ```

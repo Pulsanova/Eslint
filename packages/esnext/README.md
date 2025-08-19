@@ -1,9 +1,9 @@
 # Pulsanova - ESLint: Configuration ESNext
 
-> Configuration ESLint __pour les projets ESNext (babel)__ Pulsanova
+> Configuration ESLint __pour les projets ESNext (Babel)__ Pulsanova
 
 Cette configuration étend la [configuration de base](../base) et ajoute des règles propre
-au développement d'une application avec [Babel](https://babeljs.io) et [TypeScript](https://www.typescriptlang.org).
+au développement d'une application avec [Babel](https://babeljs.io).
 
 ## Quand l'utiliser ?
 
@@ -23,21 +23,21 @@ yarn add --dev eslint @pulsanova/eslint-config-esnext
 
 ## Usage
 
-Créez un fichier `.eslintrc.js` et ajoutez-y la configuration suivante:
+Créez un fichier `eslint.config.mjs` et ajoutez-y la configuration suivante:
 
 ```js
-'use strict';
+import esnextConfig from '@pulsanova/eslint-config-esnext';
 
-module.exports = {
-    extends: '@pulsanova/esnext',
-    parserOptions: {
-        babelOptions: {
-            configFile: '[Chemin vers votre configuration Babel]',
+export default [
+    ...esnextConfig,
+    {
+        languageOptions: {
+            parserOptions: {
+                babelOptions: {
+                    configFile: '[Chemin vers votre configuration Babel]',
+                },
+            },
         },
-
-        // - Si votre projet utilise TypeScript...
-        project: '[Chemin vers votre configuration TypeScript]',
-        tsconfigRootDir: __dirname,
     },
-};
+];
 ```

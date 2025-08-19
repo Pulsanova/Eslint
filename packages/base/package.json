@@ -2,6 +2,7 @@
     "name": "@pulsanova/eslint-config-base",
     "version": "2.5.0",
     "license": "MIT",
+    "type": "module",
     "main": "./index.js",
     "exports": "./index.js",
     "repository": {
@@ -14,21 +15,26 @@
         "eslintconfig"
     ],
     "scripts": {
-        "find-new-rules": "eslint-find-rules --unused --no-error --deprecated ./index.js"
+        "find-new-rules-base": "eslint-find-rules --unused --no-error --deprecated --flatConfig ./index.js --ext .js .ts",
+        "find-new-rules-json": "eslint-find-rules --unused --no-error --deprecated --no-core --flatConfig ./index.js --ext .json",
+        "find-new-rules": "npm run --silent find-new-rules-base && npm run --silent find-new-rules-json",
+        "inspect-config": "eslint --inspect-config --config ./index.js"
     },
     "dependencies": {
-        "@rushstack/eslint-patch": "^1.10.2",
-        "@stylistic/eslint-plugin-js": "~1.7.0",
-        "confusing-browser-globals": "~1.0.11",
-        "eslint-plugin-import": "~2.29.1",
-        "eslint-plugin-jsdoc": "~48.2.3",
-        "eslint-plugin-unicorn": "~52.0.0"
+        "@eslint/json": "~0.13.1",
+        "@stylistic/eslint-plugin": "~5.2.3",
+        "@typescript-eslint/eslint-plugin": "~8.40.0",
+        "@typescript-eslint/parser": "~8.40.0",
+        "eslint-import-resolver-typescript": "~4.4.4",
+        "eslint-plugin-import": "~2.32.0",
+        "eslint-plugin-jsdoc": "~54.1.1",
+        "eslint-plugin-unicorn": "~60.0.0"
     },
     "devDependencies": {
-        "eslint": "^8.57.0",
-        "eslint-find-rules": "^4.1.0"
+        "eslint": "^9.33.0",
+        "eslint-find-rules": "^5.0.0"
     },
     "peerDependencies": {
-        "eslint": "^8.57.0"
+        "eslint": "^9.33.0"
     }
 }

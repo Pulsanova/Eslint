@@ -24,21 +24,21 @@ yarn add --dev eslint @pulsanova/eslint-config-react
 
 ## Usage
 
-Créez un fichier `.eslintrc.js` et ajoutez-y la configuration suivante:
+Créez un fichier `eslint.config.mjs` et ajoutez-y la configuration suivante:
 
 ```js
-'use strict';
+import reactConfig from '@pulsanova/eslint-config-react';
 
-module.exports = {
-    extends: '@pulsanova/react',
-    parserOptions: {
-        babelOptions: {
-            configFile: '[Chemin vers votre configuration Babel]',
+export default [
+    ...reactConfig,
+    {
+        languageOptions: {
+            parserOptions: {
+                babelOptions: {
+                    configFile: '[Chemin vers votre configuration Babel]',
+                },
+            },
         },
-
-        // - Si votre projet utilise TypeScript...
-        project: '[Chemin vers votre configuration TypeScript]',
-        tsconfigRootDir: __dirname,
     },
-};
+];
 ```

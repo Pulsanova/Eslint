@@ -1,0 +1,126 @@
+diff --git a/node_modules/eslint-find-rules/dist/bin/find.js b/node_modules/eslint-find-rules/dist/bin/find.js
+index 1ba8aa8..dec6184 100755
+--- a/node_modules/eslint-find-rules/dist/bin/find.js
++++ b/node_modules/eslint-find-rules/dist/bin/find.js
+@@ -30,48 +30,56 @@ const getRuleFinder = require('../lib/rule-finder');
+ const cli = require('../lib/cli-util');
+ 
+ (async function () {
+-
+-  const specifiedFile = argv._[0];
+-  const finderOptions = {
+-    omitCore: !argv.core,
+-    includeDeprecated: argv.include === 'deprecated',
+-    ext: argv.ext,
+-    useFlatConfig: argv.flatConfig
+-  };
+-  const ruleFinder = await getRuleFinder(specifiedFile, finderOptions);
+-  const errorOut = argv.error && !argv.n;
+-  let processExitCode = 0;
+-
+   if (!argv.c && !argv.p && !argv.a && !argv.u && !argv.d) {
+     console.log('no option provided, please provide a valid option');
+     console.log('usage:');
+     console.log('eslint-find-rules [option] <file> [flag]');
+-  } else {
+-    Object.keys(options).forEach(option => {
+-      let rules;
++    process.exit(0);
++  }
++
++  let processExitCode = 0;
++  const errorOut = argv.error && !argv.n;
++  const specifiedFile = argv._[0];
++
++  for (let ext of (argv.ext ?? ['.js', '.cjs', '.mjs'])) {
++    ext = !ext.startsWith('.') ? `.${ext}` : ext;
++    cli.push(`\nChecking \`${ext}\` extension...`);
++
++    const ruleFinder = await getRuleFinder(specifiedFile, {
++      omitCore: !argv.core,
++      includeDeprecated: argv.include === 'deprecated',
++      ext: [ext],
++      useFlatConfig: argv.flatConfig
++    });
++
++    Object.keys(options).forEach((option) => {
+       const ruleFinderMethod = ruleFinder[option];
+-      if (argv[option] && ruleFinderMethod) {
+-        rules = ruleFinderMethod();
++      if (!argv[option] || !ruleFinderMethod) {
++        return;
++      }
++
++      let rules = ruleFinderMethod();
++      if (argv.verbose) {
++        cli.push('\n' + options[option][0] + ' rules\n' + rules.length + ' rules found\n');
++      }
++
++      if (rules.length > 0) {
+         if (argv.verbose) {
+-          cli.push('\n' + options[option][0] + ' rules\n' + rules.length + ' rules found\n');
++          rules = rules.map(rule => [rule, getRuleURI(rule).url]).reduce((all, single) => all.concat(single));
++          cli.push(rules, 2, false);
++        } else {
++          cli.push('\n' + options[option][0] + ' rules\n');
++          cli.push(rules);
+         }
+-        if (rules.length > 0) {
+-          if (argv.verbose) {
+-            rules = rules.map(rule => [rule, getRuleURI(rule).url]).reduce((all, single) => all.concat(single));
+-            cli.push(rules, 2, false);
+-          } else {
+-            cli.push('\n' + options[option][0] + ' rules\n');
+-            cli.push(rules);
+-          }
+-          if (errorOut && optionsThatError.indexOf(option) !== -1) {
+-            processExitCode = 1;
+-          }
++
++        if (errorOut && optionsThatError.indexOf(option) !== -1) {
++          processExitCode = 1;
+         }
+       }
+     });
+-
+-    cli.write();
+   }
++
++  cli.write();
+   process.exit(processExitCode);
+ })().catch( /* istanbul ignore next */e => {
+   console.error(e);
+diff --git a/node_modules/eslint-find-rules/dist/lib/rule-finder.js b/node_modules/eslint-find-rules/dist/lib/rule-finder.js
+index 8490b6b..6eeb532 100644
+--- a/node_modules/eslint-find-rules/dist/lib/rule-finder.js
++++ b/node_modules/eslint-find-rules/dist/lib/rule-finder.js
+@@ -105,16 +105,6 @@ function _isNotCore(rule) {
+   return rule.indexOf('/') !== '-1';
+ }
+ 
+-function _escapeRegExp(str) {
+-  return str.replace(/[\\^$.*+?()[\]{}|]/g, '\\$&');
+-}
+-
+-function _createExtensionRegExp(extensions) {
+-  const normalizedExts = extensions.map(ext => _escapeRegExp(ext.startsWith('.') ? ext.slice(1) : ext));
+-
+-  return new RegExp(`.\\.(?:${normalizedExts.join("|")})$`);
+-}
+-
+ function RuleFinder(config, { omitCore, includeDeprecated, useFlatConfig }) {
+   let currentRuleNames = _getCurrentNamesRules(config);
+   if (omitCore) {
+@@ -156,10 +146,8 @@ function RuleFinder(config, { omitCore, includeDeprecated, useFlatConfig }) {
+ async function createRuleFinder(specifiedFile, options) {
+   const configFile = _getConfigFile(specifiedFile);
+ 
+-  const { ext = ['.js', '.cjs', '.mjs'] } = options;
+-  const extensionRegExp = _createExtensionRegExp(ext);
+-  const files = glob.sync(`**/*`, { dot: true, matchBase: true }).filter(file => extensionRegExp.test(file));
+-
++  const { ext: exts = ['.js', '.cjs', '.mjs'] } = options;
++  const files = exts.map((ext) => `__PLACEHOLDER_FILE__${ext}`);
+   const config = await _getConfig(configFile, files, options.useFlatConfig);
+ 
+   return new RuleFinder(config, options);

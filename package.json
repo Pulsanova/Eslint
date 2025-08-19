@@ -1,8 +1,10 @@
 {
     "name": "@pulsanova/eslint",
+    "type": "module",
     "private": true,
     "scripts": {
         "lint": "eslint .",
+        "postinstall": "patch-package",
         "find-new-rules": "npm run find-new-rules --workspaces",
         "bump-all": "npx lerna version --no-git-tag-version --no-push",
         "publish-all": "npx lerna publish from-package"
@@ -12,10 +14,11 @@
     ],
     "devDependencies": {
         "@pulsanova/eslint-config-node": "file:./packages/node",
-        "eslint": "^8.57.0",
-        "lerna": "^8.1.2"
+        "eslint": "^9.33.0",
+        "lerna": "^8.2.3",
+        "patch-package": "^8.0.0"
     },
     "engines": {
-        "node": ">= 18"
+        "node": "^22"
     }
 }
