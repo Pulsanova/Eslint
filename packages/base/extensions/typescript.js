@@ -89,6 +89,20 @@ export const createConfig = (additionalExtensions = []) => {
                 },
             }],
 
+            // https://eslint.style/rules/operator-linebreak
+            '@stylistic/operator-linebreak': ['error', 'after', {
+                overrides: {
+                    '=': 'after',
+                    '?': 'before',
+                    ':': 'before',
+                    '??': 'before',
+                    '||': 'after',
+                    '&&': 'after',
+                    '|': 'before',
+                    '&': 'before',
+                },
+            }],
+
             // https://eslint.style/rules/default/type-annotation-spacing
             '@stylistic/type-annotation-spacing': ['error', {
                 before: false,

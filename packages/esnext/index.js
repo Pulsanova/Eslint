@@ -1,5 +1,5 @@
 import babelPlugin from '@babel/eslint-plugin';
-import babelParser from '@babel/eslint-parser/experimental-worker';
+import babelParser from '@babel/eslint-parser';
 import {
     createConfig as baseConfig,
     DEFAULT_EXTENSIONS as BASE_EXTENSIONS,

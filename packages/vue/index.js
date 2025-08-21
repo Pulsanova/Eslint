@@ -1,5 +1,5 @@
 import vueParser from 'vue-eslint-parser';
-import babelParser from '@babel/eslint-parser/experimental-worker';
+import babelParser from '@babel/eslint-parser';
 import vuePlugin from 'eslint-plugin-vue';
 import reactPlugin from 'eslint-plugin-react';
 import {

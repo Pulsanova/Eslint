@@ -1,4 +1,5 @@
 import vueParser from 'vue-eslint-parser';
+import typescriptParser from '@typescript-eslint/parser';
 import { DEFAULT_EXTENSIONS as BASE_EXTENSIONS } from '@pulsanova/eslint-config-browser';
 
 export const EXTENSIONS = [...BASE_EXTENSIONS.ts, 'tsx'];
@@ -11,8 +12,8 @@ export default [{
     languageOptions: {
         parser: vueParser,
         parserOptions: {
+            parser: typescriptParser,
             extraFileExtensions: ['.vue'],
-            parser: '@typescript-eslint/parser',
         },
     },
 

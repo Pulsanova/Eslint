@@ -324,8 +324,9 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://eslint.style/rules/operator-linebreak
             '@stylistic/operator-linebreak': ['error', 'after', {
                 overrides: {
-                    '=': 'none',
+                    '=': 'after',
                     '?': 'before',
+                    '??': 'before',
                     ':': 'before',
                 },
             }],
@@ -370,7 +371,7 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://eslint.style/rules/space-before-function-paren
             '@stylistic/space-before-function-paren': ['error', {
-                anonymous: 'always',
+                anonymous: 'never',
                 asyncArrow: 'always',
                 named: 'never',
             }],
@@ -540,6 +541,7 @@ export const createConfig = (additionalExtensions = {}) => {
                     '**/vue.config.{cjs,mjs,js,cts,mts,ts}',
                     '**/rollup.config.{cjs,mjs,js,cts,mts,ts}',
                     '**/webpack.config.{cjs,mjs,js,cts,mts,ts}',
+                    '**/babel.config.{cjs,mjs,js,cts,mts,ts}',
                     '**/postcss.config.{cjs,mjs,js,cts,mts,ts}',
                     '**/next.config.{cjs,mjs,js,cts,mts,ts}',
                     '**/.eslintrc.{cjs,mjs,js,cts,mts,ts}',
@@ -555,9 +557,6 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-mutable-exports.md
             'import/no-mutable-exports': ['error'],
-
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-named-as-default.md
-            'import/no-named-as-default': ['error'],
 
             // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-named-default.md
             'import/no-named-default': ['error'],
@@ -649,7 +648,7 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/match-description.md
             'jsdoc/match-description': ['error', {
                 message: 'Description should begin with a capital letter and end with a dot (exceptions: ()`_?!{}).',
-                matchDescription: '^\n?([{\\-(A-Z`\\d_][\\s\\S]*[.?!`)}]\\s*)?$',
+                matchDescription: '^\\n?([\\{\\(A-Z`\\d_\\-][\\s\\S]*[\\.?!`\\)\\}]\\s*)?$',
                 tags: { param: true, returns: true, throws: true },
             }],
 
@@ -1701,6 +1700,9 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-internal-modules.md
             'import/no-internal-modules': ['off'],
+
+            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-named-as-default.md
+            'import/no-named-as-default': ['off'],
 
             // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-named-as-default-member.md
             'import/no-named-as-default-member': ['off'],

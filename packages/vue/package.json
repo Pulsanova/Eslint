@@ -21,6 +21,7 @@
     "dependencies": {
         "@babel/eslint-parser": "~7.28.0",
         "@pulsanova/eslint-config-browser": "3.0.1",
+        "@typescript-eslint/parser": "~8.40.0",
         "eslint-plugin-react": "~7.37.5",
         "eslint-plugin-vue": "~10.4.0",
         "vue-eslint-parser": "~10.2.0"
