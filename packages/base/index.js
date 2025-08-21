@@ -347,7 +347,11 @@ export const createConfig = (additionalExtensions = {}) => {
             '@stylistic/quote-props': ['error', 'consistent'],
 
             // https://eslint.style/rules/quotes
-            '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: true }],
+            '@stylistic/quotes': ['error', 'single', {
+                allowTemplateLiterals: 'always',
+                ignoreStringLiterals: false,
+                avoidEscape: false,
+            }],
 
             // https://eslint.style/rules/rest-spread-spacing
             '@stylistic/rest-spread-spacing': ['error', 'never'],
