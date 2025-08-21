@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-browser",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "license": "MIT",
     "type": "module",
     "main": "./index.js",
@@ -19,7 +19,7 @@
         "inspect-config": "eslint --inspect-config --config ./index.js"
     },
     "dependencies": {
-        "@pulsanova/eslint-config-esnext": "3.0.1",
+        "@pulsanova/eslint-config-esnext": "3.0.2",
         "confusing-browser-globals": "~1.0.11",
         "eslint-plugin-no-jquery": "~3.1.1",
         "globals": "^16.3.0"

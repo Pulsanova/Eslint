@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-vue",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "license": "MIT",
     "type": "module",
     "main": "./index.js",
@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "@babel/eslint-parser": "~7.28.0",
-        "@pulsanova/eslint-config-browser": "3.0.1",
+        "@pulsanova/eslint-config-browser": "3.0.2",
         "@typescript-eslint/parser": "~8.40.0",
         "eslint-plugin-react": "~7.37.5",
         "eslint-plugin-vue": "~10.4.0",

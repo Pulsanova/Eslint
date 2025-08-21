@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-react",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "license": "MIT",
     "type": "module",
     "main": "./index.js",
@@ -19,7 +19,7 @@
         "inspect-config": "eslint --inspect-config --config ./index.js"
     },
     "dependencies": {
-        "@pulsanova/eslint-config-browser": "3.0.1",
+        "@pulsanova/eslint-config-browser": "3.0.2",
         "@tanstack/eslint-plugin-query": "~5.83.1",
         "eslint-plugin-class-methods-use-this-regex": "~1.1.1",
         "eslint-plugin-jsx-a11y": "~6.10.2",
