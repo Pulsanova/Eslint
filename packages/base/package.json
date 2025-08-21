@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-base",
-    "version": "2.5.0",
+    "version": "3.0.0",
     "license": "MIT",
     "type": "module",
     "main": "./index.js",

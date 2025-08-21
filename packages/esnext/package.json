@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-esnext",
-    "version": "2.5.0",
+    "version": "3.0.0",
     "license": "MIT",
     "type": "module",
     "main": "./index.js",
@@ -22,7 +22,7 @@
         "@babel/core": "^7",
         "@babel/eslint-parser": "~7.28.0",
         "@babel/eslint-plugin": "~7.27.1",
-        "@pulsanova/eslint-config-base": "2.5.0",
+        "@pulsanova/eslint-config-base": "3.0.0",
         "@typescript-eslint/parser": "~8.40.0"
     },
     "devDependencies": {
