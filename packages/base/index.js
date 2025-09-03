@@ -487,7 +487,7 @@ export const createConfig = (additionalExtensions = {}) => {
             'func-style': ['error', 'expression'],
 
             // https://eslint.org/docs/rules/getter-return
-            'getter-return': ['error', { allowImplicit: true }],
+            'getter-return': ['error', { allowImplicit: false }],
 
             // https://eslint.org/docs/rules/grouped-accessor-pairs
             'grouped-accessor-pairs': ['error', 'getBeforeSet'],
@@ -1356,11 +1356,6 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-method-this-argument.md
             'unicorn/no-array-method-this-argument': ['error'],
 
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-reverse.md
-            'unicorn/no-array-reverse': ['error', {
-                allowExpressionStatement: false,
-            }],
-
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-await-in-promise-methods.md
             'unicorn/no-await-in-promise-methods': ['error'],
 
@@ -1588,9 +1583,6 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://eslint.style/rules/jsx-pascal-case
             '@stylistic/jsx-pascal-case': ['off'],
-
-            // https://eslint.style/rules/jsx-props-no-multi-spaces
-            '@stylistic/jsx-props-no-multi-spaces': ['off'],
 
             // https://eslint.style/rules/jsx-self-closing-comp
             '@stylistic/jsx-self-closing-comp': ['off'],
@@ -1957,6 +1949,9 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-reduce.md
             'unicorn/no-array-reduce': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-reverse.md
+            'unicorn/no-array-reverse': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-await-expression-member.md
             'unicorn/no-await-expression-member': ['off'],

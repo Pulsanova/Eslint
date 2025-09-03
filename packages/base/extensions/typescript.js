@@ -131,7 +131,7 @@ export const createConfig = (additionalExtensions = []) => {
             '@typescript-eslint/ban-ts-comment': ['error', {
                 'ts-check': true,
                 'ts-expect-error': 'allow-with-description',
-                'ts-ignore': 'allow-with-description',
+                'ts-ignore': true,
                 'ts-nocheck': true,
             }],
 

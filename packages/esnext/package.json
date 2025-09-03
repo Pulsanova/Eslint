@@ -23,7 +23,7 @@
         "@babel/eslint-parser": "~7.28.0",
         "@babel/eslint-plugin": "~7.27.1",
         "@pulsanova/eslint-config-base": "3.0.2",
-        "@typescript-eslint/parser": "~8.40.0"
+        "@typescript-eslint/parser": "~8.42.0"
     },
     "devDependencies": {
         "eslint": "^9.33.0",

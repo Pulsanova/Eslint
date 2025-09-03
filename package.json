@@ -16,7 +16,7 @@
         "@pulsanova/eslint-config-node": "file:./packages/node",
         "eslint": "^9.33.0",
         "lerna": "^8.2.3",
-        "patch-package": "^8.0.0"
+        "patch-package": "^8.1.0-canary.1"
     },
     "engines": {
         "node": "^22"

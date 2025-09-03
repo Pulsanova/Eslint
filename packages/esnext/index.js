@@ -42,12 +42,12 @@ export const createConfig = (additionalExtensions = {}) => {
                 'import/resolver': {
                     node: {
                         extensions: ['.d.ts', '.ts', '.js', '.json'],
-                        // - Ce résolveur est uniquement utilisé pour résoudre un problème avec les `exports` dans les `package.json`.
-                        //   (Sinon on utiliserait le mécanisme de résolution par défaut (= Node ci-dessus)).
-                        // See https://github.com/import-js/eslint-plugin-import/issues/1868#issuecomment-2034198702
-                        typescript: {
-                            extensions: ['.d.ts', '.ts', '.js', '.json'],
-                        },
+                    },
+                    // - Ce résolveur est uniquement utilisé pour résoudre un problème avec les `exports` dans les `package.json`.
+                    //   (Sinon on utiliserait le mécanisme de résolution par défaut (= Node ci-dessus)).
+                    // See https://github.com/import-js/eslint-plugin-import/issues/1868#issuecomment-2034198702
+                    typescript: {
+                        extensions: ['.d.ts', '.ts', '.js', '.json'],
                     },
                 },
                 'jsdoc': {
