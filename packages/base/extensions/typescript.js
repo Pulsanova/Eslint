@@ -376,7 +376,7 @@ export const createConfig = (additionalExtensions = []) => {
             '@typescript-eslint/no-unused-vars': ['error', {
                 args: 'after-used',
                 caughtErrors: 'all',
-                ignoreRestSiblings: false,
+                ignoreRestSiblings: true,
                 ignoreClassWithStaticInitBlock: false,
                 vars: 'all',
             }],
