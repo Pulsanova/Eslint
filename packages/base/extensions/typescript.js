@@ -38,6 +38,9 @@ export const createConfig = (additionalExtensions = []) => {
                 node: {
                     extensions: ['.d.ts', '.ts', '.js', '.json'],
                 },
+                typescript: {
+                    extensions: ['.d.ts', '.ts', '.js', '.json'],
+                },
             },
             'jsdoc': {
                 preferredTypes: {

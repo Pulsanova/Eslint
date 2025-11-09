@@ -47,7 +47,11 @@ const base = [
         // - Rules
         rules: {
             // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
-            'import/extensions': ['error', 'ignorePackages'],
+            'import/extensions': ['error', 'ignorePackages', {
+                ts: 'never',
+                cts: 'never',
+                mts: 'never',
+            }],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-blob-reading-methods.md
             'unicorn/prefer-blob-reading-methods': ['error'],

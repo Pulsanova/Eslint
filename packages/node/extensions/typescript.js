@@ -22,8 +22,27 @@ const base = {
             // See https://github.com/import-js/eslint-plugin-import/issues/1868#issuecomment-2034198702
             typescript: {
                 extensions: ['.d.ts', '.ts', '.js', '.json'],
+                extensionAlias: {
+                    '.js': ['.ts', '.d.ts', '.js'],
+                    '.ts': ['.ts', '.d.ts', '.js'],
+                    '.cjs': ['.cts', '.d.cts', '.cjs'],
+                    '.cts': ['.cts', '.d.cts', '.cjs'],
+                    '.mjs': ['.mts', '.d.mts', '.mjs'],
+                    '.mts': ['.mts', '.d.mts', '.mjs'],
+                },
             },
         },
+    },
+    rules: {
+        // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
+        'import/extensions': ['error', 'ignorePackages', {
+            checkTypeImports: true,
+            pattern: {
+                ts: 'never',
+                cts: 'never',
+                mts: 'never',
+            },
+        }],
     },
 };
 
