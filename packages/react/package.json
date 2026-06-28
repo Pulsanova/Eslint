@@ -19,21 +19,23 @@
         "inspect-config": "eslint --inspect-config --config ./index.js"
     },
     "dependencies": {
+        "@eslint-react/eslint-plugin": "~5.10.0",
         "@pulsanova/eslint-config-browser": "3.1.2",
-        "@tanstack/eslint-plugin-query": "~5.83.1",
-        "eslint-plugin-class-methods-use-this-regex": "~1.1.1",
-        "eslint-plugin-jsx-a11y": "~6.10.2",
-        "eslint-plugin-react": "~7.37.5",
-        "eslint-plugin-react-hooks-configurable": "~5.2.0"
+        "@tanstack/eslint-plugin-query": "~5.101.2",
+        "eslint-import-resolver-typescript": "~4.4.5",
+        "eslint-plugin-class-methods-use-this-regex": "~2.0.1",
+        "eslint-plugin-import-x": "~4.17.1",
+        "eslint-plugin-jsx-a11y-x": "~0.2.0",
+        "eslint-plugin-react-hooks-configurable": "~7.1.1"
     },
     "devDependencies": {
-        "eslint": "^9.33.0",
+        "eslint": "^10.6.0",
         "eslint-find-rules": "^5.0.0",
         "react": "^17 || ^18 || ^19",
         "react-dom": "^17 || ^18 || ^19"
     },
     "peerDependencies": {
-        "eslint": "^9.33.0",
+        "eslint": "^10.6.0",
         "react": "*",
         "react-dom": "*"
     }

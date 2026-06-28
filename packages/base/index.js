@@ -1,6 +1,6 @@
 import stylisticPlugin from '@stylistic/eslint-plugin';
 import unicornPlugin from 'eslint-plugin-unicorn';
-import importPlugin from 'eslint-plugin-import';
+import importPlugin, { createNodeResolver } from 'eslint-plugin-import-x';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsonConfig from './extensions/json.js';
 import {
@@ -37,23 +37,14 @@ export const createConfig = (additionalExtensions = {}) => {
 
         // - Configuration
         settings: {
-            'import/core-modules': [],
-            'import/extensions': ['.js'],
-            'import/external-module-folders': [],
-            'import/resolver': {
-                node: {
+            'import-x/core-modules': [],
+            'import-x/extensions': ['.js'],
+            'import-x/external-module-folders': [],
+            'import-x/resolver-next': [
+                createNodeResolver({
                     extensions: ['.js', '.json'],
-                },
-                // - Ce résolveur est uniquement utilisé pour résoudre un problème avec les `exports` dans les `package.json`.
-                //   (Sinon on utiliserait le mécanisme de résolution par défaut (= Node ci-dessus)).
-                // See https://github.com/import-js/eslint-plugin-import/issues/1868#issuecomment-2034198702
-                typescript: {
-                    extensions: ['.js', '.json'],
-                    conditionNames: [],
-                    extensionAlias: {},
-                    mainFields: ['main'],
-                },
-            },
+                }),
+            ],
             'jsdoc': {
                 tagNamePreference: {
                     member: 'var',
@@ -163,6 +154,7 @@ export const createConfig = (additionalExtensions = {}) => {
                 ArrayExpression: 1,
                 CallExpression: { arguments: 1 },
                 flatTernaryExpressions: false,
+                offsetTernaryExpressions: false,
                 FunctionDeclaration: { parameters: 1, body: 1 },
                 FunctionExpression: { parameters: 1, body: 1 },
                 ignoreComments: false,
@@ -311,7 +303,9 @@ export const createConfig = (additionalExtensions = {}) => {
             }],
 
             // https://eslint.style/rules/object-curly-spacing
-            '@stylistic/object-curly-spacing': ['error', 'always'],
+            '@stylistic/object-curly-spacing': ['error', 'always', {
+                emptyObjects: 'never',
+            }],
 
             // https://eslint.style/rules/object-property-newline
             '@stylistic/object-property-newline': ['error', {
@@ -495,41 +489,41 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://eslint.org/docs/rules/guard-for-in
             'guard-for-in': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/consistent-type-specifier-style.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/consistent-type-specifier-style.md
             'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/export.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/export.md
             'import/export': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/extensions.md
             'import/extensions': ['error', 'ignorePackages'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/first.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/first.md
             'import/first': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/named.md#when-not-to-use-it
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/named.md#when-not-to-use-it
             'import/named': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/newline-after-import.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/newline-after-import.md
             'import/newline-after-import': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-absolute-path.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-absolute-path.md
             'import/no-absolute-path': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-amd.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-amd.md
             'import/no-amd': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-duplicates.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-duplicates.md
             'no-duplicate-imports': ['off'],
             'import/no-duplicates': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-dynamic-require.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-dynamic-require.md
             'import/no-dynamic-require': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-empty-named-blocks.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-empty-named-blocks.md
             'import/no-empty-named-blocks': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-extraneous-dependencies.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-extraneous-dependencies.md
             'import/no-extraneous-dependencies': ['error', {
                 devDependencies: [
                     'tests/**',
@@ -555,31 +549,31 @@ export const createConfig = (additionalExtensions = {}) => {
                 optionalDependencies: false,
             }],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-mutable-exports.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-mutable-exports.md
             'import/no-mutable-exports': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-named-default.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-named-default.md
             'import/no-named-default': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-relative-packages.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-relative-packages.md
             'import/no-relative-packages': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-self-import.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-self-import.md
             'import/no-self-import': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-unresolved.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-unresolved.md
             'import/no-unresolved': ['error', {
                 caseSensitive: true,
                 commonjs: true,
             }],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-useless-path-segments.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-useless-path-segments.md
             'import/no-useless-path-segments': ['error', { commonjs: true }],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-webpack-loader-syntax.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-webpack-loader-syntax.md
             'import/no-webpack-loader-syntax': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/order.md
             'import/order': ['error', {
                 'groups': [
                     [
@@ -603,7 +597,7 @@ export const createConfig = (additionalExtensions = {}) => {
                 'distinctGroup': false,
             }],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/prefer-default-export.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/prefer-default-export.md
             'import/prefer-default-export': ['error', {
                 target: 'single',
             }],
@@ -641,6 +635,9 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/empty-tags.md
             'jsdoc/empty-tags': ['error'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/escape-inline-tags.md
+            'jsdoc/escape-inline-tags': ['error'],
 
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/implements-on-classes.md
             'jsdoc/implements-on-classes': ['error'],
@@ -681,6 +678,12 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-hyphen-before-param-description.md
             'jsdoc/require-hyphen-before-param-description': ['error'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-next-description.md
+            'jsdoc/require-next-description': ['error'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-next-type.md
+            'jsdoc/require-next-type': ['error'],
 
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-param.md
             'jsdoc/require-param': ['error', {
@@ -739,14 +742,31 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-returns-type.md
             'jsdoc/require-returns-type': ['error'],
 
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-throws-description.md
+            'jsdoc/require-throws-description': ['error'],
+
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-yields-check.md
             'jsdoc/require-yields-check': ['error'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-yields-description.md
+            'jsdoc/require-yields-description': ['error'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-yields-type.md
+            'jsdoc/require-yields-type': ['error'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/ts-no-empty-object-type.md
+            'jsdoc/ts-no-empty-object-type': ['error'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/ts-no-unnecessary-template-expression.md
+            'jsdoc/ts-no-unnecessary-template-expression': ['error'],
 
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/valid-types.md
             'jsdoc/valid-types': ['error'],
 
             // https://eslint.org/docs/latest/rules/logical-assignment-operators
-            'logical-assignment-operators': ['error', 'always', {
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/logical-assignment-operators.md
+            'logical-assignment-operators': ['off'],
+            'unicorn/logical-assignment-operators': ['error', 'always', {
                 enforceForIfStatements: true,
             }],
 
@@ -835,7 +855,9 @@ export const createConfig = (additionalExtensions = {}) => {
             'no-duplicate-case': ['error'],
 
             // https://eslint.org/docs/rules/no-else-return
-            'no-else-return': ['error', { allowElseIf: false }],
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-else.md
+            'no-else-return': ['off'],
+            'unicorn/no-useless-else': ['error'],
 
             // https://eslint.org/docs/rules/no-empty
             'no-empty': ['error', { allowEmptyCatch: true }],
@@ -1080,14 +1102,6 @@ export const createConfig = (additionalExtensions = {}) => {
                     ),
                 },
                 {
-                    selector: 'ForOfStatement',
-                    message: (
-                        'iterators/generators require regenerator-runtime, which is ' +
-                        'too heavyweight for this guide to allow them. Separately, ' +
-                        'loops should be avoided in favor of array iterations.'
-                    ),
-                },
-                {
                     selector: 'LabeledStatement',
                     message: (
                         'Labels are a form of GOTO; using them makes code confusing ' +
@@ -1217,7 +1231,9 @@ export const createConfig = (additionalExtensions = {}) => {
             }],
 
             // https://eslint.org/docs/rules/no-useless-concat
-            'no-useless-concat': ['error'],
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-concat.md
+            'no-useless-concat': ['off'],
+            'unicorn/no-useless-concat': ['error'],
 
             // https://eslint.org/docs/rules/no-useless-constructor
             'no-useless-constructor': ['error'],
@@ -1254,7 +1270,9 @@ export const createConfig = (additionalExtensions = {}) => {
             'one-var': ['error', 'never'],
 
             // https://eslint.org/docs/rules/operator-assignment
-            'operator-assignment': ['error', 'always'],
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/operator-assignment.md
+            'operator-assignment': ['off'],
+            'unicorn/operator-assignment': ['error', 'always'],
 
             // https://eslint.org/docs/rules/prefer-arrow-callback
             'prefer-arrow-callback': ['error', {
@@ -1314,6 +1332,9 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://eslint.org/docs/rules/prefer-template
             'prefer-template': ['error'],
 
+            // https://eslint.org/docs/rules/preserve-caught-error
+            'preserve-caught-error': ['error'],
+
             // https://eslint.org/docs/rules/radix
             'radix': ['error'],
 
@@ -1329,11 +1350,35 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://eslint.org/docs/rules/unicode-bom
             'unicode-bom': ['error', 'never'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/class-reference-in-static-methods.md
+            'unicorn/class-reference-in-static-methods': ['error', {
+                preferThis: true,
+                preferSuper: true,
+            }],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-conditional-object-spread.md
+            'unicorn/consistent-conditional-object-spread': ['error', 'logical'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-empty-array-spread.md
             'unicorn/consistent-empty-array-spread': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-optional-chaining.md
+            'unicorn/consistent-optional-chaining': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-template-literal-escape.md
+            'unicorn/consistent-template-literal-escape': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/custom-error-definition.md
             'unicorn/custom-error-definition': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/default-export-style.md
+            'unicorn/default-export-style': ['error', {
+                functions: 'separate',
+                classes: 'separate',
+            }],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/dom-node-dataset.md
+            'unicorn/dom-node-dataset': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/error-message.md
             'unicorn/error-message': ['error'],
@@ -1347,26 +1392,89 @@ export const createConfig = (additionalExtensions = {}) => {
                 terms: ['TODO', 'FIXME', '@TODO'],
             }],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/explicit-timer-delay.md
+            'unicorn/explicit-timer-delay': ['error', 'always'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/new-for-builtins.md
             'unicorn/new-for-builtins': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-accessor-recursion.md
             'unicorn/no-accessor-recursion': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-accidental-bitwise-operator.md
+            'unicorn/no-accidental-bitwise-operator': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-fill-with-reference-type.md
+            'unicorn/no-array-fill-with-reference-type': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-from-fill.md
+            'unicorn/no-array-from-fill': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-method-this-argument.md
             'unicorn/no-array-method-this-argument': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-sort.md
+            'unicorn/no-array-sort': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-sort-for-min-max.md
+            'unicorn/no-array-sort-for-min-max': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-splice.md
+            'unicorn/no-array-splice': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-await-in-promise-methods.md
             'unicorn/no-await-in-promise-methods': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-blob-to-file.md
+            'unicorn/no-blob-to-file': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-boolean-sort-comparator.md
+            'unicorn/no-boolean-sort-comparator': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-canvas-to-image.md
+            'unicorn/no-canvas-to-image': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-chained-comparison.md
+            'unicorn/no-chained-comparison': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-collection-bracket-access.md
+            'unicorn/no-collection-bracket-access': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-console-spaces.md
             'unicorn/no-console-spaces': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-constant-zero-expression.md
+            'unicorn/no-constant-zero-expression': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-double-comparison.md
+            'unicorn/no-double-comparison': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-duplicate-logical-operands.md
+            'unicorn/no-duplicate-logical-operands': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-duplicate-set-values.md
+            'unicorn/no-duplicate-set-values': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-impossible-length-comparison.md
+            'unicorn/no-impossible-length-comparison': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-incorrect-query-selector.md
+            'unicorn/no-incorrect-query-selector': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-invalid-argument-count.md
+            'unicorn/no-invalid-argument-count': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-invalid-character-comparison.md
+            'unicorn/no-invalid-character-comparison': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-invalid-fetch-options.md
             'unicorn/no-invalid-fetch-options': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-invalid-remove-event-listener.md
             'unicorn/no-invalid-remove-event-listener': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-misrefactored-assignment.md
+            'unicorn/no-misrefactored-assignment': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-negation-in-equality-check.md
             'unicorn/no-negation-in-equality-check': ['error'],
@@ -1377,11 +1485,26 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-new-buffer.md
             'unicorn/no-new-buffer': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-redundant-comparison.md
+            'unicorn/no-redundant-comparison': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-return-array-push.md
+            'unicorn/no-return-array-push': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-selector-as-dom-name.md
+            'unicorn/no-selector-as-dom-name': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-single-promise-in-promise-methods.md
             'unicorn/no-single-promise-in-promise-methods': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-subtraction-comparison.md
+            'unicorn/no-subtraction-comparison': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-thenable.md
             'unicorn/no-thenable': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-undeclared-class-members.md
+            'unicorn/no-undeclared-class-members': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-array-flat-depth.md
             'unicorn/no-unnecessary-array-flat-depth': ['error'],
@@ -1392,8 +1515,20 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-await.md
             'unicorn/no-unnecessary-await': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-boolean-comparison.md
+            'unicorn/no-unnecessary-boolean-comparison': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-global-this.md
+            'unicorn/no-unnecessary-global-this': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-nested-ternary.md
+            'unicorn/no-unnecessary-nested-ternary': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-slice-end.md
             'unicorn/no-unnecessary-slice-end': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-splice.md
+            'unicorn/no-unnecessary-splice': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unreadable-array-destructuring.md
             'unicorn/no-unreadable-array-destructuring': ['error'],
@@ -1401,8 +1536,32 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unreadable-iife.md
             'unicorn/no-unreadable-iife': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unsafe-buffer-conversion.md
+            'unicorn/no-unsafe-buffer-conversion': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unused-array-method-return.md
+            'unicorn/no-unused-array-method-return': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unused-properties.md
             'unicorn/no-unused-properties': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-boolean-cast.md
+            'unicorn/no-useless-boolean-cast': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-coercion.md
+            'unicorn/no-useless-coercion': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rulesno-useless-collection-argument.md
+            'unicorn/no-useless-collection-argument': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-compound-assignment.md
+            'unicorn/no-useless-compound-assignment': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-continue.md
+            'unicorn/no-useless-continue': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-delete-check.md
+            'unicorn/no-useless-delete-check': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-error-capture-stack-trace.md
             'unicorn/no-useless-error-capture-stack-trace': ['error'],
@@ -1410,11 +1569,23 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-fallback-in-spread.md
             'unicorn/no-useless-fallback-in-spread': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-iterator-to-array.md
+            'unicorn/no-useless-iterator-to-array': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-length-check.md
             'unicorn/no-useless-length-check': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-logical-operand.md
+            'unicorn/no-useless-logical-operand': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-override.md
+            'unicorn/no-useless-override': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-spread.md
             'unicorn/no-useless-spread': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-template-literals.md
+            'unicorn/no-useless-template-literals': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/number-literal-case.md
             'unicorn/number-literal-case': ['error', {
@@ -1430,6 +1601,15 @@ export const createConfig = (additionalExtensions = {}) => {
                 },
             }],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-abort-signal-timeout.md
+            'unicorn/prefer-abort-signal-timeout': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-add-event-listener-options.md
+            'unicorn/prefer-add-event-listener-options': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-aggregate-error.md
+            'unicorn/prefer-aggregate-error': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-find.md
             'unicorn/prefer-array-find': ['error', { checkFromLast: true }],
 
@@ -1439,8 +1619,17 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-flat-map.md
             'unicorn/prefer-array-flat-map': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-from-async.md
+            'unicorn/prefer-array-from-async': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-index-of.md
             'unicorn/prefer-array-index-of': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-last-methods.md
+            'unicorn/prefer-array-last-methods': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-slice.md
+            'unicorn/prefer-array-slice': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-some.md
             'unicorn/prefer-array-some': ['error'],
@@ -1448,17 +1637,56 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-at.md
             'unicorn/prefer-at': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-bigint-literals.md
+            'unicorn/prefer-bigint-literals': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-code-point.md
             'unicorn/prefer-code-point': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-date-now.md
             'unicorn/prefer-date-now': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-direct-iteration.md
+            'unicorn/prefer-direct-iteration': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-replace-children.md
+            'unicorn/prefer-dom-node-replace-children': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-flat-math-min-max.md
+            'unicorn/prefer-flat-math-min-max': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-get-or-insert-computed.md
+            'unicorn/prefer-get-or-insert-computed': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-global-number-constants.md
+            'unicorn/prefer-global-number-constants': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-has-check.md
+            'unicorn/prefer-has-check': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-identifier-import-export-specifiers.md
+            'unicorn/prefer-identifier-import-export-specifiers': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-includes.md
             'unicorn/prefer-includes': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-iterable-in-constructor.md
+            'unicorn/prefer-iterable-in-constructor': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-location-assign.md
+            'unicorn/prefer-location-assign': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-logical-operator-over-ternary.md
             'unicorn/prefer-logical-operator-over-ternary': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-map-from-entries.md
+            'unicorn/prefer-map-from-entries': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-math-abs.md
+            'unicorn/prefer-math-abs': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-math-constants.md
+            'unicorn/prefer-math-constants': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-math-min-max.md
             'unicorn/prefer-math-min-max': ['error'],
@@ -1475,14 +1703,53 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-negative-index.md
             'unicorn/prefer-negative-index': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-object-iterable-methods.md
+            'unicorn/prefer-object-iterable-methods': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-optional-catch-binding.md
             'unicorn/prefer-optional-catch-binding': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-path2d.md
+            'unicorn/prefer-path2d': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-promise-try.md
+            'unicorn/prefer-promise-try': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-promise-with-resolvers.md
+            'unicorn/prefer-promise-with-resolvers': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-prototype-methods.md
             'unicorn/prefer-prototype-methods': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-regexp-escape.md
+            'unicorn/prefer-regexp-escape': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-response-static-json.md
+            'unicorn/prefer-response-static-json': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-set-methods.md
+            'unicorn/prefer-set-methods': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-set-size.md
             'unicorn/prefer-set-size': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-simple-sort-comparator.md
+            'unicorn/prefer-simple-sort-comparator': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-single-replace.md
+            'unicorn/prefer-single-replace': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-split-limit.md
+            'unicorn/prefer-split-limit': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-string-match-all.md
+            'unicorn/prefer-string-match-all': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-string-pad-start-end.md
+            'unicorn/prefer-string-pad-start-end': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-string-repeat.md
+            'unicorn/prefer-string-repeat': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-string-replace-all.md
             'unicorn/prefer-string-replace-all': ['error'],
@@ -1496,11 +1763,32 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-structured-clone.md
             'unicorn/prefer-structured-clone': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-unicode-code-point-escapes.md
+            'unicorn/prefer-unicode-code-point-escapes': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-url-can-parse.md
+            'unicorn/prefer-url-can-parse': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-url-search-parameters.md
+            'unicorn/prefer-url-search-parameters': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-while-loop-condition.md
+            'unicorn/prefer-while-loop-condition': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/relative-url-style.md
             'unicorn/relative-url-style': ['error', 'always'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-array-join-separator.md
             'unicorn/require-array-join-separator': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-array-sort-compare.md
+            'unicorn/require-array-sort-compare': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-css-escape.md
+            'unicorn/require-css-escape': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-module-attributes.md
+            'unicorn/require-module-attributes': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-module-specifiers.md
             'unicorn/require-module-specifiers': ['error'],
@@ -1508,11 +1796,20 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-number-to-fixed-digits-argument.md
             'unicorn/require-number-to-fixed-digits-argument': ['error'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-passive-events.md
+            'unicorn/require-passive-events': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-proxy-trap-boolean-return.md
+            'unicorn/require-proxy-trap-boolean-return': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/switch-case-braces.md
             'unicorn/switch-case-braces': ['error', 'always'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/switch-case-break-position.md
+            'unicorn/switch-case-break-position': ['error'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/text-encoding-identifier-case.md
-            'unicorn/text-encoding-identifier-case': ['error'],
+            'unicorn/text-encoding-identifier-case': ['error', { withDash: true }],
 
             // https://eslint.org/docs/rules/use-isnan
             'use-isnan': ['error'],
@@ -1535,6 +1832,12 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://eslint.style/rules/array-element-newline
             '@stylistic/array-element-newline': ['off'],
+
+            // https://eslint.style/rules/jsx-props-style
+            '@stylistic/exp-jsx-props-style': ['off'],
+
+            // https://eslint.style/rules/list-style
+            '@stylistic/exp-list-style': ['off'],
 
             // https://eslint.style/rules/jsx-quotes
             '@stylistic/jsx-quotes': ['off'],
@@ -1586,9 +1889,6 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://eslint.style/rules/jsx-self-closing-comp
             '@stylistic/jsx-self-closing-comp': ['off'],
-
-            // https://eslint.style/rules/jsx-sort-props
-            '@stylistic/jsx-sort-props': ['off'],
 
             // https://eslint.style/rules/jsx-tag-spacing
             '@stylistic/jsx-tag-spacing': ['off'],
@@ -1650,78 +1950,81 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://eslint.org/docs/rules/id-match
             'id-match': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/default.md#when-not-to-use-it
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/default.md#when-not-to-use-it
             'import/default': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/dynamic-import-chunkname.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/dynamic-import-chunkname.md
             'import/dynamic-import-chunkname': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/enforce-node-protocol-usage.md
-            'import/enforce-node-protocol-usage': ['off'],
-
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/exports-last.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/exports-last.md
             'import/exports-last': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/group-exports.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/group-exports.md
             'import/group-exports': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/max-dependencies.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/max-dependencies.md
             'import/max-dependencies': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/namespace.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/namespace.md
             'import/namespace': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-anonymous-default-export.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-anonymous-default-export.md
             'import/no-anonymous-default-export': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-commonjs.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-commonjs.md
             'import/no-commonjs': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-cycle.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-cycle.md
             'import/no-cycle': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-default-export.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-default-export.md
             'import/no-default-export': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-deprecated.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-deprecated.md
             'import/no-deprecated': ['off'],
 
             // - Faux positifs avec les imports dynamiques (= `import(...).then((>>> module <<<) => {});`)
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-import-module-exports.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-import-module-exports.md
             'import/no-import-module-exports': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-internal-modules.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-internal-modules.md
             'import/no-internal-modules': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-named-as-default.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-named-as-default.md
             'import/no-named-as-default': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-named-as-default-member.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-named-as-default-member.md
             'import/no-named-as-default-member': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-named-export.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-named-export.md
             'import/no-named-export': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-namespace.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-namespace.md
             'import/no-namespace': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-nodejs-modules.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-nodejs-modules.md
             'import/no-nodejs-modules': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-relative-parent-imports.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-relative-parent-imports.md
             'import/no-relative-parent-imports': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-restricted-paths.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-rename-default.md
+            'import/no-rename-default': ['off'],
+
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-restricted-paths.md
             'import/no-restricted-paths': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-unassigned-import.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-unassigned-import.md
             // importing for side effects is perfectly acceptable, if you need side effects.
             'import/no-unassigned-import': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-unused-modules.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/no-unused-modules.md
             'import/no-unused-modules': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/unambiguous.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/prefer-namespace-import.md
+            'import/prefer-namespace-import': ['off'],
+
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/unambiguous.md
             'import/unambiguous': ['off'],
 
             // https://eslint.org/docs/rules/init-declarations
@@ -1775,6 +2078,15 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/no-undefined-types.md
             'jsdoc/no-undefined-types': ['off'],
 
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/prefer-import-tag.md
+            'jsdoc/prefer-import-tag': ['off'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/reject-any-type.md
+            'jsdoc/reject-any-type': ['off'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/reject-function-type.md
+            'jsdoc/reject-function-type': ['off'],
+
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-description-complete-sentence.md
             'jsdoc/require-description-complete-sentence': ['off'],
 
@@ -1793,17 +2105,29 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-property-description.md
             'jsdoc/require-property-description': ['off'],
 
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-rejects.md
+            'jsdoc/require-rejects': ['off'],
+
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-returns.md
             'jsdoc/require-returns': ['off'],
 
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-returns-description.md
             'jsdoc/require-returns-description': ['off'],
 
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-tags.md
+            'jsdoc/require-tags': ['off'],
+
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-template.md
             'jsdoc/require-template': ['off'],
 
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-template-description.md
+            'jsdoc/require-template-description': ['off'],
+
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-throws.md
             'jsdoc/require-throws': ['off'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-throws-type.md
+            'jsdoc/require-throws-type': ['off'],
 
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-yields.md
             'jsdoc/require-yields': ['off'],
@@ -1816,6 +2140,15 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/text-escaping.md
             'jsdoc/text-escaping': ['off'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/ts-method-signature-style.md
+            'jsdoc/ts-method-signature-style': ['off'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/ts-prefer-function-type.md
+            'jsdoc/ts-prefer-function-type': ['off'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/type-formatting.md
+            'jsdoc/type-formatting': ['off'],
 
             // https://eslint.org/docs/rules/max-depth
             'max-depth': ['off'],
@@ -1902,14 +2235,26 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://eslint.org/docs/rules/sort-vars
             'sort-vars': ['off'],
 
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/better-regex.md
-            'unicorn/better-regex': ['off'],
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/better-dom-traversing.md
+            'unicorn/better-dom-traversing': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/catch-error-name.md
             'unicorn/catch-error-name': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/comment-content.md
+            'unicorn/comment-content': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-assert.md
             'unicorn/consistent-assert': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-boolean-name.md
+            'unicorn/consistent-boolean-name': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-class-member-order.md
+            'unicorn/consistent-class-member-order': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-compound-words.md
+            'unicorn/consistent-compound-words': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-date-clone.md
             'unicorn/consistent-date-clone': ['off'],
@@ -1920,8 +2265,20 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-existence-index-check.md
             'unicorn/consistent-existence-index-check': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-export-decorator-position.md
+            'unicorn/consistent-export-decorator-position': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-function-scoping.md
             'unicorn/consistent-function-scoping': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-function-style.md
+            'unicorn/consistent-function-style': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-json-file-read.md
+            'unicorn/consistent-json-file-read': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-tuple-labels.md
+            'unicorn/consistent-tuple-labels': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/empty-brace-spaces.md
             'unicorn/empty-brace-spaces': ['off'],
@@ -1932,8 +2289,20 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/filename-case.md
             'unicorn/filename-case': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/id-match.md
+            'unicorn/id-match': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/import-style.md
             'unicorn/import-style': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/isolated-functions.md
+            'unicorn/isolated-functions': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/max-nested-calls.md
+            'unicorn/max-nested-calls': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/name-replacements.md
+            'unicorn/name-replacements': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-abusive-eslint-disable.md
             'unicorn/no-abusive-eslint-disable': ['off'],
@@ -1944,8 +2313,11 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-callback-reference.md
             'unicorn/no-array-callback-reference': ['off'],
 
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-for-each.md
-            'unicorn/no-array-for-each': ['off'],
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-concat-in-loop.md
+            'unicorn/no-array-concat-in-loop': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-front-mutation.md
+            'unicorn/no-array-front-mutation': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-reduce.md
             'unicorn/no-array-reduce': ['off'],
@@ -1953,44 +2325,122 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-reverse.md
             'unicorn/no-array-reverse': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-asterisk-prefix-in-documentation-comments.md
+            'unicorn/no-asterisk-prefix-in-documentation-comments': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-await-expression-member.md
             'unicorn/no-await-expression-member': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-break-in-nested-loop.md
+            'unicorn/no-break-in-nested-loop': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-computed-property-existence-check.md
+            'unicorn/no-computed-property-existence-check': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-confusing-array-splice.md
+            'unicorn/no-confusing-array-splice': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-confusing-array-with.md
+            'unicorn/no-confusing-array-with': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-declarations-before-early-exit.md
+            'unicorn/no-declarations-before-early-exit': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-document-cookie.md
             'unicorn/no-document-cookie': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-duplicate-if-branches.md
+            'unicorn/no-duplicate-if-branches': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-duplicate-loops.md
+            'unicorn/no-duplicate-loops': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-empty-file.md
             'unicorn/no-empty-file': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-error-property-assignment.md
+            'unicorn/no-error-property-assignment': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-exports-in-scripts.md
+            'unicorn/no-exports-in-scripts': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-for-each.md
+            'unicorn/no-for-each': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-for-loop.md
             'unicorn/no-for-loop': ['off'],
 
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-hex-escape.md
-            'unicorn/no-hex-escape': ['off'],
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-global-object-property-assignment.md
+            'unicorn/no-global-object-property-assignment': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-immediate-mutation.md
+            'unicorn/no-immediate-mutation': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-incorrect-template-string-interpolation.md
+            'unicorn/no-incorrect-template-string-interpolation': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-instanceof-builtins.md
             'unicorn/no-instanceof-builtins': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-invalid-file-input-accept.md
+            'unicorn/no-invalid-file-input-accept': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-invalid-well-known-symbol-methods.md
+            'unicorn/no-invalid-well-known-symbol-methods': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-keyword-prefix.md
             'unicorn/no-keyword-prefix': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-late-current-target-access.md
+            'unicorn/no-late-current-target-access': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-late-event-control.md
+            'unicorn/no-late-event-control': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-lonely-if.md
             'unicorn/no-lonely-if': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-loop-iterable-mutation.md
+            'unicorn/no-loop-iterable-mutation': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-magic-array-flat-depth.md
             'unicorn/no-magic-array-flat-depth': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-manually-wrapped-comments.md
+            'unicorn/no-manually-wrapped-comments': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-mismatched-map-key.md
+            'unicorn/no-mismatched-map-key': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-named-default.md
             'unicorn/no-named-default': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-negated-array-predicate.md
+            'unicorn/no-negated-array-predicate': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-negated-comparison.md
+            'unicorn/no-negated-comparison': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-negated-condition.md
             'unicorn/no-negated-condition': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-non-function-verb-prefix.md
+            'unicorn/no-non-function-verb-prefix': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-nonstandard-builtin-properties.md
+            'unicorn/no-nonstandard-builtin-properties': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-null.md
             'unicorn/no-null': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-object-as-default-parameter.md
             'unicorn/no-object-as-default-parameter': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-object-methods-with-collections.md
+            'unicorn/no-object-methods-with-collections': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-optional-chaining-on-undeclared-variable.md
+            'unicorn/no-optional-chaining-on-undeclared-variable': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-process-exit.md
             'unicorn/no-process-exit': ['off'],
@@ -2001,14 +2451,47 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-this-assignment.md
             'unicorn/no-this-assignment': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-this-outside-of-class.md
+            'unicorn/no-this-outside-of-class': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-top-level-assignment-in-function.md
+            'unicorn/no-top-level-assignment-in-function': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-top-level-side-effects.md
+            'unicorn/no-top-level-side-effects': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-typeof-undefined.md
             'unicorn/no-typeof-undefined': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-uncalled-method.md
+            'unicorn/no-uncalled-method': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-polyfills.md
             'unicorn/no-unnecessary-polyfills': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unreadable-for-of-expression.md
+            'unicorn/no-unreadable-for-of-expression': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unreadable-new-expression.md
+            'unicorn/no-unreadable-new-expression': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unreadable-object-destructuring.md
+            'unicorn/no-unreadable-object-destructuring': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unsafe-dom-html.md
+            'unicorn/no-unsafe-dom-html': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unsafe-property-key.md
+            'unicorn/no-unsafe-property-key': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unsafe-string-replacement.md
+            'unicorn/no-unsafe-string-replacement': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-promise-resolve-reject.md
             'unicorn/no-useless-promise-resolve-reject': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-recursion.md
+            'unicorn/no-useless-recursion': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-switch-case.md
             'unicorn/no-useless-switch-case': ['off'],
@@ -2016,32 +2499,66 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-useless-undefined.md
             'unicorn/no-useless-undefined': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-xor-as-exponentiation.md
+            'unicorn/no-xor-as-exponentiation': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-zero-fractions.md
             'unicorn/no-zero-fractions': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-add-event-listener.md
             'unicorn/prefer-add-event-listener': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-from-map.md
+            'unicorn/prefer-array-from-map': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-iterable-methods.md
+            'unicorn/prefer-array-iterable-methods': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-await.md
+            'unicorn/prefer-await': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-blob-reading-methods.md
             'unicorn/prefer-blob-reading-methods': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-boolean-return.md
+            'unicorn/prefer-boolean-return': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-class-fields.md
             'unicorn/prefer-class-fields': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-classlist-toggle.md
+            'unicorn/prefer-classlist-toggle': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-continue.md
+            'unicorn/prefer-continue': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-default-parameters.md
             'unicorn/prefer-default-parameters': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dispose.md
+            'unicorn/prefer-dispose': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-append.md
             'unicorn/prefer-dom-node-append': ['off'],
 
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-dataset.md
-            'unicorn/prefer-dom-node-dataset': ['off'],
+            // TODO: À activer lorsque ce sera mieux supportée par les navigateurs ou polyfillé via CoreJS.
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-html-methods.md
+            'unicorn/prefer-dom-node-html-methods': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-remove.md
             'unicorn/prefer-dom-node-remove': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-text-content.md
             'unicorn/prefer-dom-node-text-content': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-early-return.md
+            'unicorn/prefer-early-return': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-else-if.md
+            'unicorn/prefer-else-if': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-error-is-error.md
+            'unicorn/prefer-error-is-error': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-event-target.md
             'unicorn/prefer-event-target': ['off'],
@@ -2052,14 +2569,32 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-global-this.md
             'unicorn/prefer-global-this': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-hoisting-branch-code.md
+            'unicorn/prefer-hoisting-branch-code': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-https.md
+            'unicorn/prefer-https': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-import-meta-properties.md
             'unicorn/prefer-import-meta-properties': ['off'],
 
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-json-parse-buffer.md
-            'unicorn/prefer-json-parse-buffer': ['off'],
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-includes-over-repeated-comparisons.md
+            'unicorn/prefer-includes-over-repeated-comparisons': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-iterator-concat.md
+            'unicorn/prefer-iterator-concat': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-iterator-to-array.md
+            'unicorn/prefer-iterator-to-array': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-iterator-to-array-at-end.md
+            'unicorn/prefer-iterator-to-array-at-end': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-keyboard-event-key.md
             'unicorn/prefer-keyboard-event-key': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-minimal-ternary.md
+            'unicorn/prefer-minimal-ternary': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-modern-dom-apis.md
             'unicorn/prefer-modern-dom-apis': ['off'],
@@ -2070,14 +2605,35 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-node-protocol.md
             'unicorn/prefer-node-protocol': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-number-coercion.md
+            'unicorn/prefer-number-coercion': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-number-is-safe-integer.md
+            'unicorn/prefer-number-is-safe-integer': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-number-properties.md
             'unicorn/prefer-number-properties': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-object-define-properties.md
+            'unicorn/prefer-object-define-properties': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-object-destructuring-defaults.md
+            'unicorn/prefer-object-destructuring-defaults': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-object-from-entries.md
             'unicorn/prefer-object-from-entries': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-observer-apis.md
+            'unicorn/prefer-observer-apis': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-private-class-fields.md
+            'unicorn/prefer-private-class-fields': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-query-selector.md
             'unicorn/prefer-query-selector': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-queue-microtask.md
+            'unicorn/prefer-queue-microtask': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-reflect-apply.md
             'unicorn/prefer-reflect-apply': ['off'],
@@ -2085,26 +2641,50 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-regexp-test.md
             'unicorn/prefer-regexp-test': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-scoped-selector.md
+            'unicorn/prefer-scoped-selector': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-set-has.md
             'unicorn/prefer-set-has': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-short-arrow-method.md
+            'unicorn/prefer-short-arrow-method': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-simple-condition-first.md
+            'unicorn/prefer-simple-condition-first': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-single-array-predicate.md
+            'unicorn/prefer-single-array-predicate': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-single-call.md
             'unicorn/prefer-single-call': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-single-object-destructuring.md
+            'unicorn/prefer-single-object-destructuring': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-smaller-scope.md
+            'unicorn/prefer-smaller-scope': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-spread.md
             'unicorn/prefer-spread': ['off'],
-
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-string-slice.md
-            'unicorn/prefer-string-slice': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-string-raw.md
             'unicorn/prefer-string-raw': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-string-slice.md
+            'unicorn/prefer-string-slice': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-switch.md
             'unicorn/prefer-switch': ['off'],
 
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-temporal.md
+            'unicorn/prefer-temporal': ['off'],
+
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-ternary.md
             'unicorn/prefer-ternary': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-toggle-attribute.md
+            'unicorn/prefer-toggle-attribute': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-top-level-await.md
             'unicorn/prefer-top-level-await': ['off'],
@@ -2112,8 +2692,17 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-type-error.md
             'unicorn/prefer-type-error': ['off'],
 
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prevent-abbreviations.md
-            'unicorn/prevent-abbreviations': ['off'],
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-type-literal-last.md
+            'unicorn/prefer-type-literal-last': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-uint8array-base64.md
+            'unicorn/prefer-uint8array-base64': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-unary-minus.md
+            'unicorn/prefer-unary-minus': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-url-href.md
+            'unicorn/prefer-url-href': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-post-message-target-origin.md
             'unicorn/require-post-message-target-origin': ['off'],
@@ -2128,6 +2717,9 @@ export const createConfig = (additionalExtensions = {}) => {
             //   (par ex. nécessiterait d'écrire `new wakeupError()` pour un appel de fonction `wakeupError();`).
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/throw-new-error.md
             'unicorn/throw-new-error': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/try-complexity.md
+            'unicorn/try-complexity': ['off'],
         },
     };
 

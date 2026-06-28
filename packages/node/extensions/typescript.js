@@ -1,3 +1,5 @@
+import { createNodeResolver } from 'eslint-plugin-import-x';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import { DEFAULT_EXTENSIONS as BASE_EXTENSIONS } from '@pulsanova/eslint-config-base';
 
 export const EXTENSIONS = [...BASE_EXTENSIONS.ts, 'cts', 'mts'];
@@ -8,19 +10,16 @@ const base = {
 
     // - Settings
     settings: {
-        'import/extensions': ['.js', '.ts'],
-        'import/external-module-folders': ['node_modules', 'node_modules/@types'],
-        'import/parsers': {
+        'import-x/extensions': ['.js', '.ts'],
+        'import-x/external-module-folders': ['node_modules', 'node_modules/@types'],
+        'import-x/parsers': {
             '@typescript-eslint/parser': ['.mts', '.cts', '.ts'],
         },
-        'import/resolver': {
-            node: {
+        'import-x/resolver-next': [
+            createNodeResolver({
                 extensions: ['.d.ts', '.ts', '.js', '.json'],
-            },
-            // - This resolver is only used to solves an issue with package.json `exports`.
-            //   (Otherwise we'd use the default resolution mechanism (= node above)).
-            // See https://github.com/import-js/eslint-plugin-import/issues/1868#issuecomment-2034198702
-            typescript: {
+            }),
+            createTypeScriptImportResolver({
                 extensions: ['.d.ts', '.ts', '.js', '.json'],
                 extensionAlias: {
                     '.js': ['.ts', '.d.ts', '.js'],
@@ -30,11 +29,11 @@ const base = {
                     '.mjs': ['.mts', '.d.mts', '.mjs'],
                     '.mts': ['.mts', '.d.mts', '.mjs'],
                 },
-            },
-        },
+            }),
+        ],
     },
     rules: {
-        // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
+        // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/extensions.md
         'import/extensions': ['error', 'ignorePackages', {
             checkTypeImports: true,
             pattern: {

@@ -1,4 +1,5 @@
 import globals from 'globals';
+import { createNodeResolver } from 'eslint-plugin-import-x';
 import {
     createConfig as baseConfig,
     DEFAULT_EXTENSIONS as BASE_EXTENSIONS,
@@ -28,30 +29,26 @@ const base = [
 
         // - Settings
         settings: {
-            'import/extensions': ['.js'],
-            'import/external-module-folders': ['node_modules'],
-            'import/resolver': {
-                node: {
+            'import-x/extensions': ['.js'],
+            'import-x/external-module-folders': ['node_modules'],
+            'import-x/resolver-next': [
+                createNodeResolver({
                     extensions: ['.js', '.json'],
-                },
-                // - Ce résolveur est uniquement utilisé pour résoudre un problème avec les `exports` dans les `package.json`.
-                //   (Sinon on utiliserait le mécanisme de résolution par défaut (= Node ci-dessus)).
-                // See https://github.com/import-js/eslint-plugin-import/issues/1868#issuecomment-2034198702
-                typescript: {
-                    extensions: ['.js', '.json'],
-                    mainFields: ['main'],
-                },
-            },
+                }),
+            ],
         },
 
         // - Rules
         rules: {
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/extensions.md
             'import/extensions': ['error', 'ignorePackages', {
                 ts: 'never',
                 cts: 'never',
                 mts: 'never',
             }],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-exports-in-scripts.md
+            'unicorn/no-exports-in-scripts': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-blob-reading-methods.md
             'unicorn/prefer-blob-reading-methods': ['error'],
@@ -71,10 +68,6 @@ const base = [
             //
             // - Règles désactivées
             //
-
-            // - Déjà pris en charge par `unicorn/prefer-node-protocol`.
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/enforce-node-protocol-usage.md
-            'import/enforce-node-protocol-usage': ['off'],
 
             // https://eslint.org/docs/rules/no-console
             'no-console': ['off'],

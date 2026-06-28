@@ -20,7 +20,7 @@ export const createConfig = (additionalExtensions = []) => {
 
         // - Rules
         rules: {
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/extensions.md
             'import/extensions': ['error', 'ignorePackages', {
                 checkTypeImports: true,
                 pattern: {

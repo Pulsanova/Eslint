@@ -1,5 +1,7 @@
 import typescriptParser from '@typescript-eslint/parser';
 import typescriptPlugin from '@typescript-eslint/eslint-plugin';
+import { createNodeResolver } from 'eslint-plugin-import-x';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 
 export const DEFAULT_EXTENSIONS = ['ts'];
 
@@ -29,19 +31,19 @@ export const createConfig = (additionalExtensions = []) => {
 
         // - Configuration
         settings: {
-            'import/extensions': ['.d.ts', '.ts', '.js'],
-            'import/external-module-folders': ['node_modules', 'node_modules/@types'],
-            'import/parsers': {
+            'import-x/extensions': ['.d.ts', '.ts', '.js'],
+            'import-x/external-module-folders': ['node_modules', 'node_modules/@types'],
+            'import-x/parsers': {
                 '@typescript-eslint/parser': ['.ts'],
             },
-            'import/resolver': {
-                node: {
+            'import-x/resolver-next': [
+                createNodeResolver({
                     extensions: ['.d.ts', '.ts', '.js', '.json'],
-                },
-                typescript: {
+                }),
+                createTypeScriptImportResolver({
                     extensions: ['.d.ts', '.ts', '.js', '.json'],
-                },
-            },
+                }),
+            ],
             'jsdoc': {
                 preferredTypes: {
                     'Object<>': 'Record<>',
@@ -374,6 +376,10 @@ export const createConfig = (additionalExtensions = []) => {
                 allowTernary: true,
             }],
 
+            // https://typescript-eslint.io/rules/no-unused-private-class-members
+            'no-unused-private-class-members': ['off'],
+            '@typescript-eslint/no-unused-private-class-members': ['error'],
+
             // https://typescript-eslint.io/rules/no-unused-vars
             'no-unused-vars': ['off'],
             '@typescript-eslint/no-unused-vars': ['error', {
@@ -397,6 +403,9 @@ export const createConfig = (additionalExtensions = []) => {
             // https://typescript-eslint.io/rules/no-useless-constructor
             'no-useless-constructor': ['off'],
             '@typescript-eslint/no-useless-constructor': ['error'],
+
+            // https://typescript-eslint.io/rules/no-useless-default-assignment
+            '@typescript-eslint/no-useless-default-assignment': ['error'],
 
             // https://typescript-eslint.io/rules/no-useless-empty-export
             '@typescript-eslint/no-useless-empty-export': ['error'],
@@ -469,6 +478,11 @@ export const createConfig = (additionalExtensions = []) => {
             // https://typescript-eslint.io/rules/return-await
             '@typescript-eslint/return-await': ['error', 'in-try-catch'],
 
+            // https://typescript-eslint.io/rules/strict-void-return
+            '@typescript-eslint/strict-void-return': ['error', {
+                allowReturnAny: true,
+            }],
+
             // https://typescript-eslint.io/rules/switch-exhaustiveness-check
             '@typescript-eslint/switch-exhaustiveness-check': ['error', {
                 allowDefaultCaseForExhaustiveSwitch: true,
@@ -492,7 +506,7 @@ export const createConfig = (additionalExtensions = []) => {
             // https://typescript-eslint.io/rules/use-unknown-in-catch-callback-variable
             '@typescript-eslint/use-unknown-in-catch-callback-variable': ['error'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/extensions.md
             'import/extensions': ['error', 'ignorePackages', {
                 checkTypeImports: true,
             }],
@@ -511,6 +525,9 @@ export const createConfig = (additionalExtensions = []) => {
 
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-returns-description.md
             'jsdoc/require-returns-description': ['error'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-export-decorator-position.md
+            'unicorn/consistent-export-decorator-position': ['error', 'above'],
 
             //
             // - Règles qui sont en dehors de la responsabilité du type-checking.
@@ -614,7 +631,7 @@ export const createConfig = (additionalExtensions = []) => {
             // https://eslint.org/docs/rules/no-undef
             'no-undef': ['off'],
 
-            // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/exports-last.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/exports-last.md
             'import/exports-last': ['off'],
 
             //
@@ -724,6 +741,9 @@ export const createConfig = (additionalExtensions = []) => {
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-property-type.md
             'jsdoc/require-property-type': ['off'],
 
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-next-type.md
+            'jsdoc/require-next-type': ['off'],
+
             // - Désactivée car son utilisation avec des overloads TS successifs est fastidieux (chaque overload doit avoir sa propre doc...).
             // @see https://github.com/gajus/eslint-plugin-jsdoc/issues/903#issuecomment-1287848062
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-returns-check.md
@@ -736,6 +756,9 @@ export const createConfig = (additionalExtensions = []) => {
             // @see https://github.com/gajus/eslint-plugin-jsdoc/issues/903#issuecomment-1287848062
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-yields-check.md
             'jsdoc/require-yields-check': ['off'],
+
+            // https://github.com/gajus/eslint-plugin-jsdoc/blob/main/.README/rules/require-yields-type.md
+            'jsdoc/require-yields-type': ['off'],
         },
     };
 

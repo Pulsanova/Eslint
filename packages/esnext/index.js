@@ -1,5 +1,7 @@
 import babelPlugin from '@babel/eslint-plugin';
 import babelParser from '@babel/eslint-parser';
+import { createNodeResolver } from 'eslint-plugin-import-x';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import {
     createConfig as baseConfig,
     DEFAULT_EXTENSIONS as BASE_EXTENSIONS,
@@ -34,22 +36,19 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // - Configuration
             settings: {
-                'import/extensions': ['.d.ts', '.ts', '.js'],
-                'import/external-module-folders': ['node_modules', 'node_modules/@types'],
-                'import/parsers': {
+                'import-x/extensions': ['.d.ts', '.ts', '.js'],
+                'import-x/external-module-folders': ['node_modules', 'node_modules/@types'],
+                'import-x/parsers': {
                     '@typescript-eslint/parser': ['.mts', '.cts', '.ts'],
                 },
-                'import/resolver': {
-                    node: {
+                'import-x/resolver-next': [
+                    createNodeResolver({
                         extensions: ['.d.ts', '.ts', '.js', '.json'],
-                    },
-                    // - Ce résolveur est uniquement utilisé pour résoudre un problème avec les `exports` dans les `package.json`.
-                    //   (Sinon on utiliserait le mécanisme de résolution par défaut (= Node ci-dessus)).
-                    // See https://github.com/import-js/eslint-plugin-import/issues/1868#issuecomment-2034198702
-                    typescript: {
+                    }),
+                    createTypeScriptImportResolver({
                         extensions: ['.d.ts', '.ts', '.js', '.json'],
-                    },
-                },
+                    }),
+                ],
                 'jsdoc': {
                     preferredTypes: {
                         'Object<>': 'Record<>',
@@ -75,7 +74,7 @@ export const createConfig = (additionalExtensions = {}) => {
                     capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'],
                 }],
 
-                // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
+                // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/extensions.md
                 'import/extensions': ['error', 'ignorePackages', {
                     js: 'never',
                     cjs: 'never',
@@ -99,13 +98,6 @@ export const createConfig = (additionalExtensions = {}) => {
 
                 // https://eslint.org/docs/rules/strict
                 'strict': ['error', 'never'],
-
-                //
-                // - Règles désactivées.
-                //
-
-                // https://eslint.org/docs/rules/no-invalid-this
-                '@babel/no-invalid-this': ['off'],
             },
         },
     ];

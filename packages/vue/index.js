@@ -1,7 +1,8 @@
 import vueParser from 'vue-eslint-parser';
 import babelParser from '@babel/eslint-parser';
 import vuePlugin from 'eslint-plugin-vue';
-import reactPlugin from 'eslint-plugin-react';
+import { createNodeResolver } from 'eslint-plugin-import-x';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import {
     createConfig as browserConfig,
     DEFAULT_EXTENSIONS as BASE_EXTENSIONS,
@@ -38,39 +39,43 @@ const base = [
 
         // - Configuration
         settings: {
-            'import/extensions': ['.vue', '.d.ts', '.ts', '.tsx', '.js', '.jsx'],
-            'import/parsers': {
+            'import-x/extensions': ['.vue', '.d.ts', '.ts', '.tsx', '.js', '.jsx'],
+            'import-x/parsers': {
                 '@typescript-eslint/parser': ['.mts', '.cts', '.ts', '.tsx'],
             },
-            'import/resolver': {
-                node: {
+            'import-x/resolver-next': [
+                createNodeResolver({
                     extensions: ['.d.ts', '.ts', '.tsx', '.js', '.jsx', '.json'],
-                    // - Ce résolveur est uniquement utilisé pour résoudre un problème avec les `exports` dans les `package.json`.
-                    //   (Sinon on utiliserait le mécanisme de résolution par défaut (= Node ci-dessus)).
-                    // See https://github.com/import-js/eslint-plugin-import/issues/1868#issuecomment-2034198702
-                    typescript: {
-                        extensions: ['.d.ts', '.ts', '.tsx', '.js', '.jsx', '.json'],
-                    },
-                },
-            },
-            'react': {
-                fragment: 'Fragment',
-                pragma: 'h',
-
-                // NOTE: Permet de désactiver l'alerte concernant la détection de React tout en
-                // nous permettant d'utiliser les règles relatives au JSX.
-                version: '999.999.999',
-            },
+                }),
+                createTypeScriptImportResolver({
+                    extensions: ['.d.ts', '.ts', '.tsx', '.js', '.jsx', '.json'],
+                }),
+            ],
         },
 
         // - Plugins
         plugins: {
             vue: vuePlugin,
-            react: reactPlugin,
         },
 
         // - Règles
         rules: {
+            // https://eslint.style/rules/indent
+            '@stylistic/indent': ['error', 4, {
+                ArrayExpression: 1,
+                CallExpression: { arguments: 1 },
+                flatTernaryExpressions: false,
+                offsetTernaryExpressions: false,
+                FunctionDeclaration: { parameters: 1, body: 1 },
+                FunctionExpression: { parameters: 1, body: 1 },
+                ignoreComments: false,
+                ImportDeclaration: 1,
+                ObjectExpression: 1,
+                outerIIFEBody: 1,
+                SwitchCase: 1,
+                VariableDeclarator: 1,
+            }],
+
             // https://eslint.style/rules/jsx-function-call-newline
             '@stylistic/jsx-function-call-newline': ['error', 'multiline'],
 
@@ -83,7 +88,7 @@ const base = [
                 exceptMethods: [],
             }],
 
-            // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/extensions.md
+            // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/extensions.md
             'import/extensions': ['error', 'ignorePackages', {
                 cjs: 'never',
                 cts: 'never',
@@ -96,114 +101,48 @@ const base = [
                 vue: 'never',
             }],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/button-has-type.md
-            'react/button-has-type': ['error', {
-                button: true,
-                reset: false,
-                submit: true,
-            }],
+            // - Règles JSX de formatage (déplacées vers @stylistic)
+            // https://eslint.style/rules/jsx-closing-bracket-location
+            '@stylistic/jsx-closing-bracket-location': ['error', 'line-aligned'],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-prop-types.md
-            'react/forbid-prop-types': ['error', {
-                checkChildContextTypes: true,
-                checkContextTypes: true,
-                forbid: ['any', 'array', 'object'],
-            }],
+            // https://eslint.style/rules/jsx-closing-tag-location
+            '@stylistic/jsx-closing-tag-location': ['error', 'tag-aligned'],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/iframe-missing-sandbox.md
-            'react/iframe-missing-sandbox': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
-            'react/jsx-boolean-value': ['error', 'never', { always: [] }],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md
-            'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-closing-tag-location.md
-            'react/jsx-closing-tag-location': ['error', 'tag-aligned'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-curly-brace-presence.md
-            'react/jsx-curly-brace-presence': ['error', {
+            // https://eslint.style/rules/jsx-curly-brace-presence
+            '@stylistic/jsx-curly-brace-presence': ['error', {
                 children: 'never',
                 propElementValues: 'always',
                 props: 'never',
             }],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-curly-newline.md
-            'react/jsx-curly-newline': ['error', {
+            // https://eslint.style/rules/jsx-curly-newline
+            '@stylistic/jsx-curly-newline': ['error', {
                 multiline: 'consistent',
                 singleline: 'consistent',
             }],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-curly-spacing.md
-            'react/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
+            // https://eslint.style/rules/jsx-curly-spacing
+            '@stylistic/jsx-curly-spacing': ['error', 'never', { allowMultiline: true }],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-equals-spacing.md
-            'react/jsx-equals-spacing': ['error', 'never'],
+            // https://eslint.style/rules/jsx-equals-spacing
+            '@stylistic/jsx-equals-spacing': ['error', 'never'],
 
-            // https://github.com/facebookincubator/create-react-app/issues/87#issuecomment-234627904
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
-            'react/jsx-filename-extension': ['error', {
-                allow: 'always',
-                extensions: ['.js', '.tsx'],
-            }],
+            // https://eslint.style/rules/jsx-first-prop-new-line
+            '@stylistic/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-first-prop-new-line.md
-            'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
+            // https://eslint.style/rules/jsx-max-props-per-line
+            '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md
-            'react/jsx-handler-names': ['error', {
-                checkInlineFunction: false,
-                eventHandlerPrefix: 'handle',
-                eventHandlerPropPrefix: 'on',
-            }],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-indent.md
-            'react/jsx-indent': ['error', 4],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-max-props-per-line.md
-            'react/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-            'react/jsx-no-bind': ['error', {
-                allowArrowFunctions: true,
-                allowBind: false,
-                allowFunctions: false,
-                ignoreDOMComponents: true,
-                ignoreRefs: true,
-            }],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-comment-textnodes.md
-            'react/jsx-no-comment-textnodes': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-duplicate-props.md
-            'react/jsx-no-duplicate-props': ['error', { ignoreCase: true }],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md
-            'react/jsx-no-target-blank': ['error', { enforceDynamicLinks: 'always' }],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-undef.md
-            'react/jsx-no-undef': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-multi-spaces.md
-            'react/jsx-props-no-multi-spaces': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spread-multi.md
-            'react/jsx-props-no-spread-multi': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-tag-spacing.md
-            'react/jsx-tag-spacing': ['error', {
+            // https://eslint.style/rules/jsx-tag-spacing
+            '@stylistic/jsx-tag-spacing': ['error', {
                 afterOpening: 'never',
                 beforeClosing: 'never',
                 beforeSelfClosing: 'always',
                 closingSlash: 'never',
             }],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-uses-vars.md
-            'react/jsx-uses-vars': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md
-            'react/jsx-wrap-multilines': ['error', {
+            // https://eslint.style/rules/jsx-wrap-multilines
+            '@stylistic/jsx-wrap-multilines': ['error', {
                 arrow: 'parens-new-line',
                 assignment: 'parens-new-line',
                 condition: 'parens-new-line',
@@ -213,31 +152,23 @@ const base = [
                 return: 'parens-new-line',
             }],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-indent-props.md
-            'react/jsx-indent-props': ['error', 4],
+            // https://eslint.style/rules/jsx-indent-props
+            '@stylistic/jsx-indent-props': ['error', 4],
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md
-            'react/jsx-pascal-case': ['error', {
-                allowAllCaps: false,
-                allowLeadingUnderscore: false,
-                allowNamespace: false,
-                ignore: [],
-            }],
+            // https://eslint.style/rules/jsx-self-closing-comp
+            '@stylistic/jsx-self-closing-comp': ['error'],
+
+            // https://eslint.style/rules/jsx-child-element-spacing
+            '@stylistic/jsx-child-element-spacing': ['off'],
+
+            // https://eslint.style/rules/jsx-newline
+            '@stylistic/jsx-newline': ['off'],
+
+            // https://eslint.style/rules/jsx-one-expression-per-line
+            '@stylistic/jsx-one-expression-per-line': ['off'],
 
             // https://eslint.vuejs.org/rules/match-component-import-name.html
             'vue/match-component-import-name': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-children-prop.md
-            'react/no-children-prop': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-invalid-html-attribute.md
-            'react/no-invalid-html-attribute': ['error', ['rel']],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unescaped-entities.md
-            'react/no-unescaped-entities': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-class-component-methods.md
-            'react/no-unused-class-component-methods': ['error'],
 
             // https://eslint.vuejs.org/rules/padding-lines-in-component-definition.html
             'vue/padding-lines-in-component-definition': ['error', {
@@ -256,15 +187,6 @@ const base = [
                     },
                 },
             }],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-render-return.md
-            'react/require-render-return': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md
-            'react/self-closing-comp': ['error'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/void-dom-elements-no-children.md
-            'react/void-dom-elements-no-children': ['error'],
 
             // https://eslint.vuejs.org/rules/array-bracket-spacing.html
             'vue/array-bracket-spacing': ['error', 'never'],
@@ -372,6 +294,9 @@ const base = [
 
             // https://eslint.vuejs.org/rules/no-duplicate-attributes.html
             'vue/no-duplicate-attributes': ['error'],
+
+            // https://eslint.vuejs.org/rules/no-duplicate-class-names.html
+            'vue/no-duplicate-class-names': ['error'],
 
             // https://eslint.vuejs.org/rules/no-export-in-script-setup.html
             'vue/no-export-in-script-setup': ['error'],
@@ -823,6 +748,9 @@ const base = [
             // https://eslint.vuejs.org/rules/no-implicit-coercion.html
             'vue/no-implicit-coercion': ['off'],
 
+            // https://eslint.vuejs.org/rules/no-literals-in-template.html
+            'vue/no-literals-in-template': ['off'],
+
             // https://eslint.vuejs.org/rules/no-loss-of-precision.html
             'vue/no-loss-of-precision': ['off'],
 
@@ -959,211 +887,6 @@ const base = [
             // - Règles désactivées.
             //
 
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/boolean-prop-naming.md
-            'react/boolean-prop-naming': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/checked-requires-onchange-or-readonly.md
-            'react/checked-requires-onchange-or-readonly': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/default-props-match-prop-types.md
-            'react/default-props-match-prop-types': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
-            'react/destructuring-assignment': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/display-name.md
-            'react/display-name': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-component-props.md
-            'react/forbid-component-props': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-dom-props.md
-            'react/forbid-dom-props': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-elements.md
-            'react/forbid-elements': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-foreign-prop-types.md
-            'react/forbid-foreign-prop-types': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forward-ref-uses-ref.md
-            'react/forward-ref-uses-ref': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/function-component-definition.md
-            'react/function-component-definition': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/hook-use-state.md
-            'react/hook-use-state': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-child-element-spacing.md
-            'react/jsx-child-element-spacing': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-fragments.md
-            'react/jsx-fragments': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md
-            'react/jsx-key': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-max-depth.md
-            'react/jsx-max-depth': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-newline.md
-            'react/jsx-newline': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-constructed-context-values.md
-            'react/jsx-no-constructed-context-values': ['off'],
-
-            // TODO: À activer lorsqu'on pourra ignorer certains patterns dans la partie gauche des conditions
-            //       parce qu'en l'état, on est forcé de "contraindre" (coerce) même les booléens (e.g. `{!!isBoolean && 'foo'}`) ...
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/v7.30.0/docs/rules/jsx-no-leaked-render.md
-            'react/jsx-no-leaked-render': ['off', {
-                validStrategies: ['ternary', 'coerce'],
-            }],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-literals.md
-            'react/jsx-no-literals': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-script-url.md
-            'react/jsx-no-script-url': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-useless-fragment.md
-            'react/jsx-no-useless-fragment': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-one-expression-per-line.md
-            'react/jsx-one-expression-per-line': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-props-no-spreading.md
-            'react/jsx-props-no-spreading': ['off'],
-
-            // Deprecated in favor of react/jsx-sort-props
-            'react/jsx-sort-prop-types': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-sort-props.md
-            'react/jsx-sort-props': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-uses-react.md
-            'react/jsx-uses-react': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-access-state-in-setstate.md
-            'react/no-access-state-in-setstate': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-adjacent-inline-elements.md
-            'react/no-adjacent-inline-elements': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
-            'react/no-array-index-key': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-arrow-function-lifecycle.md
-            'react/no-arrow-function-lifecycle': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-danger.md
-            'react/no-danger': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-danger-with-children.md
-            'react/no-danger-with-children': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-deprecated.md
-            'react/no-deprecated': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unstable-nested-components.md
-            'react/no-unstable-nested-components': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/pull/1103/
-            'react/no-unused-state': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-did-mount-set-state.md
-            //      https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-did-update-set-state.md
-            //      https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-will-update-set-state.md
-            //      https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md
-            'react/no-did-mount-set-state': ['off'],
-            'react/no-did-update-set-state': ['off'],
-            'react/no-direct-mutation-state': ['off'],
-            'react/no-will-update-set-state': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-find-dom-node.md
-            'react/no-find-dom-node': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-is-mounted.md
-            'react/no-is-mounted': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md
-            'react/no-multi-comp': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-namespace.md
-            'react/no-namespace': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/HEAD/docs/rules/no-object-type-as-default-prop.md
-            'react/no-object-type-as-default-prop': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-redundant-should-component-update.md
-            'react/no-redundant-should-component-update': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-render-return-value.md
-            'react/no-render-return-value': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-set-state.md
-            'react/no-set-state': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-string-refs.md
-            'react/no-string-refs': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-this-in-sfc.md
-            'react/no-this-in-sfc': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-typos.md
-            'react/no-typos': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md
-            'react/no-unknown-property': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unsafe.md
-            'react/no-unsafe': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-unused-prop-types.md
-            'react/no-unused-prop-types': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prefer-es6-class.md
-            'react/prefer-es6-class': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prefer-exact-props.md
-            'react/prefer-exact-props': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prefer-read-only-props.md
-            'react/prefer-read-only-props': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prefer-stateless-function.md
-            'react/prefer-stateless-function': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/prop-types.md
-            'react/prop-types': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
-            'react/react-in-jsx-scope': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-default-props.md
-            'react/require-default-props': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/require-optimization.md
-            'react/require-optimization': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
-            'react/sort-comp': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/sort-default-props.md
-            'react/sort-default-props': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/sort-prop-types.md
-            'react/sort-prop-types': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md
-            'react/state-in-constructor': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md
-            'react/static-property-placement': ['off'],
-
-            // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/style-prop-object.md
-            'react/style-prop-object': ['off'],
-
             // https://eslint.vuejs.org/rules/component-api-style.html
             'vue/component-api-style': ['off'],
 
@@ -1213,8 +936,17 @@ const base = [
             // https://eslint.vuejs.org/rules/no-restricted-props.html
             'vue/no-restricted-props': ['off'],
 
+            // https://eslint.vuejs.org/rules/no-undef-directives.html
+            'vue/no-undef-directives': ['off'],
+
             // https://eslint.vuejs.org/rules/no-unsupported-features.html
             'vue/no-unsupported-features': ['off'],
+
+            // https://eslint.vuejs.org/rules/prefer-single-event-payload.html
+            'vue/prefer-single-event-payload': ['off'],
+
+            // https://eslint.vuejs.org/rules/prefer-v-model.html
+            'vue/prefer-v-model': ['off'],
 
             // https://eslint.vuejs.org/rules/require-default-export.html
             'vue/require-default-export': ['off'],
@@ -1222,7 +954,6 @@ const base = [
             // https://eslint.vuejs.org/rules/require-direct-export.html
             'vue/require-direct-export': ['off'],
 
-            // TODO: À activer ?
             // https://eslint.vuejs.org/rules/require-emit-validator.html
             'vue/require-emit-validator': ['off'],
 

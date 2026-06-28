@@ -1,8 +1,8 @@
 import globals from 'globals';
 import confusingBrowserGlobals from 'confusing-browser-globals';
 import {
-    createConfig as esnextConfig,
     DEFAULT_EXTENSIONS,
+    createConfig as esnextConfig,
 } from '@pulsanova/eslint-config-esnext';
 
 export { DEFAULT_EXTENSIONS };

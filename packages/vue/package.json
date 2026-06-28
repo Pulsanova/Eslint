@@ -19,18 +19,19 @@
         "inspect-config": "eslint --inspect-config --config ./index.js"
     },
     "dependencies": {
-        "@babel/eslint-parser": "~7.28.0",
+        "@babel/eslint-parser": "~8.0.1",
         "@pulsanova/eslint-config-browser": "3.1.2",
-        "@typescript-eslint/parser": "~8.40.0",
-        "eslint-plugin-react": "~7.37.5",
-        "eslint-plugin-vue": "~10.4.0",
-        "vue-eslint-parser": "~10.2.0"
+        "@typescript-eslint/parser": "~8.62.0",
+        "eslint-import-resolver-typescript": "~4.4.5",
+        "eslint-plugin-import-x": "~4.17.1",
+        "eslint-plugin-vue": "~10.9.2",
+        "vue-eslint-parser": "~10.4.1"
     },
     "devDependencies": {
-        "eslint": "^9.33.0",
+        "eslint": "^10.6.0",
         "eslint-find-rules": "^5.0.0"
     },
     "peerDependencies": {
-        "eslint": "^9.33.0"
+        "eslint": "^10.6.0"
     }
 }
