@@ -109,13 +109,7 @@ export const createConfig = (additionalExtensions = []) => {
             }],
 
             // https://eslint.style/rules/default/type-annotation-spacing
-            '@stylistic/type-annotation-spacing': ['error', {
-                before: false,
-                after: true,
-                overrides: {
-                    arrow: { before: true, after: true },
-                },
-            }],
+            '@stylistic/type-annotation-spacing': ['error', { before: false, after: true }],
 
             // https://eslint.style/rules/type-generic-spacing
             '@stylistic/type-generic-spacing': ['error'],
@@ -478,11 +472,6 @@ export const createConfig = (additionalExtensions = []) => {
             // https://typescript-eslint.io/rules/return-await
             '@typescript-eslint/return-await': ['error', 'in-try-catch'],
 
-            // https://typescript-eslint.io/rules/strict-void-return
-            '@typescript-eslint/strict-void-return': ['error', {
-                allowReturnAny: true,
-            }],
-
             // https://typescript-eslint.io/rules/switch-exhaustiveness-check
             '@typescript-eslint/switch-exhaustiveness-check': ['error', {
                 allowDefaultCaseForExhaustiveSwitch: true,
@@ -729,6 +718,9 @@ export const createConfig = (additionalExtensions = []) => {
 
             // https://typescript-eslint.io/rules/strict-boolean-expressions
             '@typescript-eslint/strict-boolean-expressions': ['off'],
+
+            // https://typescript-eslint.io/rules/strict-void-return
+            '@typescript-eslint/strict-void-return': ['off'],
 
             // https://github.com/gajus/eslint-plugin-jsdoc/blob/master/.README/rules/require-param-type.md
             'jsdoc/require-param-type': ['off'],

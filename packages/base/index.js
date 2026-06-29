@@ -1368,9 +1368,6 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-template-literal-escape.md
             'unicorn/consistent-template-literal-escape': ['error'],
 
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/custom-error-definition.md
-            'unicorn/custom-error-definition': ['error'],
-
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/default-export-style.md
             'unicorn/default-export-style': ['error', {
                 functions: 'separate',
@@ -2279,6 +2276,9 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/consistent-tuple-labels.md
             'unicorn/consistent-tuple-labels': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/custom-error-definition.md
+            'unicorn/custom-error-definition': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/empty-brace-spaces.md
             'unicorn/empty-brace-spaces': ['off'],
