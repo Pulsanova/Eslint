@@ -109,7 +109,13 @@ export const createConfig = (additionalExtensions = []) => {
             }],
 
             // https://eslint.style/rules/default/type-annotation-spacing
-            '@stylistic/type-annotation-spacing': ['error', { before: false, after: true }],
+            '@stylistic/type-annotation-spacing': ['error', {
+                before: false,
+                after: true,
+                overrides: {
+                    arrow: 'ignore',
+                },
+            }],
 
             // https://eslint.style/rules/type-generic-spacing
             '@stylistic/type-generic-spacing': ['error'],
