@@ -8,7 +8,6 @@ au développement d'une application Vue.
 ## Quand l'utiliser ?
 
 Cette configuration est à utiliser quand __toutes__ les assertions suivantes sont exactes:
-- Le code est transpilé avec Babel.
 - Le code est destiné à être exécuté dans un navigateur.
 - Le code utilise Vue.
 
@@ -27,18 +26,5 @@ yarn add --dev eslint @pulsanova/eslint-config-vue
 Créez un fichier `eslint.config.mjs` et ajoutez-y la configuration suivante:
 
 ```js
-import vueConfig from '@pulsanova/eslint-config-vue';
-
-export default [
-    ...vueConfig,
-    {
-        languageOptions: {
-            parserOptions: {
-                babelOptions: {
-                    configFile: '[Chemin vers votre configuration Babel]',
-                },
-            },
-        },
-    },
-];
+export { default } from '@pulsanova/eslint-config-vue';
 ```

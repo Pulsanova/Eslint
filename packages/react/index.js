@@ -8,7 +8,7 @@ import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescrip
 import {
     createConfig as browserConfig,
     DEFAULT_EXTENSIONS as BASE_EXTENSIONS,
-} from '@pulsanova/eslint-config-browser';
+} from '@pulsanova/eslint-config-browser/esnext';
 import typescriptConfig, {
     EXTENSIONS as TS_EXTENSIONS,
 } from './extensions/typescript.js';

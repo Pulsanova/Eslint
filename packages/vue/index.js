@@ -1,18 +1,18 @@
 import vueParser from 'vue-eslint-parser';
-import babelParser from '@babel/eslint-parser';
+import typescriptParser from '@typescript-eslint/parser';
 import vuePlugin from 'eslint-plugin-vue';
 import { createNodeResolver } from 'eslint-plugin-import-x';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import {
     createConfig as browserConfig,
     DEFAULT_EXTENSIONS as BASE_EXTENSIONS,
-} from '@pulsanova/eslint-config-browser';
+} from '@pulsanova/eslint-config-browser/esnext';
 import typescriptConfig, {
     EXTENSIONS as TS_EXTENSIONS,
 } from './extensions/typescript.js';
 
 export const EXTENSIONS = {
-    js: [...BASE_EXTENSIONS.js, 'jsx'],
+    js: [...BASE_EXTENSIONS.js, 'jsx', 'vue'],
     ts: TS_EXTENSIONS,
 };
 
@@ -26,7 +26,6 @@ const base = [
         languageOptions: {
             parser: vueParser,
             parserOptions: {
-                parser: babelParser,
                 sourceType: 'module',
                 ecmaFeatures: {
                     jsx: true,

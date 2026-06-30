@@ -26,7 +26,7 @@ export const createConfig = (additionalExtensions = {}) => {
         // - Parseur
         languageOptions: {
             ecmaVersion: 'latest',
-            sourceType: 'script',
+            sourceType: 'module',
         },
 
         // - Linter

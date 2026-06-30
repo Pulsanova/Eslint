@@ -1,9 +1,9 @@
 import globals from 'globals';
 import confusingBrowserGlobals from 'confusing-browser-globals';
 import {
+    createConfig as baseConfig,
     DEFAULT_EXTENSIONS,
-    createConfig as esnextConfig,
-} from '@pulsanova/eslint-config-esnext';
+} from '@pulsanova/eslint-config-base';
 
 export { DEFAULT_EXTENSIONS };
 
@@ -14,13 +14,14 @@ export const createConfig = (additionalExtensions = {}) => {
     };
 
     return [
-        ...esnextConfig(extensions),
+        ...baseConfig(extensions),
         {
             // - Fichiers
             files: [`**/*.{${Object.values(extensions).flat().join(',')}}`],
 
             // - Parseur
             languageOptions: {
+                sourceType: 'script',
                 globals: {
                     ...globals.browser,
                 },
@@ -48,8 +49,32 @@ export const createConfig = (additionalExtensions = {}) => {
                     )
                 ),
 
+                // https://eslint.org/docs/rules/strict
+                'strict': ['error', 'global'],
+
                 // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-post-message-target-origin.md
                 'unicorn/require-post-message-target-origin': ['error'],
+
+                //
+                // - Règles désactivées
+                //
+
+                'import/consistent-type-specifier-style': ['off'],
+                'import/export': ['off'],
+                'import/extensions': ['off'],
+                'import/first': ['off'],
+                'import/named': ['off'],
+                'import/newline-after-import': ['off'],
+                'import/no-duplicates': ['off'],
+                'import/no-empty-named-blocks': ['off'],
+                'import/no-mutable-exports': ['off'],
+                'import/no-named-default': ['off'],
+                'import/no-relative-packages': ['off'],
+                'import/no-self-import': ['off'],
+                'import/no-unresolved': ['off'],
+                'import/no-useless-path-segments': ['off'],
+                'import/order': ['off'],
+                'import/prefer-default-export': ['off'],
             },
         },
     ];

@@ -19,8 +19,5 @@ Configuration générale pour le développement d'une application "browser".
 ### [`@pulsanova/node`](packages/node)  
 Configuration générale pour le développement d'une application Node.
 
-### [`@pulsanova/esnext`](packages/esnext)  
-Configuration ESLint pour les projets ESNext (babel) avec utilisation de TypeScript.
-
 ### [`@pulsanova/base`](packages/base)  
 Cette configuration correspond aux règles de base uniquement, sans spécificités propre à l'environnement.

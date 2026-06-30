@@ -1,5 +1,5 @@
-import babelPlugin from '@babel/eslint-plugin';
-import babelParser from '@babel/eslint-parser';
+import globals from 'globals';
+import confusingBrowserGlobals from 'confusing-browser-globals';
 import { createNodeResolver } from 'eslint-plugin-import-x';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import {
@@ -31,7 +31,9 @@ export const createConfig = (additionalExtensions = {}) => {
             // - Parseur
             languageOptions: {
                 sourceType: 'module',
-                parser: babelParser,
+                globals: {
+                    ...globals.browser,
+                },
             },
 
             // - Configuration
@@ -58,22 +60,8 @@ export const createConfig = (additionalExtensions = {}) => {
                 },
             },
 
-            // - Plugins
-            plugins: {
-                '@babel': babelPlugin,
-            },
-
             // - Règles
             rules: {
-                // https://eslint.org/docs/rules/new-cap
-                'new-cap': ['off'],
-                '@babel/new-cap': ['error', {
-                    newIsCap: true,
-                    newIsCapExceptions: [],
-                    capIsNew: false,
-                    capIsNewExceptions: ['Immutable.Map', 'Immutable.Set', 'Immutable.List'],
-                }],
-
                 // https://github.com/un-ts/eslint-plugin-import-x/blob/master/docs/rules/extensions.md
                 'import/extensions': ['error', 'ignorePackages', {
                     js: 'never',
@@ -84,20 +72,31 @@ export const createConfig = (additionalExtensions = {}) => {
                     mts: 'never',
                 }],
 
-                // https://eslint.org/docs/rules/no-undef
-                'no-undef': ['off'],
-                '@babel/no-undef': ['off'],
-
-                // https://eslint.org/docs/rules/no-unused-expressions
-                'no-unused-expressions': ['off'],
-                '@babel/no-unused-expressions': ['error', {
-                    allowShortCircuit: false,
-                    allowTaggedTemplates: false,
-                    allowTernary: true,
-                }],
+                // https://eslint.org/docs/rules/no-restricted-globals
+                'no-restricted-globals': (
+                    [
+                        'error',
+                        {
+                            name: 'isFinite',
+                            message: 'Use Number.isFinite instead.`',
+                        },
+                        {
+                            name: 'isNaN',
+                            message: 'Use Number.isNaN instead.',
+                        },
+                    ].concat(
+                        confusingBrowserGlobals.map((globalName) => ({
+                            name: globalName,
+                            message: `Use window.${globalName} instead.`,
+                        })),
+                    )
+                ),
 
                 // https://eslint.org/docs/rules/strict
                 'strict': ['error', 'never'],
+
+                // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/require-post-message-target-origin.md
+                'unicorn/require-post-message-target-origin': ['error'],
             },
         },
     ];

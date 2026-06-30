@@ -32,13 +32,6 @@ export const createConfig = (additionalExtensions = []) => {
                     mts: 'never',
                 },
             }],
-
-            //
-            // - Incompatible / Non-optimized rules
-            //
-
-            // - Already handled by the base TypeScript config.
-            '@babel/no-unused-expressions': ['off'],
         },
     };
 

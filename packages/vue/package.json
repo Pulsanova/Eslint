@@ -19,7 +19,6 @@
         "inspect-config": "eslint --inspect-config --config ./index.js"
     },
     "dependencies": {
-        "@babel/eslint-parser": "~8.0.1",
         "@pulsanova/eslint-config-browser": "3.2.1",
         "@typescript-eslint/parser": "~8.62.0",
         "eslint-import-resolver-typescript": "~4.4.5",

@@ -6,7 +6,7 @@
 
 Cette configuration est à utiliser quand __toutes__ les assertions suivantes sont exactes:
 - Le code est écrit en ES6+.
-- Le code n'est pas compilé / transpilé, sinon voir la config. [esnext](../esnext).
+- Le code n'est pas compilé / transpilé, sinon voir les configs [Node.js](../node) / [Browser](../browser).
 
 ## Installation
 

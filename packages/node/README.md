@@ -5,11 +5,17 @@
 Cette configuration étend la [configuration de base](../base) et ajoute des règles propre
 au développement d'une application sous environnement Node.
 
+Elle expose plusieurs points d'entrée :
+
+- `@pulsanova/eslint-config-node` :  
+  Un environnement Node natif (ESM moderne, règles spécifiques au runtime Node).
+- `@pulsanova/eslint-config-node/legacy` :  
+  Un environnement Node legacy en CommonJS.
+
 ## Quand l'utiliser ?
 
 Cette configuration est à utiliser quand __toutes__ les assertions suivantes sont exactes:
 - Le code a été développé pour être utilisé dans un contexte Node.
-- Le code n'utilise pas Babel, sans quoi il faut utiliser la config. [esnext](../esnext).
 
 ## Installation
 
