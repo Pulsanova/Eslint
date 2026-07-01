@@ -58,7 +58,7 @@ export const createConfig = (additionalExtensions = {}) => {
                 },
                 exemptDestructuredRootsFromChecks: true,
                 ignoreInternal: true,
-                mode: 'jsdoc',
+                mode: 'permissive',
             },
         },
 
