@@ -1,5 +1,4 @@
 import vueParser from 'vue-eslint-parser';
-import typescriptParser from '@typescript-eslint/parser';
 import vuePlugin from 'eslint-plugin-vue';
 import { createNodeResolver } from 'eslint-plugin-import-x';
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
