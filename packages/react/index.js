@@ -422,13 +422,6 @@ const base = [
             // https://eslint-react.xyz/docs/rules/dom-no-void-elements-with-children
             'react/dom-no-void-elements-with-children': ['error'],
 
-            // https://eslint-react.xyz/docs/rules/error-boundaries
-            'react/error-boundaries': ['error'],
-
-            // https://github.com/facebook/react/issues/14920
-            'react/x-exhaustive-deps': ['off'],
-            'react/exhaustive-deps': ['error'],
-
             // https://eslint-react.xyz/docs/rules/jsx-no-children-prop
             'react/jsx-no-children-prop': ['error'],
 
@@ -582,14 +575,8 @@ const base = [
             'react/x-no-use-context': ['off'],
             'react/no-use-context': ['error'],
 
-            // https://eslint-react.xyz/docs/rules/purity
-            'react/purity': ['error'],
-
             // https://eslint-react.xyz/docs/rules/rsc-function-definition
             'react/rsc-function-definition': ['error'],
-
-            // https://react.dev/reference/rules/rules-of-hooks
-            'react/rules-of-hooks': ['error'],
 
             // https://eslint-react.xyz/docs/rules/set-state-in-effect
             'react/set-state-in-effect': ['error'],
@@ -599,12 +586,6 @@ const base = [
 
             // https://eslint-react.xyz/docs/rules/static-components
             'react/static-components': ['error'],
-
-            // https://eslint-react.xyz/docs/rules/unsupported-syntax
-            'react/unsupported-syntax': ['error'],
-
-            // https://eslint-react.xyz/docs/rules/use-memo
-            'react/use-memo': ['error'],
 
             // https://eslint-react.xyz/docs/rules/use-state
             'react/x-use-state': ['off'],
@@ -710,10 +691,17 @@ const base = [
             // - Règles déjà prises en charge par `react-hooks-configurable`
             //
 
+            'react/error-boundaries': ['off'],
+            'react/exhaustive-deps': ['off'],
             'react/globals': ['off'],
             'react/immutability': ['off'],
+            'react/purity': ['off'],
             'react/refs': ['off'],
+            'react/rules-of-hooks': ['off'],
+            'react/unsupported-syntax': ['off'],
+            'react/use-memo': ['off'],
             'react/x-error-boundaries': ['off'],
+            'react/x-exhaustive-deps': ['off'],
             'react/x-globals': ['off'],
             'react/x-immutability': ['off'],
             'react/x-purity': ['off'],
