@@ -1410,14 +1410,8 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-method-this-argument.md
             'unicorn/no-array-method-this-argument': ['error'],
 
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-sort.md
-            'unicorn/no-array-sort': ['error'],
-
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-sort-for-min-max.md
             'unicorn/no-array-sort-for-min-max': ['error'],
-
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-splice.md
-            'unicorn/no-array-splice': ['error'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-await-in-promise-methods.md
             'unicorn/no-await-in-promise-methods': ['error'],
@@ -2324,6 +2318,12 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-reverse.md
             'unicorn/no-array-reverse': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-sort.md
+            'unicorn/no-array-sort': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-splice.md
+            'unicorn/no-array-splice': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-asterisk-prefix-in-documentation-comments.md
             'unicorn/no-asterisk-prefix-in-documentation-comments': ['off'],
