@@ -1,6 +1,6 @@
 {
     "name": "@pulsanova/eslint-config-node",
-    "version": "3.3.3",
+    "version": "3.3.4",
     "license": "MIT",
     "type": "module",
     "main": "./index.js",
@@ -22,7 +22,7 @@
         "inspect-config": "eslint --inspect-config --config ./index.js"
     },
     "dependencies": {
-        "@pulsanova/eslint-config-base": "3.3.3",
+        "@pulsanova/eslint-config-base": "3.3.4",
         "eslint-import-resolver-typescript": "~4.4.5",
         "eslint-plugin-import-x": "~4.17.1",
         "globals": "^17.7.0"
