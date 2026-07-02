@@ -1512,9 +1512,6 @@ export const createConfig = (additionalExtensions = {}) => {
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-global-this.md
             'unicorn/no-unnecessary-global-this': ['error'],
 
-            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-nested-ternary.md
-            'unicorn/no-unnecessary-nested-ternary': ['error'],
-
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-slice-end.md
             'unicorn/no-unnecessary-slice-end': ['error'],
 
@@ -2465,6 +2462,9 @@ export const createConfig = (additionalExtensions = {}) => {
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-uncalled-method.md
             'unicorn/no-uncalled-method': ['off'],
+
+            // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-nested-ternary.md
+            'unicorn/no-unnecessary-nested-ternary': ['off'],
 
             // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-polyfills.md
             'unicorn/no-unnecessary-polyfills': ['off'],

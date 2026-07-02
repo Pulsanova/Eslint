@@ -356,12 +356,6 @@ export const createConfig = (additionalExtensions = []) => {
             // https://typescript-eslint.io/rules/no-unnecessary-type-arguments
             '@typescript-eslint/no-unnecessary-type-arguments': ['error'],
 
-            // https://typescript-eslint.io/rules/no-unnecessary-type-assertion
-            '@typescript-eslint/no-unnecessary-type-assertion': ['error', {
-                checkLiteralConstAssertions: false,
-                typesToIgnore: [],
-            }],
-
             // https://typescript-eslint.io/rules/no-unnecessary-type-constraint
             '@typescript-eslint/no-unnecessary-type-constraint': ['error'],
 
@@ -679,6 +673,16 @@ export const createConfig = (additionalExtensions = []) => {
 
             // https://typescript-eslint.io/rules/no-unnecessary-condition
             '@typescript-eslint/no-unnecessary-condition': ['off'],
+
+            // TODO: À réactiver lorsque les faux-positifs auront été corrigés.
+            //       https://github.com/typescript-eslint/typescript-eslint/issues/12268
+            //       https://github.com/typescript-eslint/typescript-eslint/issues/12271
+            //       https://github.com/typescript-eslint/typescript-eslint/issues?q=is%3Aissue%20state%3Aopen%20no-unnecessary-type-assertion
+            // https://typescript-eslint.io/rules/no-unnecessary-type-assertion
+            '@typescript-eslint/no-unnecessary-type-assertion': ['off', {
+                checkLiteralConstAssertions: false,
+                typesToIgnore: [],
+            }],
 
             // - Désactivé car trop de faux positifs (@typescript-eslint/eslint-plugin#8.24.0).
             // https://typescript-eslint.io/rules/no-unnecessary-type-parameters

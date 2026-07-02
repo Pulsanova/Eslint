@@ -578,15 +578,6 @@ const base = [
             // https://eslint-react.xyz/docs/rules/rsc-function-definition
             'react/rsc-function-definition': ['error'],
 
-            // https://eslint-react.xyz/docs/rules/set-state-in-effect
-            'react/set-state-in-effect': ['error'],
-
-            // https://eslint-react.xyz/docs/rules/set-state-in-render
-            'react/set-state-in-render': ['error'],
-
-            // https://eslint-react.xyz/docs/rules/static-components
-            'react/static-components': ['error'],
-
             // https://eslint-react.xyz/docs/rules/use-state
             'react/x-use-state': ['off'],
             'react/use-state': ['error'],
@@ -698,6 +689,9 @@ const base = [
             'react/purity': ['off'],
             'react/refs': ['off'],
             'react/rules-of-hooks': ['off'],
+            'react/set-state-in-effect': ['off'],
+            'react/set-state-in-render': ['off'],
+            'react/static-components': ['off'],
             'react/unsupported-syntax': ['off'],
             'react/use-memo': ['off'],
             'react/x-error-boundaries': ['off'],
