@@ -4,8 +4,8 @@ import classMethodsUseThisRegexPlugin from 'eslint-plugin-class-methods-use-this
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y-x';
 import eslintReact from '@eslint-react/eslint-plugin';
 import { createNodeResolver } from 'eslint-plugin-import-x';
-import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import {
+    createTypeScriptResolver,
     createConfig as browserConfig,
     DEFAULT_EXTENSIONS as BASE_EXTENSIONS,
 } from '@pulsanova/eslint-config-browser/esnext';
@@ -43,7 +43,7 @@ const base = [
                 createNodeResolver({
                     extensions: ['.d.ts', '.ts', '.tsx', '.js', '.jsx', '.json'],
                 }),
-                createTypeScriptImportResolver({
+                createTypeScriptResolver({
                     extensions: ['.d.ts', '.ts', '.tsx', '.js', '.jsx', '.json'],
                 }),
             ],

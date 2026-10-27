@@ -1,6 +1,8 @@
 import { createNodeResolver } from 'eslint-plugin-import-x';
-import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
-import { DEFAULT_EXTENSIONS as BASE_EXTENSIONS } from '@pulsanova/eslint-config-base';
+import {
+    createTypeScriptResolver,
+    DEFAULT_EXTENSIONS as BASE_EXTENSIONS,
+} from '@pulsanova/eslint-config-base';
 
 export const EXTENSIONS = [...BASE_EXTENSIONS.ts, 'cts', 'mts'];
 
@@ -19,7 +21,7 @@ const base = {
             createNodeResolver({
                 extensions: ['.d.ts', '.ts', '.js', '.json'],
             }),
-            createTypeScriptImportResolver({
+            createTypeScriptResolver({
                 extensions: ['.d.ts', '.ts', '.js', '.json'],
                 extensionAlias: {
                     '.js': ['.ts', '.d.ts', '.js'],

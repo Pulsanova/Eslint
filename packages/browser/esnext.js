@@ -1,8 +1,8 @@
 import globals from 'globals';
 import confusingBrowserGlobals from 'confusing-browser-globals';
 import { createNodeResolver } from 'eslint-plugin-import-x';
-import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
 import {
+    createTypeScriptResolver,
     createConfig as baseConfig,
     DEFAULT_EXTENSIONS as BASE_EXTENSIONS,
 } from '@pulsanova/eslint-config-base';
@@ -47,7 +47,7 @@ export const createConfig = (additionalExtensions = {}) => {
                     createNodeResolver({
                         extensions: ['.d.ts', '.ts', '.js', '.json'],
                     }),
-                    createTypeScriptImportResolver({
+                    createTypeScriptResolver({
                         extensions: ['.d.ts', '.ts', '.js', '.json'],
                     }),
                 ],
@@ -117,4 +117,5 @@ export const createConfig = (additionalExtensions = {}) => {
     ];
 };
 
+export { createTypeScriptResolver };
 export default createConfig();

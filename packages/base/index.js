@@ -1,6 +1,7 @@
 import stylisticPlugin from '@stylistic/eslint-plugin';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import importPlugin, { createNodeResolver } from 'eslint-plugin-import-x';
+import createTypeScriptResolver from './utils/typescript-resolver.js';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsonConfig from './extensions/json.js';
 import {
@@ -2730,4 +2731,5 @@ export const createConfig = (additionalExtensions = {}) => {
     ];
 };
 
+export { createTypeScriptResolver };
 export default createConfig();

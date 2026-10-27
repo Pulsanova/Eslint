@@ -1,7 +1,7 @@
 import typescriptParser from '@typescript-eslint/parser';
 import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 import { createNodeResolver } from 'eslint-plugin-import-x';
-import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
+import createTypeScriptResolver from '../utils/typescript-resolver.js';
 
 export const DEFAULT_EXTENSIONS = ['ts'];
 
@@ -40,7 +40,7 @@ export const createConfig = (additionalExtensions = []) => {
                 createNodeResolver({
                     extensions: ['.d.ts', '.ts', '.js', '.json'],
                 }),
-                createTypeScriptImportResolver({
+                createTypeScriptResolver({
                     extensions: ['.d.ts', '.ts', '.js', '.json'],
                 }),
             ],
